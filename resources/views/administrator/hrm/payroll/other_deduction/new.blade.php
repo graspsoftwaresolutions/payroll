@@ -96,7 +96,7 @@
               <!-- /.end group -->
               <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-10">
-                  <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-arrow-right"></i>{{ __('Add Addition') }} </button>
+                  <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-arrow-right"></i>{{ __('Add Deduction') }} </button>
                 </div>
               </div>
               <!-- /.end group -->

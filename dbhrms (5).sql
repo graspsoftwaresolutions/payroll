@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2020 at 06:45 AM
+-- Generation Time: Mar 11, 2020 at 12:55 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -337,6 +337,9 @@ CREATE TABLE `employee_add_salary` (
   `additional_allowance_total` double NOT NULL,
   `ot_amount` double DEFAULT NULL,
   `gross_salary` double NOT NULL,
+  `epf_check` int(11) NOT NULL DEFAULT 0,
+  `sosco_check` int(11) NOT NULL DEFAULT 0,
+  `sip_check` int(11) NOT NULL DEFAULT 0,
   `epf_ee_amount` double DEFAULT NULL,
   `ee_sosco_amount` double DEFAULT NULL,
   `eis_sip_amount` double DEFAULT NULL,
@@ -356,10 +359,11 @@ CREATE TABLE `employee_add_salary` (
 -- Dumping data for table `employee_add_salary`
 --
 
-INSERT INTO `employee_add_salary` (`id`, `employee_id`, `basic_salary`, `additional_allowance_total`, `ot_amount`, `gross_salary`, `epf_ee_amount`, `ee_sosco_amount`, `eis_sip_amount`, `deductions_total`, `otherdeductions_total`, `total_deductions`, `net_pay`, `epf_percent`, `epf_er`, `sosco_er`, `sosco_eissip`, `status`, `created_at`) VALUES
-(1, 17, 9914, 300, 100, 10314, 1100, 10, 5, 1815, 500, 2315, 7999, 17, 2228.56, 10, 7, 1, '2020-03-10 05:32:34'),
-(2, 8, 500000, 1000, 100, 501100, 0, 0, 0, 100, 200, 300, 500800, 13, 100, 200, 300, 1, '2020-03-10 05:34:52'),
-(3, 29, 9969, 2100, 100, 12169, 1100, 10, 5, 1244, 1046, 2290, 9879, 17, 2230.76, 10, 7, 1, '2020-03-11 11:30:05');
+INSERT INTO `employee_add_salary` (`id`, `employee_id`, `basic_salary`, `additional_allowance_total`, `ot_amount`, `gross_salary`, `epf_check`, `sosco_check`, `sip_check`, `epf_ee_amount`, `ee_sosco_amount`, `eis_sip_amount`, `deductions_total`, `otherdeductions_total`, `total_deductions`, `net_pay`, `epf_percent`, `epf_er`, `sosco_er`, `sosco_eissip`, `status`, `created_at`) VALUES
+(1, 17, 9914, 300, 100, 10314, 1, 1, 1, 1100, 10, 5, 1815, 500, 2315, 7999, 17, 2228.56, 10, 7, 1, '2020-03-10 05:32:34'),
+(2, 8, 500000, 1000, 100, 501100, 0, 0, 0, 0, 0, 0, 100, 200, 300, 500800, 13, 0, 0, 0, 1, '2020-03-10 05:34:52'),
+(3, 29, 9969, 2100, 100, 12169, 1, 1, 1, 1100, 10, 5, 1244, 1046, 2290, 9879, 17, 2230.76, 10, 7, 1, '2020-03-11 11:30:05'),
+(4, 36, 1500, 10, 100, 1610, 1, 1, 1, 15, 20, 5, 140, 200, 340, 1270, 17, 312, 10, 20, 1, '2020-03-11 05:47:46');
 
 -- --------------------------------------------------------
 
@@ -393,7 +397,10 @@ INSERT INTO `employee_add_salary_allowance` (`id`, `add_salary_id`, `allowance_i
 (10, 3, 8, 1, 600, 1),
 (11, 3, 3, 2, 99, 1),
 (12, 3, 4, 2, 30, 1),
-(13, 3, 5, 3, 1046, 1);
+(13, 3, 5, 3, 1046, 1),
+(14, 4, 6, 1, 10, 1),
+(15, 4, 9, 2, 100, 1),
+(16, 4, 11, 3, 200, 1);
 
 -- --------------------------------------------------------
 
@@ -436,6 +443,9 @@ CREATE TABLE `employee_salary` (
   `additional_allowance_total` double NOT NULL,
   `ot_amount` double DEFAULT NULL,
   `gross_salary` double NOT NULL,
+  `epf_check` int(11) NOT NULL DEFAULT 0,
+  `sosco_check` int(11) NOT NULL DEFAULT 0,
+  `sip_check` int(11) NOT NULL DEFAULT 0,
   `epf_ee_amount` double DEFAULT NULL,
   `ee_sosco_amount` double DEFAULT NULL,
   `eis_sip_amount` double DEFAULT NULL,
@@ -455,15 +465,16 @@ CREATE TABLE `employee_salary` (
 -- Dumping data for table `employee_salary`
 --
 
-INSERT INTO `employee_salary` (`id`, `employee_id`, `salary_date`, `basic_salary`, `additional_allowance_total`, `ot_amount`, `gross_salary`, `epf_ee_amount`, `ee_sosco_amount`, `eis_sip_amount`, `deductions_total`, `otherdeductions_total`, `total_deductions`, `net_pay`, `epf_percent`, `epf_er`, `sosco_er`, `sosco_eissip`, `status`, `created_at`) VALUES
-(1, 8, '2020-02-01', 500000, 2100, 100, 502200, NULL, NULL, NULL, 700, 300, 1000, 501200, 0, 10, 20, 30, 1, '2020-03-06 05:56:10'),
-(2, 8, '2020-03-01', 500000, 300, 250, 500550, NULL, NULL, NULL, 700, 300, 1000, 499550, 0, 50, 10, 30, 1, '2020-03-06 05:57:21'),
-(3, 17, '2020-03-01', 1000000, 45, 20, 1000065, 30, 40, 50, 200, 0, 200, 999865, 0, 100, 150, 200, 1, '2020-03-06 05:58:25'),
-(4, 1, '2020-03-01', 30000, 1000, 500, 31500, NULL, NULL, NULL, 4600, 4100, 8700, 22800, 0, 10, 20, 30, 1, '2020-03-06 06:02:32'),
-(5, 17, '2020-01-01', 9914, 300, 100, 10314, 1100, 10, 5, 1815, 500, 2315, 7999, 0, 2228.56, 10, 7, 1, '2020-03-11 11:13:03'),
-(6, 17, '2020-02-01', 9914, 300, 100, 10314, 1100, 10, 5, 1815, 500, 2315, 7999, 0, 2228.56, 10, 7, 1, '2020-03-11 11:16:22'),
-(7, 17, '2020-04-01', 9914, 300, 100, 10314, 1100, 10, 5, 1815, 500, 2315, 7999, 17, 2228.56, 10, 7, 1, '2020-03-11 11:24:26'),
-(8, 29, '2020-03-01', 9969, 2100, 100, 12169, 1100, 10, 5, 1244, 1046, 2290, 9879, 17, 2230.76, 10, 7, 1, '2020-03-11 11:30:51');
+INSERT INTO `employee_salary` (`id`, `employee_id`, `salary_date`, `basic_salary`, `additional_allowance_total`, `ot_amount`, `gross_salary`, `epf_check`, `sosco_check`, `sip_check`, `epf_ee_amount`, `ee_sosco_amount`, `eis_sip_amount`, `deductions_total`, `otherdeductions_total`, `total_deductions`, `net_pay`, `epf_percent`, `epf_er`, `sosco_er`, `sosco_eissip`, `status`, `created_at`) VALUES
+(1, 8, '2020-02-01', 500000, 2100, 100, 502200, 0, 0, 0, NULL, NULL, NULL, 700, 300, 1000, 501200, 0, 10, 20, 30, 1, '2020-03-06 05:56:10'),
+(2, 8, '2020-03-01', 500000, 300, 250, 500550, 0, 0, 0, NULL, NULL, NULL, 700, 300, 1000, 499550, 0, 50, 10, 30, 1, '2020-03-06 05:57:21'),
+(3, 17, '2020-03-01', 1000000, 45, 20, 1000065, 1, 1, 1, 30, 40, 50, 200, 0, 200, 999865, 0, 100, 150, 200, 1, '2020-03-06 05:58:25'),
+(4, 1, '2020-03-01', 30000, 1000, 500, 31500, 0, 0, 0, NULL, NULL, NULL, 4600, 4100, 8700, 22800, 0, 10, 20, 30, 1, '2020-03-06 06:02:32'),
+(5, 17, '2020-01-01', 9914, 300, 100, 10314, 1, 1, 1, 1100, 10, 5, 1815, 500, 2315, 7999, 0, 2228.56, 10, 7, 1, '2020-03-11 11:13:03'),
+(6, 17, '2020-02-01', 9914, 300, 100, 10314, 1, 1, 1, 1100, 10, 5, 1815, 500, 2315, 7999, 0, 2228.56, 10, 7, 1, '2020-03-11 11:16:22'),
+(7, 17, '2020-04-01', 9914, 300, 100, 10314, 1, 1, 1, 1100, 10, 5, 1815, 500, 2315, 7999, 17, 2228.56, 10, 7, 1, '2020-03-11 11:24:26'),
+(8, 29, '2020-03-01', 9969, 2100, 100, 12169, 1, 1, 1, 1100, 10, 5, 1244, 1046, 2290, 9879, 17, 2230.76, 10, 7, 1, '2020-03-11 11:30:51'),
+(9, 8, '2020-04-01', 500000, 1000, 100, 501100, 0, 0, 0, 0, 0, 0, 100, 200, 300, 500800, 13, 0, 0, 0, 1, '2020-03-11 05:54:56');
 
 -- --------------------------------------------------------
 
@@ -528,7 +539,10 @@ INSERT INTO `employee_salary_allowance` (`id`, `salary_id`, `allowance_id`, `mai
 (41, 8, 8, 1, 600, 1),
 (42, 8, 3, 2, 99, 1),
 (43, 8, 4, 2, 30, 1),
-(44, 8, 5, 3, 1046, 1);
+(44, 8, 5, 3, 1046, 1),
+(45, 9, 2, 1, 1000, 1),
+(46, 9, 9, 2, 100, 1),
+(47, 9, 11, 3, 200, 1);
 
 -- --------------------------------------------------------
 
@@ -970,7 +984,10 @@ INSERT INTO `payroll_addition_deduction` (`id`, `name`, `main_cat_name`, `cat_id
 (8, 'Sepecial/Cola', '1', 1, '2', 1, '2020-03-04 07:52:37', '2020-03-04 07:52:37'),
 (9, 'BIMB LOAN', '2', 1, '1', 1, '2020-03-04 07:55:29', '2020-03-04 07:55:29'),
 (10, 'GELA', '2', 1, '1', 1, '2020-03-04 07:55:44', '2020-03-04 07:55:44'),
-(11, 'UPL', '3', 1, '1', 1, '2020-03-04 07:56:22', '2020-03-04 07:56:22');
+(11, 'UPL', '3', 1, '1', 1, '2020-03-04 07:56:22', '2020-03-04 07:56:22'),
+(12, 'KOOP', '2', 1, '1', 1, '2020-03-11 11:23:18', '2020-03-11 11:23:18'),
+(13, 'HOME/CAR LOAN', '2', 1, '1', 1, '2020-03-11 11:23:53', '2020-03-11 11:23:53'),
+(14, 'OTHERS - ADV SALARY', '3', 1, '1', 1, '2020-03-11 11:24:45', '2020-03-11 11:24:45');
 
 -- --------------------------------------------------------
 
@@ -2030,7 +2047,7 @@ CREATE TABLE `tbl_member` (
 INSERT INTO `tbl_member` (`user_id`, `user_type`, `category`, `name`, `short_code`, `email`, `ic_no`, `new_ic_no`, `doj`, `designation`, `total_leave_year`, `mc_entitled`, `hospitalisation`, `balance_leave`, `balance_mc`, `balance_el`, `last_login`, `logged_in`, `created_at`, `EPF_EE`, `basic_salary`, `EE_SOSCO`, `EIS_SIP`, `EPS_ER`, `EPS_ER_perentage`, `SOSCO_ER`, `resign_date`, `bank`) VALUES
 (1, 'ADMIN', 'ADMIN', 'Admin', 'ADMIN', 'admin', '1234', '1234', '2020-01-02', 'admin', 0, NULL, NULL, 0, NULL, NULL, '2020-02-24 09:06:34', 'TRUE', '2020-01-02 03:42:07', 0, 30000.00, 0, 0, 0, '0', 0, '0000-00-00', ''),
 (7, 'MEMBER', 'HQ', 'MR SHAH', 'MRS', 'mrs@nube.org.my', '123456789', '987654321', '2020-01-03', 'OFFICER', 10, 10, 10, 0, NULL, NULL, '2020-02-19 17:32:51', 'FALSE', '2020-01-04 04:25:32', 0, 32000.00, 0, 0, 0, '0', 0, '0000-00-00', ''),
-(8, 'MEMBER', NULL, 'Govind', 'GS', 'gs@nube.org.my', '12345678901', '986789998766', '2020-01-01', 'staff', 2, 10, 10, -1, NULL, NULL, '2020-02-18 14:34:29', 'FALSE', '2020-01-06 20:21:36', 0, 500000.00, 0, 0, 0, '0', 0, '0000-00-00', ''),
+(8, 'MEMBER', 'HQ', 'Govind', 'GS', 'gs@nube.org.my', '12345678901', '986789998766', '2020-01-01', 'staff', 2, 10, 10, -1, NULL, NULL, '2020-02-18 14:34:29', 'FALSE', '2020-01-06 20:21:36', 0, 500000.00, 0, 0, 0, '0', 0, '0000-00-00', ''),
 (9, 'MEMBER', 'HQ', 'Karunapikai a/p Anantharasa', 'AK', 'nube_hq@nube.org.my', '680724055050', '680724055050', '1996-02-02', 'staff', 26, 30, 30, 0, NULL, NULL, '2020-01-30 13:03:15', 'TRUE', '2020-01-07 02:39:25', 0, 33000.00, 0, 0, 0, '0', 0, '0000-00-00', ''),
 (12, 'MEMBER', 'HQ', 'SUBA', 'RS', 'rs@nube.org.my', '123456789', '01234567', '2020-01-01', 'staff', 26, 20, 20, 0, NULL, NULL, '2020-01-07 15:20:34', 'FALSE', '2020-01-07 04:06:52', 0, 33000.00, 0, 0, 0, '0', 0, '0000-00-00', ''),
 (15, 'MEMBER', 'HQ', 'zul', 'ZO', 'zo@nube.org.my', 'amaliazahra', '1', '2012-02-08', 'staff', 16, 22, 60, 13, NULL, NULL, '2020-02-19 17:34:12', 'TRUE', '2020-01-07 05:24:14', 0, 38000.00, 0, 0, 0, '0', 0, '0000-00-00', ''),
@@ -2469,13 +2486,13 @@ ALTER TABLE `designations`
 -- AUTO_INCREMENT for table `employee_add_salary`
 --
 ALTER TABLE `employee_add_salary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `employee_add_salary_allowance`
 --
 ALTER TABLE `employee_add_salary_allowance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `employee_awards`
@@ -2487,13 +2504,13 @@ ALTER TABLE `employee_awards`
 -- AUTO_INCREMENT for table `employee_salary`
 --
 ALTER TABLE `employee_salary`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `employee_salary_allowance`
 --
 ALTER TABLE `employee_salary_allowance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `epf`
@@ -2583,7 +2600,7 @@ ALTER TABLE `payrolls`
 -- AUTO_INCREMENT for table `payroll_addition_deduction`
 --
 ALTER TABLE `payroll_addition_deduction`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `permissions`

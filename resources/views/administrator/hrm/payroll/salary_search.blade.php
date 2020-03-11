@@ -1,5 +1,5 @@
 @extends('administrator.master')
-@section('title', __('Manage Deduction'))
+@section('title', __('Salary Statement Search'))
 
 @section('main_content')
 
@@ -9,12 +9,12 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      {{ __('Deduction') }}
+      {{ __('Salary Statement') }}
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{ url('/dashboard') }}"><i class="fa fa-dashboard"></i> {{ __('Dashboard') }}</a></li>
-      <li><a>{{ __('Deduction') }}</a></li>
-      <li class="active">{{ __('Manage Deduction') }}</li>
+      <li><a>{{ __('Payroll') }}</a></li>
+      <li class="active">{{ __('Salary Statement') }}</li>
     </ol>
   </section>
 
@@ -23,7 +23,7 @@
     <!-- Default box -->
     <div class="box">
       <div class="box-header with-border">
-        <h3 class="box-title">{{ __('Manage Deduction') }}</h3>
+        <h3 class="box-title">{{ __('Salary Statement') }}</h3>
 
         <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
@@ -49,54 +49,44 @@
         <div class="col-md-12">
 
 
-          <form class="form-horizontal" action="{{ route('deduction.save') }}" method="post">
+          <form class="form-horizontal" id="searchform" action="{{ url('/hrm/salary/statement') }}" method="post">
             {{ csrf_field() }}
 
-            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-              <label for="name" class="col-sm-3 control-label">{{ __('Deduction name') }}<span style="color:red"> *</span></label>
-              <div class="col-sm-6">
-               <input type="text" name="name" class="form-control" placeholder="{{ __('Additon name') }}">
-               @if ($errors->has('name'))
+
+
+            <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
+              <label for="user_id" class="col-sm-3 control-label">{{ __('Employee Name') }}</label>
+              <div class="col-sm-3">
+                <select name="emp_id" id="user_id" required class="form-control">
+                  <option selected disabled>{{ __('Select One') }}</option>
+                  @foreach($employees as $employee)
+                  <option value="{{ $employee->user_id }}"><strong>{{ $employee->value }} </option>
+                    @endforeach
+                  </select>
+                  @if ($errors->has('user_id'))
                   <span class="help-block">
-                    <strong>{{ $errors->first('name') }}</strong>
+                    <strong>{{ $errors->first('user_id') }}</strong>
                   </span>
                   @endif
                 </div>
               </div>
 
-            <div class="form-group{{ $errors->has('cat_id') ? ' has-error' : '' }}">
-              <label for="cat_id" class="col-sm-3 control-label">{{ __('category') }} <span style="color:red"> *</span></label>
-              <div class="col-sm-6">
-                <select name="cat_id" id="cat_id" class="form-control">
-                  <option value="0" disabled selected="true">{{ __('Select One') }}</option>
-                  @foreach($data['cat_list'] as $values)
-                  <option value="{{ $values->id }}"><strong>{{ $values->cat_name }}</option>
-                    @endforeach
-                  </select>
-                  @if ($errors->has('cat_id'))
-                  <span class="help-block">
-                    <strong>{{ $errors->first('cat_id') }}</strong>
-                  </span>
-                  @endif
+
+               <!-- /.end group -->
+              <div class="form-group{{ $errors->has('salary_month') ? ' has-error' : '' }}">
+                <label for="salary_month" class="col-sm-3 control-label">{{ __('Select Month') }}</label>
+                <div class="col-sm-3">
+					<div class="input-group">
+					    <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+						<input type="text" name="dateofsalary" readonly class="form-control" id="monthpicker">
+					</div>
                 </div>
               </div>
-              <!-- /.end group -->
-              <div class="form-group{{ $errors->has('assigned_to') ? ' has-error' : '' }}">
-              <label for="assigned_to" class="col-sm-3 control-label">{{ __('Assingee') }} <span style="color:red"> *</span></label>
-              <div class="col-sm-6">
-                    <input type="radio"  name="assigned_to" value="1">All Employees
-                    <input type="radio" name="assigned_to" value="2">individual
-                    @if ($errors->has('assigned_to'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('assigned_to') }}</strong>
-                    </span>
-                  @endif
-                </div>
-              </div>
-              <!-- /.end group -->
+			
+             
               <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-10">
-                  <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-arrow-right"></i>{{ __('Add Deduction') }} </button>
+                  <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-arrow-right"></i> {{ __('View Salary Statement') }}</button>
                 </div>
               </div>
               <!-- /.end group -->

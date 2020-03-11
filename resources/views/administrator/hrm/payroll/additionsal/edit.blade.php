@@ -135,29 +135,29 @@
                 </div>
                  <div id="epf_ee_section" class=" form-group {{ $errors->has('epf_ee_id') ? ' has-error' : '' }}">
 					<label for="epf_ee_id" class="col-sm-3 control-label">{{ __('EPF-EE') }}
-						<input id="epf_ee_check" name="epf_ee_check" onClick="return EnableEpfBox()" @if($salary_data->epf_ee_amount>0) checked @endif type="checkbox" value="1" />
+						<input id="epf_ee_check" name="epf_ee_check" onClick="return EnableEpfBox()" @if($salary_data->epf_check==1) checked @endif type="checkbox" value="1" />
 					</label>
 					
 					
-                    <div id="epf_ee" class="col-sm-6 @if($salary_data->epf_ee_amount==0 || $salary_data->epf_ee_amount=='') hide @endif">
+                    <div id="epf_ee" class="col-sm-6 @if($salary_data->epf_check==0) hide @endif">
 						<input type="text"  name="epf_ee_id" class="form-control  " value="{{$salary_data->epf_ee_amount}}" id="epf_ee_id">
                           
                     </div>
                 </div>   
 				<div id="ee_sosco_section" class=" form-group {{ $errors->has('ee_sosco') ? ' has-error' : '' }}">
                   <label for="ee_sosco" class="col-sm-3 control-label">{{ __('EE-SOSCO') }}
-					<input id="epf_sosco_check" name="epf_sosco_check" onClick="return EnablesoscoBox()" @if($salary_data->ee_sosco_amount>0) checked @endif type="checkbox" value="1"/>
+					<input id="epf_sosco_check" name="epf_sosco_check" onClick="return EnablesoscoBox()" @if($salary_data->sosco_check==1) checked @endif type="checkbox" value="1"/>
 				  </label>
-                    <div id="ee_soscos" class="col-sm-6 @if($salary_data->ee_sosco_amount==0 || $salary_data->ee_sosco_amount=='') hide @endif">
+                    <div id="ee_soscos" class="col-sm-6 @if($salary_data->sosco_check==0) hide @endif">
                        <input type="text" name="ee_sosco" class="form-control  " value="{{$salary_data->ee_sosco_amount}}"  id="ee_sosco">
                           
                     </div>
                 </div>   
                 <div id="eis_sip_section" class=" form-group{{ $errors->has('ee_sosco') ? ' has-error' : '' }}">
                   <label for="eis_sip" class="col-sm-3 control-label">{{ __('EIS-SIP') }}
-					<input id="epf_sip_check" name="epf_sip_check" onClick="return EnablesipBox()" @if($salary_data->eis_sip_amount>0) checked @endif type="checkbox" value="1"/>
+					<input id="epf_sip_check" name="epf_sip_check" onClick="return EnablesipBox()" @if($salary_data->sip_check==1) checked @endif type="checkbox" value="1"/>
 				  </label>
-                    <div id="eis_sips" class="col-sm-6 @if($salary_data->eis_sip_amount==0 || $salary_data->eis_sip_amount=='') hide @endif">
+                    <div id="eis_sips" class="col-sm-6 @if($salary_data->sip_check==0) hide @endif">
                        <input type="text" name="eis_sip" class="form-control " value="{{$salary_data->eis_sip_amount}}"   id="eis_sip">
                           
                     </div>
@@ -242,7 +242,7 @@
 				  
 				   <div class="form-group{{ $errors->has('EPF_ER') ? ' has-error' : '' }}">
 						<label for="EPF_ERper" class="col-sm-3 control-label">{{ __('EPF-ER %') }}</label>
-						<div id="EPF_ERidper" class="col-sm-6 @if($salary_data->epf_ee_amount==0 || $salary_data->epf_ee_amount=='') hide @endif">
+						<div id="EPF_ERidper" class="col-sm-6 @if($salary_data->epf_check==0) hide @endif">
 							<select name="EPF_ERper" onchange="return CalculateEPAmount(this.value)" id="EPF_ERper" class="form-control">
 								<option value="13" @if($salary_data->epf_percent==13) selected @endif >13</option>
 								<option value="17" @if($salary_data->epf_percent==17) selected @endif>17</option>
@@ -253,7 +253,7 @@
 
                   <div class="form-group{{ $errors->has('EPF_ER') ? ' has-error' : '' }}">
                     <label for="EPF_ER" class="col-sm-3 control-label">{{ __('EPF-ER') }}</label>
-                      <div id="EPF_ERid" class="col-sm-6 @if($salary_data->epf_ee_amount==0 || $salary_data->epf_ee_amount=='') hide @endif">
+                      <div id="EPF_ERid" class="col-sm-6 @if($salary_data->epf_check==0) hide @endif">
                       <input type="text" name="EPF_ER" class="form-control" value="{{ $salary_data->epf_er }}"  placeholder="EPF_ER" id="EPF_ER">
                       <input type="text" name="EPF_ERref" class="form-control hide" value="{{ $salary_data->epf_er }}"  placeholder="EPF_ER" id="EPF_ERref">
                       </div>
@@ -261,14 +261,14 @@
 
                   <div class="form-group{{ $errors->has('EPF_ER') ? ' has-error' : '' }}">
                     <label for="SOSCO_ER" class="col-sm-3 control-label">{{ __('SOSCO-ER') }}</label>
-                      <div id="SOSCO_ERid" class="col-sm-6  @if($salary_data->ee_sosco_amount==0 || $salary_data->ee_sosco_amount=='') hide @endif">
+                      <div id="SOSCO_ERid" class="col-sm-6  @if($salary_data->sosco_check==0) hide @endif">
                       <input type="text" name="SOSCO_ER" class="form-control" value="{{ $salary_data->sosco_er }}"  placeholder="SOSCO_ER" id="SOSCO_ER">
                       </div>
                   </div>
 
                   <div class="form-group{{ $errors->has('SOSCO') ? ' has-error' : '' }}">
                     <label for="SOSCO_ER" class="col-sm-3 control-label">{{ __('SOSCO-[EIS/SIP - ER]') }}</label>
-                      <div id="SOSCO_EISid" class="col-sm-6  @if($salary_data->eis_sip_amount==0 || $salary_data->eis_sip_amount=='') hide @endif">
+                      <div id="SOSCO_EISid" class="col-sm-6  @if($salary_data->sip_check==0 ) hide @endif">
                       <input type="text" name="SOSCO_EISSIP" class="form-control" value="{{ $salary_data->sosco_eissip }}"  placeholder="SOSCO-[EIS/SIP - ER]" id="SOSCO_EISSIP_ER">
                       </div>
                   </div>

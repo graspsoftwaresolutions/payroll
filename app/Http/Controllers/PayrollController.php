@@ -744,6 +744,17 @@ class PayrollController extends Controller {
 		$insertdata['created_at'] = date('Y-m-d h:i:s');
 		$insertdata['epf_percent'] = $request->input('EPF_ERper');
 
+		$epf_check = $request->input('epf_ee_check');
+		$epf_check = isset($epf_check) ? 1 : 0;
+		$sosco_check = $request->input('epf_sosco_check');
+		$sosco_check = isset($sosco_check) ? 1 : 0;
+		$soscosip_check = $request->input('epf_sip_check');
+		$soscosip_check = isset($soscosip_check) ? 1 : 0;
+
+		$insertdata['epf_check'] = $epf_check;
+		$insertdata['sosco_check'] = $sosco_check;
+		$insertdata['sip_check'] = $soscosip_check;
+
 		$existcount = DB::table('employee_add_salary')
 		->where('employee_id','=',$request->input('user_id'))
 		->count();
@@ -898,5 +909,80 @@ class PayrollController extends Controller {
 		// //->dump()
 		// ->first();
 		// return json_encode($soscorecord);
+	}
+
+	public function salaryStatementSearch(){
+    	$employees = DB::table('tbl_member')->select(DB::raw("CONCAT(name,'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER')->get();
+
+        return view('administrator.hrm.payroll.salary_search', compact('employees'));
+
+	}
+	
+	public function salaryStatementFilter(Request $request){
+		$user_id = $request->input('emp_id');
+		$dateofsalary = $request->input('dateofsalary');
+		if($dateofsalary!=""){
+			$dateofsalary = $dateofsalary.'-01';
+		}
+
+		$existcount = DB::table('employee_salary')
+		->where('employee_id','=',$user_id)
+		->where('salary_date','=',$dateofsalary)
+		->count();
+
+		$employees = DB::table('tbl_member')->select(DB::raw("CONCAT(name,'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER')->get();
+
+		if($user_id==''){
+			return redirect('/hrm/salary/statement')->with('exception', 'Please select employee!!');
+		}
+		if($existcount==0){
+			return redirect('/hrm/salary/statement')->with('exception', 'Please add salary for this member!!');
+		}else{
+			$salryid = DB::table('employee_salary')
+				->where('employee_id','=',$user_id)
+				->where('salary_date','=',$dateofsalary)
+				->pluck('id')
+				->first();
+			$encautoid = crypt::encrypt($salryid);
+			return redirect('/hrm/salary/statementPrint/'.$encautoid);
+
+		}
+		
+	}
+
+	public function salaryStatementPrint($encid,Request $request){
+		$autoid = crypt::decrypt($encid);
+		$data['salary_data']  = DB::table('employee_salary')->where('id','=',$autoid)->first();
+	
+		$data['memberinfo'] = DB::table('tbl_member as m')->where('m.user_id','=',$data['salary_data']->employee_id)->first();
+		
+		// $data['addition_allownces'] = DB::table('payroll_addition_deduction as ad')->select('ad.id as additionid','ad.name')
+		// 		->where('ad.status','=','1')
+		// 		->where('ad.main_cat_name','=','1')
+		// 		->get();
+		// $data['deduction_allownces'] = DB::table('payroll_addition_deduction as ad')->select('ad.id as additionid','ad.name')
+		// 		->where('ad.status','=','1')
+		// 		->where('ad.main_cat_name','=','2')
+		// 		->get();
+		// $data['other_allownces'] = DB::table('payroll_addition_deduction as ad')->select('ad.id as additionid','ad.name')
+		// 		->where('ad.status','=','1')
+		// 		->where('ad.main_cat_name','=','3')
+		// 		->get();
+
+		$data['salary_allow_addition']  = DB::table('employee_salary_allowance as al')->select('ad.id as additionid','ad.name','al.amount')
+		->leftjoin('payroll_addition_deduction as ad', 'ad.id', '=', 'al.allowance_id')
+		->where('al.salary_id','=',$data['salary_data']->id)->where('al.main_cat_id','=','1')->get();
+
+		$data['salary_allow_deduction']  = DB::table('employee_salary_allowance as al')->select('ad.id as additionid','ad.name','al.amount')
+		->leftjoin('payroll_addition_deduction as ad', 'ad.id', '=', 'al.allowance_id')
+		->where('al.salary_id','=',$data['salary_data']->id)->where('al.main_cat_id','=','2')->get();
+
+		$data['salary_other_deduction']  = DB::table('employee_salary_allowance as al')->select('ad.id as additionid','ad.name','al.amount')
+		->leftjoin('payroll_addition_deduction as ad', 'ad.id', '=', 'al.allowance_id')
+		->where('al.salary_id','=',$data['salary_data']->id)->where('al.main_cat_id','=','3')->get();
+
+		// /return $data;
+        //$data['cat_list'] = Category::where('id','=',$autoid)->where('status','=',1)->get();
+        return view('administrator.hrm.payroll.salary_print')->with('data',$data);
 	}
 }

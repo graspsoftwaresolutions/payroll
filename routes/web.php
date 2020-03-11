@@ -385,6 +385,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/hrm/addsalaryedit/{id}', 'PayrollController@addSalaryEdit')->name('add.salaryEdit');
 	Route::get('/hrm/get-employee-master', 'PayrollController@getEmployeeSalary')->name('payroll.employeesalary');
+	
+	Route::get('/hrm/salary/statement', 'PayrollController@salaryStatementSearch');
+	Route::post('/hrm/salary/statement', 'PayrollController@salaryStatementFilter');
+	Route::get('/hrm/salary/statementPrint/{id}', 'PayrollController@salaryStatementPrint');
     
 
 });

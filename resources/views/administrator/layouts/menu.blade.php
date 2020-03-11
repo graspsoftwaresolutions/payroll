@@ -66,7 +66,7 @@
              <!--   <li><a href="{{ url('/hrm/salary-payments') }}"><i class="fa fa-circle-o"></i>{{ __(' Make Payment') }}</a></li>
                --> @endpermission
                 @permission('generate-payslip')
-                <li><a href="{{ url('/hrm/generate-payslips/') }}"><i class="fa fa-circle-o"></i> {{ __(' Generate Payslip') }}</a></li>
+                <!--li><a href="{{ url('/hrm/generate-payslips/') }}"><i class="fa fa-circle-o"></i> {{ __(' Generate Payslip') }}</a></li-->
                 @endpermission
                 @permission('manage-bonus')
                <!-- <li><a href="{{ url('/hrm/bonuses') }}"><i class="fa fa-circle-o"></i> {{ __('Manage Bonus') }}</a></li>
@@ -208,7 +208,7 @@
          </li>-->
          @endpermission
        @permission('file-upload')
-        <li><a href="{{ url('/hrm/salary/statement/search') }}"><i class="fa fa-certificate"></i> <span>{{ __('Salary Statement') }}</span></a></li>
+        <li><a href="{{ url('/hrm/salary/statement') }}"><i class="fa fa-certificate"></i> <span>{{ __('Salary Statement') }}</span></a></li>
         @endpermission
 
         @permission('hrm-setting')

@@ -8,7 +8,7 @@
   <section class="content-header">
     <h1>{{ __('Dashboard') }}
       
-      <small>{{ __('Control panel') }}</small>
+      <small>{{ __('HRMS') }}</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i>{{ __(' Home') }}</a></li>
@@ -18,21 +18,21 @@
   @php($user = Auth::user())
   @if($user->access_label == 1)
   <!-- Main content -->
-  <section class="content">
+	  <section class="content hide">
     <!-- Small boxes (Stat box) -->
     <div class="row">
     <div class="col-lg-3 col-xs-6">
       <!-- small box -->
       <div class="small-box bg-green">
         <div class="inner">
-          <h3><i class="fa fa-users"></i> {{ count($employees) }}</h3>
+          <h3><i class="fa fa-users"></i> 3</h3>
 
-          <center><b>{{ __('Employees') }}</b></center>
+          <center><b>Employees</b></center>
         </div>
         <div class="icon">
           
         </div>
-        <a href="{{ url('/people/clients') }}" class="small-box-footer">{{ __('More info') }} <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="http://localhost/human/people/clients" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -40,14 +40,14 @@
       <!-- small box -->
       <div class="small-box bg-orange">
         <div class="inner">
-         <h3><i class="fa fa-envelope"></i> {{ count($references) }}</h3>
+         <h3><i class="fa fa-envelope"></i> 1</h3>
 
-          <center><b>{{ __('References') }}</b></center>
+          <center><b>References</b></center>
         </div>
         <div class="icon">
           
         </div>
-        <a href="{{ url('/people/references') }}" class="small-box-footer">{{ __('More info ') }}<i class="fa fa-arrow-circle-right"></i></a>
+        <a href="http://localhost/human/people/references" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -55,14 +55,14 @@
       <!-- small box -->
       <div class="small-box bg-blue">
         <div class="inner">
-          <h3><i class="fa fa-file"></i> {{ count($clients) }}</h3>
+          <h3><i class="fa fa-file"></i> 1</h3>
 
-            <center><b>{{ __('Clients') }}</b></center>
+            <center><b>Clients</b></center>
         </div>
         <div class="icon">
           
         </div>
-        <a href="{{ url('/people/employees') }}" class="small-box-footer">{{ __('More info ') }}<i class="fa fa-arrow-circle-right"></i></a>
+        <a href="http://localhost/human/people/employees" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -70,14 +70,14 @@
       <!-- small box -->
       <div class="small-box bg-red">
         <div class="inner">
-          <h3><i class="fa fa-image"></i> {{ count($files) }}</h3>
+          <h3><i class="fa fa-image"></i> 1</h3>
 
-          <center> <b>{{ __('Files') }}</b></center> 
+          <center> <b>Files</b></center> 
         </div>
         <div class="icon">
           
         </div>
-        <a href="{{ url('/folders') }}" class="small-box-footer">{{ __('More info') }} <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="http://localhost/human/folders" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -90,15 +90,7 @@
 
 
 <!-- =================Statistics start ========================-->
-<script src="{{ asset('public/backend/Chart.bundle.js') }}"></script>
-<?php
-$notics= \App\Notice::all();
-$holidays= \App\Holiday::all();
-$files= \App\File::all();
-
-$personalevents= \App\PersonalEvent::all();
-
-?>
+<script src="http://localhost/human/public/backend/Chart.bundle.js"></script>
 <div class="row">
     <div class="col-lg-6">
         <canvas id="myChart2"></canvas>
@@ -110,52 +102,51 @@ $personalevents= \App\PersonalEvent::all();
 
 <div class="row myrow">
     <div class="col-lg-6">
-      <h2 class="myh2">{{ __('Holiday') }}</h2>
+      <h2 class="myh2">Holiday</h2>
       <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>{{ __('SL') }}</th>
-                                <th>{{ __('Holiday Name') }}</th>
-                                <th>{{ __('Dated') }}</th>
-                                <th>{{ __('Description') }}</th> 
+                                <th>SL</th>
+                                <th>Holiday Name</th>
+                                <th>Dated</th>
+                                <th>Description</th> 
                             </tr>
                         </thead>
                         <tbody>
-                          <?php $sl=1;?>
-                           
-                            @foreach($holidays as $holiday)
-                            <tr>
-                                <td>{{$sl++}}</td>
-                                <td>{{$holiday->holiday_name}}</td>
-                                <td>{{$holiday->date}}</td>
-                                <td>{{$holiday->description}}</td>
+                                                     
+                                                        <tr>
+                                <td>1</td>
+                                <td>asoraa</td>
+                                <td>2019-09-25</td>
+                                <td>Office Holidays for Ashora Office Holidays for Ashora Office Holidays for Ashora Office Holidays for Ashora</td>
                             </tr>
-                            @endforeach
-                        </tbody>
+                                                    </tbody>
                     </table>
     </div>
     <div class="col-lg-6">
-      <h2 class="myh2-1">{{ __('Notice') }}</h2>
+      <h2 class="myh2-1">Notice</h2>
        <table class="table table-bordered table-striped">
 
                         <thead>
                             <tr>
-                                <th>{{ __('SL') }}</th>
-                                <th>{{ __('Title') }}</th>
-                                <th>{{ __('Description') }}</th> 
+                                <th>SL</th>
+                                <th>Title</th>
+                                <th>Description</th> 
                             </tr>
                         </thead>
                         <tbody>
-                          <?php $sl=1;?>
-                           
-                            @foreach($notics as $notic)
-                            <tr>
-                                <td>{{$sl++}}</td>
-                                <td>{{$notic->notice_title}}</td>
-                                <td>{{$notic->description}}</td>
+                                                     
+                                                        <tr>
+                                <td>1</td>
+                                <td>Office Party</td>
+                                <td>Office Holidays for Ashora Office Holidays for Ashora Office Holidays for Ashora Office Holidays for Ashora</td>
                             </tr>
-                            @endforeach
-                        </tbody>
+                                                        <tr>
+                                <td>2</td>
+                                <td>Office Holidays</td>
+                                <td>Office Holidays for Ashora Office Holidays for Ashora Office Holidays for Ashora Office Holidays for Ashora</td>
+                            </tr>
+                                                    </tbody>
                     </table>
     </div>
 </div>
@@ -168,7 +159,7 @@ data: {
 labels: ['Employees', 'Notices', 'Holidays', 'Files'],
 datasets: [{
 label: 'Evaluation report by pie chart',
-data: [{{ count($employees) }}, {{ count($notics) }}, {{ count($holidays) }} , {{ count($files) }} ],
+data: [3, 2, 1 , 1 ],
 backgroundColor: [
 '#17B6A4',
 '#2184DA',
@@ -203,7 +194,7 @@ data: {
 labels: ['Employees', 'Notices', 'Holidays', 'Files'],
 datasets: [{
 label: 'Evaluation Report By Bar Chart',
-data: [{{ count($employees) }}, {{ count($notics) }}, {{ count($holidays) }} , {{ count($files) }} ],
+data: [3, 2, 1 , 1 ],
 backgroundColor: [
 '#17B6A4',
 '#2184DA',
@@ -253,48 +244,7 @@ beginAtZero: true
 
   </div>
 
-    @if(count($personal_events)>0)
-    <div class="box box-danger">
-      <div class="box-header">
-        <h3 class="box-title">{{ __('Events') }}</h3>
-
-        <div class="box-tools">
-          <div class="input-group input-group-sm mysearch">
-            <input type="text" name="table_search" class="form-control pull-right" placeholder="{{ __('Search') }}">
-
-            <div class="input-group-btn">
-              <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /.box-header -->
-      <div class="box-body table-responsive no-padding">
-        <table  class="table table-bordered table-striped">
-          <tr>
-            <th>{{ __('SL#') }}</th>
-            <th>{{ __('Event Name') }}</th>
-            <th>{{ __('Start Date') }}</th>
-            <th>{{ __('End Date') }}</th>
-            <th>{{ __('Created By') }}</th>
-          </tr>
-          @php($sl = 1)
-          @foreach($personal_events as $personal_event)
-          <tr>
-            <td>{{ $sl++ }}</td>
-            <td><span class="label label-primary">{{ $personal_event->personal_event }}</span></td>
-            <td><span class="label label-warning">{{ date("d F Y", strtotime($personal_event->start_date)) }}</span></td>
-            <td><span class="label label-warning">{{ date("d F Y", strtotime($personal_event->end_date)) }}</span></td>
-            <td>{{ $personal_event->name }}</td>
-          </tr>
-          @endforeach
-        </table>
-      </div>
-      <!-- /.box-body -->
-    </div>
-    <!-- /.box -->
-    @endif
-
+    
   </section>
   <!-- /.content -->
   @endif

@@ -86,7 +86,7 @@
                   <label for="gross_salary" class="col-sm-3 control-label">{{ __('OT') }}</label>
                     <div class="col-sm-6">
                     <input type="text"  id="ot" name="ot" class="form-control" readonly placeholder="{{ __('OT') }}">
-					<input type="text"  id="net_salary" name="net_salary" value="" class="form-control " placeholder="">
+					<input type="text"  id="net_salary" name="net_salary" value="" class="form-control hide" placeholder="">
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('basic_salary') ? ' has-error' : '' }}">
