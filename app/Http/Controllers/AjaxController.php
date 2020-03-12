@@ -76,9 +76,12 @@ class AjaxController extends Controller
                 $nestedData['gross_salary'] = $salary->gross_salary;
                 $nestedData['total_deductions'] = $salary->total_deductions;
                 $nestedData['net_pay'] = $salary->net_pay;
-                $nestedData['actions'] = '';
+               // $saalry_enc_id = Crypt::encrypt($salary->id);
+
+                $editlink = route('emp.salaryEdit',Crypt::encrypt($salary->id));
+                $nestedData['actions'] = '<a style="font-size:19px" class="btn btn-sm red waves-effect waves-circle waves-light" href="'.$editlink.'"><i class="icon fa fa-edit"></i></a>';
                 //$date = date('M/Y',strtotime($company->date));
-                $company_enc_id = Crypt::encrypt($salary->id);
+                
                         
 				$data[] = $nestedData;
 			}

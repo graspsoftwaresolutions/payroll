@@ -45,7 +45,7 @@
             </div>
             <!-- /.Notification Box -->
             <div class="col-md-12">
-              <form class="form-horizontal" id="EmployeeForm"  name="employee_select_form" action="{{ route('add_additionalsalary_save') }}" method="post">
+              <form class="form-horizontal" id="EmployeeForm"  name="employee_select_form" action="{{ route('update_additionalsalary_save') }}" method="post">
                 {{ csrf_field() }}
 				
 				@php
@@ -66,6 +66,7 @@
                   <label for="user_id" class="col-sm-3 control-label">{{ __('Employee Name') }}</label>
                   <div class="col-sm-6">
                   <input type="hidden" name="user_id" id="user_id">
+				   <input type="hidden" name="salary_id" id="salary_id" value="{{ $salary_data->id }}">
                   <input class="form-control clearable" type="text" id="employee_name" readonly placeholder="Search Customer" value="{{ $memberinfo->name }}" name="employee_name">
                          @if ($errors->has('name'))
                             <span class="help-block">
@@ -120,7 +121,7 @@
                   <div class="form-group{{ $errors->has('basic_salary') ? ' has-error' : '' }}">
                   <label for="basic_salary" class="col-sm-3 control-label">{{ __('Total Additional Allowances') }}</label>
                   <div class="col-sm-6">
-                  <input type="text" readonly  id="addition_total" id="addition_total" name="addition_total" value="{{ $salary_data->additional_allowance_total }}" class="form-control" placeholder="{{ __('Additional Total Allowances') }}">
+                  <input type="text" readonly  id="addition_total" name="addition_total" value="{{ $salary_data->additional_allowance_total }}" class="form-control" placeholder="{{ __('Additional Total Allowances') }}">
                         
                   </div>
                 </div>
@@ -177,9 +178,9 @@
                                       <tbody id="exampleTable">
                                         @foreach($data['salary_allow_deduction'] as $addition)
 									   <tr class="child">
-											<td>{{ $addition->name }}<input type="hidden" id="allowances_name{{ $addition->additionid }}" name="allowances_name[]" value="{{ $addition->additionid }}"></td>
-											<td>{{ $addition->amount }}<input type="hidden" class="addition_price" id="price_{{ $addition->additionid }}" name="price[]" value="{{ $addition->amount }}"></td>
-											<td><button type="button" class="btn btn-sm red waves-effect waves-circle waves-light removebutton" title="delete">Delete<i class="mdi mdi-delete"></i></button></td>
+											<td>{{ $addition->name }}<input type="hidden" id="deduction_allowances_name_{{ $addition->additionid }}" name="deduction_allowances_name[]" value="{{ $addition->additionid }}"></td>
+											<td>{{ $addition->amount }}<input type="hidden" class="deduction_price" id="deduction_price_{{ $addition->additionid }}" name="deduction_price[]" value="{{ $addition->amount }}"></td>
+											<td><button type="button" class="btn btn-sm red waves-effect waves-circle waves-light removebuttondeductions" title="delete">Delete<i class="mdi mdi-delete"></i></button></td>
 									   </tr>
 									   @endforeach
                                       </tbody>
@@ -210,9 +211,9 @@
                                       <tbody id="exampleTable">
                                           @foreach($data['salary_other_deduction'] as $addition)
 									   <tr class="child">
-											<td>{{ $addition->name }}<input type="hidden" id="allowances_name{{ $addition->additionid }}" name="allowances_name[]" value="{{ $addition->additionid }}"></td>
-											<td>{{ $addition->amount }}<input type="hidden" class="addition_price" id="price_{{ $addition->additionid }}" name="price[]" value="{{ $addition->amount }}"></td>
-											<td><button type="button" class="btn btn-sm red waves-effect waves-circle waves-light removebutton" title="delete">Delete<i class="mdi mdi-delete"></i></button></td>
+											<td>{{ $addition->name }}<input type="hidden" id="other_deduction_allowances_name_{{ $addition->additionid }}" name="other_deduction_allowances_name[]" value="{{ $addition->additionid }}"></td>
+											<td>{{ $addition->amount }}<input type="hidden" class="other_deduction_price" id="other_deduction_price_{{ $addition->additionid }}" name="other_deduction_price[]" value="{{ $addition->amount }}"></td>
+											<td><button type="button" class="btn btn-sm red waves-effect waves-circle waves-light removebuttonothers" title="delete">Delete<i class="mdi mdi-delete"></i></button></td>
 									   </tr>
 									   @endforeach
                                       </tbody>
@@ -644,7 +645,7 @@ function gross_calc() {
 	
 	$('#gross_salary').val(parseFloat(basic_salary) + parseFloat(addition_total) +  parseFloat(ot) );
 	
-	CalculateDeductions();
+	CalculateAdditions();
  }
 
 
@@ -792,6 +793,7 @@ $(document).on('click', 'button.removebutton', function () {
 			$("#epf_ee_id").val(0);
 			$("#EPF_ER,#EPF_ERref").val(0);
 		}
+		CalculateAdditions();
 	}
 	function EnablesoscoBox(){
 		if($("#epf_sosco_check").prop("checked") == true){
@@ -821,6 +823,7 @@ $(document).on('click', 'button.removebutton', function () {
 			$("#ee_sosco").val(0);
 			$("#SOSCO_ER").val(0);
 		}
+		CalculateAdditions();
 	}
 	function EnablesipBox(){
 		if($("#epf_sip_check").prop("checked") == true){
@@ -850,6 +853,7 @@ $(document).on('click', 'button.removebutton', function () {
 			$("#eis_sip").val(0);
 			$("#SOSCO_EISSIP_ER").val(0);
 		}
+		CalculateAdditions();
 	}
 	
 	function CalculateEPAmount(pfpercent){

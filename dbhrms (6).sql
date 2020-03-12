@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2020 at 12:55 PM
+-- Generation Time: Mar 12, 2020 at 12:55 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -363,7 +363,7 @@ INSERT INTO `employee_add_salary` (`id`, `employee_id`, `basic_salary`, `additio
 (1, 17, 9914, 300, 100, 10314, 1, 1, 1, 1100, 10, 5, 1815, 500, 2315, 7999, 17, 2228.56, 10, 7, 1, '2020-03-10 05:32:34'),
 (2, 8, 500000, 1000, 100, 501100, 0, 0, 0, 0, 0, 0, 100, 200, 300, 500800, 13, 0, 0, 0, 1, '2020-03-10 05:34:52'),
 (3, 29, 9969, 2100, 100, 12169, 1, 1, 1, 1100, 10, 5, 1244, 1046, 2290, 9879, 17, 2230.76, 10, 7, 1, '2020-03-11 11:30:05'),
-(4, 36, 1500, 10, 100, 1610, 1, 1, 1, 15, 20, 5, 140, 200, 340, 1270, 17, 312, 10, 20, 1, '2020-03-11 05:47:46');
+(4, 36, 1500, 10, 100, 1610, 1, 1, 1, 15, 20, 5, 140, 200, 340, 1270, 17, 312, 10, 20, 1, '2020-03-12 04:57:35');
 
 -- --------------------------------------------------------
 
@@ -398,9 +398,9 @@ INSERT INTO `employee_add_salary_allowance` (`id`, `add_salary_id`, `allowance_i
 (11, 3, 3, 2, 99, 1),
 (12, 3, 4, 2, 30, 1),
 (13, 3, 5, 3, 1046, 1),
-(14, 4, 6, 1, 10, 1),
-(15, 4, 9, 2, 100, 1),
-(16, 4, 11, 3, 200, 1);
+(21, 4, 6, 1, 10, 1),
+(22, 4, 9, 2, 100, 1),
+(23, 4, 11, 3, 200, 1);
 
 -- --------------------------------------------------------
 
@@ -2492,7 +2492,7 @@ ALTER TABLE `employee_add_salary`
 -- AUTO_INCREMENT for table `employee_add_salary_allowance`
 --
 ALTER TABLE `employee_add_salary_allowance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `employee_awards`

@@ -270,10 +270,12 @@
 			</tr>
 		</thead>
 		<tbody class="" >
-			
+				@php
+					$slno = 1;
+				@endphp
 				@foreach($data['salaries'] as $salary)
 				<tr >
-					<td style="border: 1px solid #988989 !important; ">1</td>
+					<td style="border: 1px solid #988989 !important; ">{{ $slno }}</td>
 					<td style="border: 1px solid #988989 !important;">{{$salary->name}}</td>
 					<td style="border: 1px solid #988989 !important;"></td>
 					<td style="border: 1px solid #988989 !important;"></td>
@@ -320,6 +322,9 @@
 					
 					
 				</tr> 
+				@php
+					$slno++;
+				@endphp
 				@endforeach
 			
 		</tbody>

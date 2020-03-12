@@ -985,4 +985,161 @@ class PayrollController extends Controller {
         //$data['cat_list'] = Category::where('id','=',$autoid)->where('status','=',1)->get();
         return view('administrator.hrm.payroll.salary_print')->with('data',$data);
 	}
+
+
+	public function updateAdditionalsalary(Request $request)
+	{
+		$insertdata = [];
+		$salaryid = $request->input('salary_id');
+		//$insertdata['employee_id'] = $request->input('user_id');
+		$insertdata['basic_salary'] = $request->input('basic_salary');
+		$insertdata['additional_allowance_total'] = $request->input('addition_total');
+		$insertdata['ot_amount'] = $request->input('ot');
+		$insertdata['gross_salary'] = $request->input('gross_salary');
+		$insertdata['epf_ee_amount'] = $request->input('epf_ee_id');
+		$insertdata['ee_sosco_amount'] = $request->input('ee_sosco');
+		$insertdata['eis_sip_amount'] = $request->input('eis_sip');
+		$insertdata['deductions_total'] = $request->input('deductions_total');
+		
+		$insertdata['otherdeductions_total'] = $request->input('otherdeductions_total');
+		$insertdata['total_deductions'] = $request->input('total_deductions');
+		$insertdata['net_pay'] = $request->input('net_pay');
+		$insertdata['epf_er'] = $request->input('EPF_ER');
+		$insertdata['sosco_er'] = $request->input('SOSCO_ER');
+		$insertdata['sosco_eissip'] = $request->input('SOSCO_EISSIP');
+		$insertdata['status'] = 1;
+		$insertdata['created_at'] = date('Y-m-d h:i:s');
+		$insertdata['epf_percent'] = $request->input('EPF_ERper');
+
+		$epf_check = $request->input('epf_ee_check');
+		$epf_check = isset($epf_check) ? 1 : 0;
+		$sosco_check = $request->input('epf_sosco_check');
+		$sosco_check = isset($sosco_check) ? 1 : 0;
+		$soscosip_check = $request->input('epf_sip_check');
+		$soscosip_check = isset($soscosip_check) ? 1 : 0;
+
+		$insertdata['epf_check'] = $epf_check;
+		$insertdata['sosco_check'] = $sosco_check;
+		$insertdata['sip_check'] = $soscosip_check;
+
+
+		$salarystatus = DB::table('employee_add_salary')
+						->where('id', $salaryid)
+						->update( $insertdata);
+		//$salaryid = DB::getPdo()->lastInsertId();;
+		//dd($salaryid);
+		if($salaryid){
+			
+
+			$allowances_name = $request->input('allowances_name');
+
+			DB::table('employee_add_salary_allowance')->where('add_salary_id', '=', $salaryid)->delete();
+
+			if(isset($allowances_name)){
+				for($i=0;$i<count($allowances_name);$i++){
+					$insertallowancedata = [];
+					$allowance_id = $request->input('allowances_name')[$i];
+					$allowance_price = $request->input('price')[$i];
+
+					$insertallowancedata['add_salary_id'] = $salaryid;
+					$insertallowancedata['allowance_id'] = $allowance_id;
+					$insertallowancedata['main_cat_id'] = 1;
+					$insertallowancedata['amount'] = $allowance_price;
+					$insertallowancedata['status'] = 1;
+
+					$salaryallowid = DB::table('employee_add_salary_allowance')->insert(
+						$insertallowancedata
+					);
+				}
+			}
+
+			$deduction_allowances_name = $request->input('deduction_allowances_name');
+
+			if(isset($deduction_allowances_name)){
+				for($i=0;$i<count($deduction_allowances_name);$i++){
+					$insertallowancedata = [];
+					$allowance_id = $request->input('deduction_allowances_name')[$i];
+					$allowance_price = $request->input('deduction_price')[$i];
+
+					$insertallowancedata['add_salary_id'] = $salaryid;
+					$insertallowancedata['allowance_id'] = $allowance_id;
+					$insertallowancedata['main_cat_id'] = 2;
+					$insertallowancedata['amount'] = $allowance_price;
+					$insertallowancedata['status'] = 1;
+
+					$salaryallowid = DB::table('employee_add_salary_allowance')->insert(
+						$insertallowancedata
+					);
+				}
+			}
+
+			$other_deduction_allowances_name = $request->input('other_deduction_allowances_name');
+
+			if(isset($other_deduction_allowances_name)){
+				for($i=0;$i<count($other_deduction_allowances_name);$i++){
+					$insertallowancedata = [];
+					$allowance_id = $request->input('other_deduction_allowances_name')[$i];
+					$allowance_price = $request->input('other_deduction_price')[$i];
+
+					$insertallowancedata['add_salary_id'] = $salaryid;
+					$insertallowancedata['allowance_id'] = $allowance_id;
+					$insertallowancedata['main_cat_id'] = 3;
+					$insertallowancedata['amount'] = $allowance_price;
+					$insertallowancedata['status'] = 1;
+
+					$salaryallowid = DB::table('employee_add_salary_allowance')->insert(
+						$insertallowancedata
+					);
+				}
+			}
+			
+
+			
+		}
+		
+	
+		return redirect('/hrm/additionSalList')->with('message', 'Salary updated successfully!!');
+
+	
+
+		
+	}
+
+	public function empSalaryEdit($id)
+    {
+		$autoid = crypt::decrypt($id);
+		$data['salary_data']  = DB::table('employee_salary')->where('id','=',$autoid)->first();
+	
+		$data['memberinfo'] = DB::table('tbl_member as m')->select('m.name','m.user_id')->where('m.user_id','=',$data['salary_data']->employee_id)->first();
+		
+		$data['addition_allownces'] = DB::table('payroll_addition_deduction as ad')->select('ad.id as additionid','ad.name')
+				->where('ad.status','=','1')
+				->where('ad.main_cat_name','=','1')
+				->get();
+		$data['deduction_allownces'] = DB::table('payroll_addition_deduction as ad')->select('ad.id as additionid','ad.name')
+				->where('ad.status','=','1')
+				->where('ad.main_cat_name','=','2')
+				->get();
+		$data['other_allownces'] = DB::table('payroll_addition_deduction as ad')->select('ad.id as additionid','ad.name')
+				->where('ad.status','=','1')
+				->where('ad.main_cat_name','=','3')
+				->get();
+
+		$data['salary_allow_addition']  = DB::table('employee_salary_allowance as al')->select('ad.id as additionid','ad.name','al.amount')
+		->leftjoin('payroll_addition_deduction as ad', 'ad.id', '=', 'al.allowance_id')
+		->where('al.salary_id','=',$data['salary_data']->id)->where('al.main_cat_id','=','1')->get();
+
+		$data['salary_allow_deduction']  = DB::table('employee_salary_allowance as al')->select('ad.id as additionid','ad.name','al.amount')
+		->leftjoin('payroll_addition_deduction as ad', 'ad.id', '=', 'al.allowance_id')
+		->where('al.salary_id','=',$data['salary_data']->id)->where('al.main_cat_id','=','2')->get();
+
+		$data['salary_other_deduction']  = DB::table('employee_salary_allowance as al')->select('ad.id as additionid','ad.name','al.amount')
+		->leftjoin('payroll_addition_deduction as ad', 'ad.id', '=', 'al.allowance_id')
+		->where('al.salary_id','=',$data['salary_data']->id)->where('al.main_cat_id','=','3')->get();
+
+		// /return $data;
+        //$data['cat_list'] = Category::where('id','=',$autoid)->where('status','=',1)->get();
+        return view('administrator.hrm.payroll.edit_salary')->with('data',$data);
+        
+	}
 }
