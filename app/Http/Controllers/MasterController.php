@@ -182,7 +182,10 @@ class MasterController extends Controller
       public function epfEdit($id)
       {
           $id = crypt::decrypt($id);
-          $data['epf_list'] = Sosco::where('id','=',$id)->where('status','=',1)->get();
+          //dd($id);          
+          //$data['epf_list'] = Sosco::where('id','=',$id)->where('status','=',1)->get();
+          $data['epf_list'] = Epf::where('id','=',$id)->where('status','=',1)->get();
+          //dd($data);
           return view('administrator.hrm.master.epf.edit')->with('data',$data);
       }
       public function epfUpdate(Request $request)

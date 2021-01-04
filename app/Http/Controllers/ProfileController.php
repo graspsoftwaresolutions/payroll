@@ -24,7 +24,7 @@ class ProfileController extends Controller {
 			'name' => 'required|max:100',
 			'contact_no_one' => 'required|max:20',
 			'web' => 'nullable|max:150|regex:' . $url,
-			'gender' => 'required',
+			//'gender' => 'required',
 			'avatar' => 'nullable|mimes:jpeg,png,jpg,gif',
 			'date_of_birth' => 'required|date',
 			'present_address' => 'required|max:250',
@@ -40,7 +40,7 @@ class ProfileController extends Controller {
 		} else {
 			$avatar = $request->get('previous_avater');
 		}
-
+		
 		$user->name = $request->get('name');
 		$user->contact_no_one = $request->get('contact_no_one');
 		$user->web = $request->get('web');
@@ -53,7 +53,7 @@ class ProfileController extends Controller {
 		$affected_row = $user->save();
 
 		if (!empty($affected_row)) {
-			return redirect('/profile/user-profile')->with('message', 'Update successfully.');
+			return redirect('/dashboard')->with('message', 'Update successfully.');
 		}
 		return redirect('/profile/user-profile')->with('exception', 'Operation failed !');
 	}

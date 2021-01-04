@@ -5,8 +5,7 @@
 /public/.htaccess
 /public/.htaccesstest
 /public/assets/images
-.htaccess
-.htaccesstest
+
 .env
 .env.backup
 .phpunit.result.cache
@@ -19,3 +18,7 @@ yarn-error.log
 /storage/logs
 *.log
 approvallog.log
+/storage/logs
+/storage/framework/*
+web.config
+!.htaccess
