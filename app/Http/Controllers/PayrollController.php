@@ -649,6 +649,7 @@ class PayrollController extends Controller {
 					->where('ad.status','=','1')
 					->where('ad.main_cat_name','=','3')
 					->get();
+		$data['filterdate'] = $filterdate;
 		//$data = [];
 		return view('administrator.hrm.payroll.monthly_print')->with('data',$data);
 	}

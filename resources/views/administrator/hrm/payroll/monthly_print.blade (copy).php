@@ -175,7 +175,7 @@
 					<span style="text-align:center;font-weight: bold;font-size:18px;vertical-align:top;">Monthly Payroll Report</span>
 					<br>
 					<br>
-					<span style="text-align:center;font-weight: bold;font-size:16px;vertical-align:top;">MONTH: {{ strtoupper(date('F Y',strtotime($data['filterdate']))) }}</span>
+					<span style="text-align:center;font-weight: bold;font-size:16px;vertical-align:top;">MONTH: MARCH 2020</span>
 				</td>
 				<td colspan="3">	
 					</br>
@@ -270,22 +270,32 @@
 			</tr>
 		</thead>
 		<tbody class="" >
-			
+				@php
+					$slno = 1;
+					
+				@endphp
 				@foreach($data['salaries'] as $salary)
 				<tr >
-					<td style="border: 1px solid #988989 !important; ">1</td>
-					<td style="border: 1px solid #988989 !important;">{{$salary->name}}</td>
+					<td style="border: 1px solid #988989 !important; ">{{ $slno }}</td>
+					<td style="border: 1px solid #988989 !important;text-transform:uppercase;font-size:12px;">{{$salary->name}}</td>
 					<td style="border: 1px solid #988989 !important;"></td>
 					<td style="border: 1px solid #988989 !important;"></td>
 					<td style="border: 1px solid #988989 !important;"></td>
 					<td style="border: 1px solid #988989 !important;"></td>
-					<td style="border: 1px solid #988989 !important;">{{$salary->basic_salary}}</td>
 					@foreach($additions_list as $additions)
 					@php
 						$allowancecost = CommonHelper::getSalaryAllowanceCost($salary->id,$additions->additionid);
+						$allowancecost = 5;
+						var_dump($allowancecost);
 					@endphp
-					<td style="border: 1px solid #988989 !important;">{{ $allowancecost }}</td>
 					@endforeach
+					@php
+						$bsal = $salary->gross_salary - ($salary->ot_amount+$allowancecost);
+					@endphp
+					<td style="border: 1px solid #988989 !important;">{{$bsal}}</td>
+					
+					<td style="border: 1px solid #988989 !important;">{{ $allowancecost }}</td>
+					
 					<!--td style="border: 1px solid #988989 !important;"></td>
 					<td style="border: 1px solid #988989 !important;"></td>
 					<td style="border: 1px solid #988989 !important;"></td-->
@@ -320,6 +330,9 @@
 					
 					
 				</tr> 
+				@php
+					$slno++;
+				@endphp
 				@endforeach
 			
 		</tbody>

@@ -72,9 +72,9 @@
                   </div>
                 </div>
                 <div class="form-group{{ $errors->has('basic_salary') ? ' has-error' : '' }}">
-                  <label for="basic_salary" class="col-sm-3 control-label">{{ __('Basic Basic') }}</label>
+                  <label for="basic_salary" class="col-sm-3 control-label">{{ __('Basic Salary') }}</label>
                   <div class="col-sm-6">
-                  <input type="text" readonly  id="basic_salary" name="basic_salary" class="form-control" placeholder="{{ __('Basic Basic') }}">
+                  <input type="text" readonly  id="basic_salary" name="basic_salary" class="form-control" placeholder="{{ __('Basic Salary') }}">
                          @if ($errors->has('basic_salary'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('basic_salary') }}</strong>
