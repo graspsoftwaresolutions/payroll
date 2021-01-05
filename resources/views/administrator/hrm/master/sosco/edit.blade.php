@@ -9,11 +9,11 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      {{ __('Sosco Insurance') }}
+      {{ __('Sosco') }}
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{ url('/dashboard') }}"><i class="fa fa-dashboard"></i> {{ __('Dashboard') }}</a></li>
-      <li><a>{{ __('Sosco Insurance') }}</a></li>
+      <li><a>{{ __('Sosco') }}</a></li>
       <li class="active">{{ __('Edit Sosco ') }}</li>
     </ol>
   </section>
@@ -47,7 +47,7 @@
         </div>
         <!-- /.Notification Box -->
         <div class="col-md-12">
-          <form class="form-horizontal" id="Soscoform" action="{{route('master.SoscoInsuranceUpdate')}}" method="post">
+          <form class="form-horizontal" id="Soscoform" action="{{route('master.SoscoUpdate')}}" method="post">
             {{ csrf_field() }}
               <input type="hidden" name="sosco_id" id="sosco_id" value="{{$row->id}}">
               <!-- /.end group -->
@@ -139,6 +139,10 @@
   </div>
   <script src="http://localhost/human/public/backend/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+  <script type="text/javascript">
+    $("#soscoli").parents().addClass("active");
+    $("#soscoli").addClass("active");
+  </script>
   <script type="text/javascript">
   $(document).ready(function(){
     const regex = /[^\d.]|\.(?=.*\.)/g;

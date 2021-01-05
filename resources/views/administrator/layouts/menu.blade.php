@@ -36,10 +36,10 @@
                 </span>
             </a>
             <ul class="treeview-menu">
-                <li><a href="{{  route('master.category_list') }}"><i class="fa fa-circle-o"></i> {{ __('category') }}</a></li>
-                <li><a href="{{  route('master.soscoInsurance_list') }}"><i class="fa fa-circle-o"></i> {{ __('Sosco Insurance') }}</a></li>
-                <li><a href="{{  route('master.sosco_list') }}"><i class="fa fa-circle-o"></i> {{ __('Sosco') }}</a></li>
-                <li><a href="{{  route('master.epf_list') }}"><i class="fa fa-circle-o"></i> {{ __('EPF') }}</a></li>
+                <li id="categorylistli"><a href="{{  route('master.category_list') }}"><i class="fa fa-circle-o"></i> {{ __('category') }}</a></li>
+                <li id="soscoInsuranceli"><a href="{{  route('master.soscoInsurance_list') }}"><i class="fa fa-circle-o"></i> {{ __('Sosco Insurance') }}</a></li>
+                <li id="soscoli" ><a href="{{  route('master.sosco_list') }}"><i class="fa fa-circle-o"></i> {{ __('Sosco') }}</a></li>
+                <li id="epfli"><a href="{{  route('master.epf_list') }}"><i class="fa fa-circle-o"></i> {{ __('EPF') }}</a></li>
             </ul>
         </li>
         @permission('payroll-management')

@@ -54,7 +54,7 @@
                <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
               <label for="user_id" class="col-sm-3 control-label">{{ __('Category Name') }}<span style="color:red;">*</span></label>
               <div class="col-sm-6">
-               <input type="text" name="cat_name" class="form-control" placeholder="{{ __('Category Name') }}">
+               <input type="text" required="" name="cat_name" class="form-control" placeholder="{{ __('Category Name') }}">
                 </div>
               </div>
               
@@ -78,4 +78,11 @@
     </section>
     <!-- /.content -->
   </div>
+  @endsection
+
+  @section('footerSection')
+  <script type="text/javascript">
+    $("#categorylistli").parents().addClass("active");
+    $("#categorylistli").addClass("active");
+  </script>
   @endsection

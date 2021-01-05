@@ -141,6 +141,10 @@
   <script src="http://localhost/human/public/backend/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
   <script type="text/javascript">
+    $("#epfli").parents().addClass("active");
+    $("#epfli").addClass("active");
+  </script>
+  <script type="text/javascript">
   $(document).ready(function(){
     const regex = /[^\d.]|\.(?=.*\.)/g;
     const subst=``;
