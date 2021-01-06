@@ -57,7 +57,7 @@
 				   <div class="form-group">
 					<div class="input-group margin">
 					  <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-					  <input type="text" name="dateofsalary" readonly class="form-control" id="monthpicker">
+					  <input type="text" name="dateofsalary" value="{{ date('Y-m',strtotime($salary_data->salary_date)) }}" readonly class="form-control" id="monthpicker1">
 					 
 					</div>
 				  </div>
@@ -271,7 +271,7 @@
                       </div>
                   </div>
 
-                  <div class=" col-sm-offset-3 col-sm-6">
+                  <div class=" col-sm-offset-3 col-sm-6 hide">
                     <button type="submit" class="btn btn-info btn-flat"><i class="icon fa fa-arrow-right hide"></i> {{ __('Go') }}</button>
                   </div>
               </form>
