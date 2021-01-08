@@ -86,47 +86,49 @@
                     @endif
                 </div>
 				<div id="printDiv"  class="printDiv"> 
-				<img src="{{ asset('public/profile_picture/'.auth()->user()->avatar) }}" style="width:150px;margin-top:2%" alt="logo">
+				<img src="{{ asset('public/profile_picture/'.auth()->user()->avatar) }}" style="width:120px;margin-top:2%" alt="logo">
 				@php
 					$memberinfo = $data['memberinfo'];
 					$salary_data = $data['salary_data'];
 				@endphp
 				<table style="width:90%; border:1px solid black;margin:5%;" class="table table-responsive saltble">
 				<tr style="background:red;">
-				<td colspan="4" class="tithed" id="tithed" style="border:1px solid black;background:#0047ab;color:white;font-weight:bold;padding:1%;">Nube Payroll System</td>
+				<td colspan="5" class="tithed" id="tithed" style="border:1px solid black;background:#0047ab;color:white;font-weight:bold;padding:1%;">National Union of Bank Employees, HQ</td>
 				</tr>
 				<tr>
-				<td colspan="4" style="font-weight:bold;padding:1%;text-align:center;">Pay slip for the period of {{ date('M Y',strtotime($salary_data->salary_date)) }}</td>
+				<td colspan="5" style="font-weight:bold;padding:1%;text-align:center;">Pay slip for the period of {{ date('M Y',strtotime($salary_data->salary_date)) }}</td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Name</td>
 				<td style="font-weight:bold;">{{ $memberinfo->name }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Code</td>
-				<td></td>
+				<td colspan="2"></td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Dept</td>
 				<td style="font-weight:bold;">{{ $memberinfo->designation }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Category</td>
-				<td>{{ $memberinfo->category }}</td>
+				<td colspan="2">{{ $memberinfo->category }}</td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">EPF Number</td>
-				<td style="font-weight:bold;"></td>
+				<td style="font-weight:bold;">{{ $memberinfo->EPF }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">IC Number</td>
-				<td>{{ $memberinfo->new_ic_no }}</td>
+				<td colspan="2">{{ $memberinfo->new_ic_no }}</td>
 				</tr>
 				<tr>
 				<td style="background: #0047ab; color: white;font-weight:bold;font-size:16px;text-align:center;width:25%;">INCOMES</td>
 				<td style="font-weight:bold;background: #0047ab; color: white;font-size:16px;text-align:center;font-weight:bold;">AMOUNTS</td>
 				<td style="background: #0047ab; color: white;font-weight:bold;font-size:16px;text-align:center;width:25%;">DEDUCTION</td>
 				<td style="font-weight:bold;background: #0047ab; color: white;font-size:16px;text-align:center;font-weight:bold;">AMOUNTS</td>
+				<td style="font-weight:bold;background: #0047ab; color: white;font-size:16px;text-align:center;font-weight:bold;">UNION</td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Basic Pay</td>
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->basic_salary }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">EPF</td>
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->epf_ee_amount }}<!--{{ $salary_data->epf_ee_amount+$salary_data->epf_er }}--></td>
+				<td style="font-weight:bold;text-align:right;">{{ $salary_data->epf_er }}</td>
 				</tr>
 
 				<tr>
@@ -134,90 +136,130 @@
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->additional_allowance_total }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Sosco</td>
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->ee_sosco_amount }}<!--{{ $salary_data->ee_sosco_amount+$salary_data->sosco_er }}--></td>
+				<td style="font-weight:bold;text-align:right;">{{ $salary_data->sosco_er }}</td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Bonus</td>
 				<td style="font-weight:bold;text-align:right;"></td>
-				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Income Tax </td>
-				<td style="font-weight:bold;text-align:right;"></td>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Sosco - Sip</td>
+				<td style="font-weight:bold;text-align:right;">{{ $salary_data->eis_sip_amount }}<!--{{ $salary_data->ee_sosco_amount+$salary_data->sosco_er }}--></td>
+				<td style="font-weight:bold;text-align:right;">{{ $salary_data->sosco_eissip }}</td>
 				</tr>
-				<tr>
-				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Ex-Gratia</td>
-				<td style="font-weight:bold;text-align:right;"></td>
-				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Co-op Society</td>
-				<td style="font-weight:bold;text-align:right;"></td>
-				</tr>
+				
 				@php
+					$nubeamt = '';
 					$gimsamt = '';
+					$bimbloanamt = '';
 					$gelaamt = '';
-					$loanamt = 0;
-					//var_dump($data['salary_allow_deduction']);
-					//$otheramt = $salary_data->eis_sip_amount+$salary_data->sosco_eissip;
-					$otheramt = 0;
-					//var_dump($otheramt);
-					if(isset($salary_data->eis_sip_amount)){
-					$otheramt = $salary_data->eis_sip_amount;
-					}
+					$koopamt = '';
+					$carloanamt = '';
+					
+					//dd($data['salary_allow_deduction']);
+					
 					foreach($data['salary_allow_deduction'] as $deduction){
 						//var_dump($deduction->name);
+						if($deduction->name=='NUBE'){
+							$nubeamt = $deduction->amount;
+							
+						}
 						if($deduction->name=='GMIS'){
 							$gimsamt = $deduction->amount;
+							
+						}
+						if($deduction->name=='BIMB LOAN'){
+							$bimbloanamt = $deduction->amount;
 							
 						}
 						if($deduction->name=='GELA'){
 							$gelaamt = $deduction->amount;
 							
+						}	
+						if($deduction->name=='KOOP'){
+							$koopamt = $deduction->amount;
+							
 						}												
-						if($deduction->name=='BIMB LOAN' || $deduction->name=='HOME/CAR LOAN'){
-							$loanamt += $deduction->amount;
+						if($deduction->name=='HOME/CAR LOAN'){
+							$carloanamt = $deduction->amount;
 							
 						}
 						
-						if($deduction->name!='GMIS' && $deduction->name!='GELA' && $deduction->name!='BIMB LOAN' && $deduction->name!='HOME/CAR LOAN'){
-							$otheramt += $deduction->amount;
-							//print_r($otheramt);
-						}
-
-					
-						
 					}
+
+					$otheramt = '';
+					$uplamt = '';
+					$pcbamt = '';
 					
 					foreach($data['salary_other_deduction'] as $deduction){
-						//var_dump($deduction->amount);
-						$otheramt += $deduction->amount;
+						if($deduction->name=='PCB'){
+							$pcbamt = $deduction->amount;
+						}
+						if($deduction->name=='UPL'){
+							$uplamt = $deduction->amount;
+						}
+						if($deduction->name=='OTHERS'){
+							$otheramt = $deduction->amount;
+						}
 						
 					}
 				
 					//exit;
 				@endphp
 				<tr>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Ex-Gratia</td>
+				<td style="font-weight:bold;text-align:right;"></td>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Income Tax </td>
+				<td colspan="2" style="font-weight:bold;text-align:right;">{{ $pcbamt }}</td>
+				</tr>
+				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Overtime</td>
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->ot_amount }}</td>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Co-op Society</td>
+				<td colspan="2" style="font-weight:bold;text-align:right;">{{ $koopamt }}</td>
+				</tr>
+				<tr>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
+				<td style="font-weight:bold;text-align:right;"></td>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">NUBE</td>
+				<td colspan="2" style="font-weight:bold;text-align:right;">{{ $nubeamt }}</td>
+				</tr>
+				<tr>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
+				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">GMIS</td>
-				<td style="font-weight:bold;text-align:right;">{{ $gimsamt }}</td>
+				<td colspan="2" style="font-weight:bold;text-align:right;">{{ $gimsamt }}</td>
+				</tr>
+				<tr>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
+				<td style="font-weight:bold;text-align:right;"></td>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">BIMB LOAN</td>
+				<td colspan="2" style="font-weight:bold;text-align:right;">{{ $bimbloanamt }}</td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">GELA</td>
-				<td style="font-weight:bold;text-align:right;">{{ $gelaamt }}</td>
+				<td colspan="2" style="font-weight:bold;text-align:right;">{{ $gelaamt }}</td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
 				<td style="font-weight:bold;text-align:right;"></td>
-				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Loan
-				
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">HOME/CAR LOAN
 				</td>
-				<td style="font-weight:bold;text-align:right;"> {{ $loanamt }}</td>
+				<td colspan="2" style="font-weight:bold;text-align:right;"> {{ $carloanamt }}</td>
+				</tr>
+				<tr>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
+				<td style="font-weight:bold;text-align:right;"></td>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">UPL
+				</td>
+				<td colspan="2" style="font-weight:bold;text-align:right;"> {{ $uplamt }}</td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Others
-				<br>
-				[SOSCO-EIS/SIP, NUBE,KOOP,PCB,UPL,OTHERS - ADV SALARY]
 				</td>
-				<td style="font-weight:bold;text-align:right;"> {{ $otheramt }}</td>
+				<td colspan="2" style="font-weight:bold;text-align:right;"> {{ $otheramt }}</td>
 				</tr>
 
 				<tr>
@@ -225,7 +267,7 @@
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->gross_salary }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:18%;">Total Deduction
 				</td>
-				<td style="font-weight:bold;text-align:right;"> {{ $salary_data->total_deductions }}</td>
+				<td colspan="2" style="font-weight:bold;text-align:right;"> {{ $salary_data->total_deductions }}</td>
 				</tr>
 
 				
@@ -234,11 +276,13 @@
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->net_pay }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Cheque No
 				</td>
-				<td style="font-weight:bold;text-align:right;"> </td>
+				<td colspan="2" style="font-weight:bold;text-align:right;"> </td>
 				</tr>
 				
 				</table>
-			<br><br><br>
+			
+			<p style="text-align: center;font-size: 16px;">---This is computer generated payslip no signature required---</p>
+			<br>
 			</div>
 			</div>
 		</div>
