@@ -53,6 +53,7 @@
               <div class="form-group{{ $errors->has('wage_limit') ? ' has-error' : '' }}">
               <label for="wage_limit" class="col-sm-3 control-label">{{ __('Wage Limit') }}<span style="color:red;">*</span></label>
               <div class="col-sm-6">
+                <input type="hidden" id="old_age" name="old_age" readonly="" value="{{ $data['old_age'] }}" class="form-control" placeholder="">
                <input type="text" id="wage_limit" name="wage_limit" class="form-control" placeholder="{{ __('Wage Limit') }}">
                 </div>
                  @if ($errors->has('assigned_to'))
@@ -141,8 +142,13 @@
   <script src="http://localhost/human/public/backend/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
   <script type="text/javascript">
-    $("#epfli").parents().addClass("active");
-    $("#epfli").addClass("active");
+    @if($data['old_age']==1)
+      $("#epfoldli").parents().addClass("active");
+      $("#epfoldli").addClass("active");
+    @else
+      $("#epfli").parents().addClass("active");
+      $("#epfli").addClass("active");
+    @endif
   </script>
   <script type="text/javascript">
   $(document).ready(function(){

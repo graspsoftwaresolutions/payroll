@@ -29,7 +29,7 @@
             </div>
             <div class="box-body">
                 <div  class="col-md-3">
-                <a href="{{ route('master.epf_add') }}" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> {{ __('add new EPF') }}</a>
+                <a href="{{ route('master.epf_add') }}?old_age={{ $data['old_age'] }}" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> {{ __('add new EPF') }}</a>
             </div>
                 <div  class="col-md-3">
                 <!-- <button type="button" class="tip btn btn-primary btn-flat" title="Print" data-original-title="Label Printer" onclick="printDiv('printable_area')">

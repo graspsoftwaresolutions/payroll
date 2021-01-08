@@ -398,6 +398,10 @@
 </div>
 <script src ="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
 <script src ="{{ asset('public/assets/js/jquery-ui.js') }}"></script>
+ <script type="text/javascript">
+    $("#salarylistli").parents().addClass("active");
+    $("#salarylistli").addClass("active");
+  </script>
 <script type="text/javascript">
 $(document).ready(function(){
     // $('.total_deductioncalc').change(function(){
@@ -510,6 +514,9 @@ $("#otherdeductions_total").val('0.00');
 						
 						//$("#basic_salary").val(salaryinfo.basic_salary);
 						//$("#basic_salary").val(salaryinfo.basic_salary);
+            $('#ExclusionTable tbody tr').remove();
+            $('#DeductionsExclusionTable tbody tr').remove();
+            $('#OtherDeductionsExclusionTable tbody tr').remove();
 						
 						$.each(result.salaryallowance, function(key, value) {
 							var slno=1;

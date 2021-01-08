@@ -50,6 +50,7 @@
           <form class="form-horizontal" id="Soscoform" action="{{route('master.EpfUpdate')}}" method="post">
             {{ csrf_field() }}
               <input type="hidden" name="epf_id" id="epf_id" value="{{$row->id}}">
+              <input type="hidden" name="old_age" id="old_age" value="{{$row->old_age}}">
               <!-- /.end group -->
               <div class="form-group{{ $errors->has('wage_limit') ? ' has-error' : '' }}">
               <label for="wage_limit" class="col-sm-3 control-label">{{ __('Wage Limit') }}<span style="color:red;">*</span></label>
