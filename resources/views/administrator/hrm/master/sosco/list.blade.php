@@ -116,7 +116,7 @@
  <script src="{{ asset('public/js/buttons.print.min.js') }}" type="text/javascript"></script>
  <script type="text/javascript">
      $('#example3').DataTable({
-        'paging': false,
+        'paging': true,
         'lengthChange': true,
          dom: 'lBfrtip', 
          buttons: [

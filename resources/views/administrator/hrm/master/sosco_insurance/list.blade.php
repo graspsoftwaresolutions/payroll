@@ -2,6 +2,20 @@
 @section('title', __('Manage Sosco Insurance'))
 
 @section('main_content')
+<link rel="stylesheet" type="text/css"
+    href="{{ asset('public/css/responsive.dataTables.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('public/css/buttons.dataTables.min.css') }}">
+<style type="text/css">
+    @media print{
+        .action{
+            display: none;
+        }
+    }
+    .dt-button.buttons-print{
+        background-color: #3c8dbc;
+        border-color: #367fa9;
+    }
+</style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -37,9 +51,7 @@
                     <span class="hidden-sm hidden-xs"> {{ __('Print') }}</span>
                 </button> -->
             </div>
-                <div  class="col-md-6">
-                    <input type="text" id="myInput" class="form-control" placeholder="{{ __('Search..') }}">
-                </div>
+               
                     <br> <br> <br> <br>
                 <!-- Notification Box -->
                 <div class="col-md-12">
@@ -57,7 +69,7 @@
                 </div>
                 <!-- /.Notification Box -->
                 <div id="printable_area" class="col-md-12 table-responsive">
-                <table  class="table table-bordered table-striped">
+                <table id="example3" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>{{ __('SL') }}</th>
@@ -107,3 +119,30 @@
 
 
 @endsection
+@section('footerSection')
+ <script src="{{ asset('public/js/dataTables.buttons.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('public/js/buttons.flash.min.js') }}" type="text/javascript"></script>
+ <script src="{{ asset('public/js/buttons.print.min.js') }}" type="text/javascript"></script>
+ <script type="text/javascript">
+     $('#example3').DataTable({
+        'paging': true,
+        'lengthChange': true,
+         dom: 'lBfrtip', 
+         buttons: [
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: [0,1,2,3,4,5,6]
+                },
+                title : 'Sosco Insurance List',
+                text:   '<i class="fa fa-print"></i> Print',
+                titleAttr: 'print'
+           }  
+        ],
+        'searching': true,
+        'ordering': true,
+        'info': true,
+        'autoWidth': false,
+    });
+ </script>
+ @endsection
