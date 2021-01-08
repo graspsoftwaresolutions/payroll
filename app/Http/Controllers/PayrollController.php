@@ -629,7 +629,7 @@ class PayrollController extends Controller {
 	public function SalaryReport(Request $request){
 		$filterdate = $request->input('filterdate');
 		$data['salaries'] = DB::table('employee_salary as es')
-		->select('m.name','es.id','es.salary_date','es.gross_salary','es.total_deductions','es.net_pay','m.basic_salary','es.additional_allowance_total','es.ot_amount','es.epf_ee_amount','es.ee_sosco_amount','es.eis_sip_amount','es.total_deductions','es.net_pay','es.epf_er','es.sosco_er','es.sosco_eissip','es.epf_percent')
+		->select('m.name','es.id','es.salary_date','es.gross_salary','es.total_deductions','es.net_pay','es.basic_salary','es.additional_allowance_total','es.ot_amount','es.epf_ee_amount','es.ee_sosco_amount','es.eis_sip_amount','es.total_deductions','es.net_pay','es.epf_er','es.sosco_er','es.sosco_eissip','es.epf_percent')
 					->leftjoin('tbl_member as m', 'm.user_id', '=', 'es.employee_id')
 					->where('es.salary_date','=',$filterdate)
 					->orderBy('es.salary_date', 'desc')
