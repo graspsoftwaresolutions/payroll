@@ -2,14 +2,14 @@
 @section('title', __('Manage EPF'))
 
 @section('main_content')
-
+ @php $row = $data['epf_list'][0]; @endphp
 
 
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      {{ __(' EPF') }}
+      {{ __(' EPF') }} @if($row->old_age==1) (>60 Years) @endif
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{ url('/dashboard') }}"><i class="fa fa-dashboard"></i> {{ __('Dashboard') }}</a></li>
@@ -17,13 +17,13 @@
       <li class="active">{{ __('Edit EPF') }}</li>
     </ol>
   </section>
-    @php $row = $data['epf_list'][0]; @endphp
+   
   <!-- Main content -->
   <section class="content">
     <!-- Default box -->
     <div class="box">
       <div class="box-header with-border">
-        <h3 class="box-title">{{ __('Edit EPF') }}</h3>
+        <h3 class="box-title">{{ __('Edit EPF') }} @if($row->old_age==1) (>60 Years) @endif</h3>
 
         <!-- <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
@@ -141,8 +141,13 @@
   <script src="http://localhost/human/public/backend/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
   <script type="text/javascript">
+    @if($row->old_age==1)
+      $("#epfoldli").parents().addClass("active");
+      $("#epfoldli").addClass("active");
+    @else
     $("#epfli").parents().addClass("active");
     $("#epfli").addClass("active");
+    @endif
   </script>
   <script type="text/javascript">
   $(document).ready(function(){
