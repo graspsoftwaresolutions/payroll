@@ -368,6 +368,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('staff_autocomplete','PayrollController@staffAutocomplete')->name('staff_autocomplete');
 	
 	Route::post('add_salary_save','PayrollController@addsalarySave')->name('add_salary_save');
+	Route::post('update_salary_save','PayrollController@UpdatesalarySave')->name('update_salary_save');
 	
 	Route::post('ajax_salaries_list','AjaxController@ajax_salaries_list')->name('master.ajaxsalarieslist');
 	

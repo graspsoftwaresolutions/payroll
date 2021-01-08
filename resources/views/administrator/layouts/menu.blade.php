@@ -40,6 +40,7 @@
                 <li id="soscoInsuranceli"><a href="{{  route('master.soscoInsurance_list') }}"><i class="fa fa-circle-o"></i> {{ __('Sosco Insurance') }}</a></li>
                 <li id="soscoli" ><a href="{{  route('master.sosco_list') }}"><i class="fa fa-circle-o"></i> {{ __('Sosco') }}</a></li>
                 <li id="epfli"><a href="{{  route('master.epf_list') }}"><i class="fa fa-circle-o"></i> {{ __('EPF') }}</a></li>
+                <li id="epfoldli"><a href="{{  route('master.epf_list') }}?old_age=1"><i class="fa fa-circle-o"></i> {{ __('EPF (>60 Years)') }}</a></li>
             </ul>
         </li>
         @permission('payroll-management')
@@ -56,7 +57,7 @@
               <!--  <li><a href="{{ url('/hrm/payroll') }}"><i class="fa fa-circle-o"></i> {{ __('Manage Salary') }}</a></li>
               -->  @endpermission
                 @permission('salary-list')
-                <li><a href="{{ url('/hrm/payroll/salary-list') }}"><i class="fa fa-circle-o"></i> {{ __('Salary List') }}</a></li>
+                <li id="salarylistli"><a href="{{ url('/hrm/payroll/salary-list') }}"><i class="fa fa-circle-o"></i> {{ __('Salary List') }}</a></li>
                 @endpermission
 
                 <!--<li><a href="{{ url('/hrm/payroll/increment/search') }}"><i class="fa fa-circle-o"></i>{{ __(' New Increment') }}</a></li>

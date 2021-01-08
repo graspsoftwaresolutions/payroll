@@ -45,7 +45,7 @@
             </div>
             <!-- /.Notification Box -->
             <div class="col-md-12">
-              <form class="form-horizontal" id="EmployeeForm"  name="employee_select_form" action="{{ route('add_salary_save') }}" method="post">
+              <form class="form-horizontal" id="EmployeeForm"  name="employee_select_form" action="{{ route('update_salary_save') }}" method="post">
                 {{ csrf_field() }}
 				
 				@php
@@ -67,6 +67,7 @@
                   <label for="user_id" class="col-sm-3 control-label">{{ __('Employee Name') }}</label>
                   <div class="col-sm-6">
                   <input type="hidden" name="user_id" id="user_id">
+                  <input type="hidden" name="auto_id" id="auto_id" value="{{ $salary_data->id }}" />
                   <input class="form-control clearable" type="text" id="employee_name" readonly placeholder="Search Customer" value="{{ $memberinfo->name }}" name="employee_name">
                          @if ($errors->has('name'))
                             <span class="help-block">
@@ -420,6 +421,10 @@
 </div>
 <script src ="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
 <script src ="{{ asset('public/assets/js/jquery-ui.js') }}"></script>
+<script type="text/javascript">
+    $("#salarylistli").parents().addClass("active");
+    $("#salarylistli").addClass("active");
+  </script>
 <script type="text/javascript">
 $(document).ready(function(){
     // $('.total_deductioncalc').change(function(){

@@ -8,6 +8,7 @@ use App\SoscoInsurance;
 use App\Sosco;
 use App\Epf;
 use Illuminate\Support\Facades\Crypt;
+use DB;
 
 class MasterController extends Controller
 {
@@ -158,18 +159,33 @@ class MasterController extends Controller
           }
       }
       //Epf  
-      public function epfList()
+      public function epfList(Request $request)
       {
-          $data['epf_list'] = Epf::where('status','=','1')->get();
+          $old_age = $request->input('old_age');
+          $old_age = isset($old_age) ? 1 : 0 ;
+         
+          $data['old_age'] = $old_age;
+          
+          if($old_age==1){
+            $epf_list = DB::table('epf')->where('status','=','1')->where('old_age','=',1)->get();
+
+          }else{
+            $epf_list = DB::table('epf')->where('status','=','1')->whereNull('old_age')->orWhere('old_age','=',0)->get();
+            ///dd($epf_list);
+          }
+          $data['epf_list'] = $epf_list;
           return view('administrator.hrm.master.epf.list')->with('data',$data);
       }
-      public function epfAdd()
+      public function epfAdd(Request $request)
       {
-          return view('administrator.hrm.master.epf.new');
+          $old_age = $request->input('old_age');
+          $data['old_age'] = $old_age;
+          return view('administrator.hrm.master.epf.new')->with('data',$data);
       }
       public function epfSave(Request $request)
       {
           $SaveEpf = new Epf();
+          $SaveEpf->old_age = $request->old_age;
           $SaveEpf->wage_limit = $request->wage_limit;
           $SaveEpf->from_amount = $request->from_amount;
           $SaveEpf->to_amount = $request->to_amount;
@@ -177,7 +193,11 @@ class MasterController extends Controller
           $SaveEpf->employer_contribution = $request->employer_contribution;
           $SaveEpf->total_contribution = $request->total_contribution;
           $SaveEpf->save();
-          return redirect('hrm/epf_list')->with('message', 'EPF Added Succesfully');
+          if($SaveEpf->old_age==1){
+             return redirect('hrm/epf_list?old_age=1')->with('message', 'EPF Added Succesfully');
+          }else{
+             return redirect('hrm/epf_list')->with('message', 'EPF Added Succesfully');
+          }
       }
       public function epfEdit($id)
       {
@@ -195,13 +215,18 @@ class MasterController extends Controller
           {
               $SaveEpf = Epf::find($id);	
               $SaveEpf->wage_limit = $request->wage_limit;
+              $SaveEpf->old_age = $request->old_age;
               $SaveEpf->from_amount = $request->from_amount;
               $SaveEpf->to_amount = $request->to_amount;
               $SaveEpf->employee_contribution = $request->employee_contribution;
               $SaveEpf->employer_contribution = $request->employer_contribution;
               $SaveEpf->total_contribution = $request->total_contribution;
               $SaveEpf->save();
-              return redirect('hrm/epf_list')->with('message', 'EPF Updated Succesfully');
+              if($SaveEpf->old_age==1){
+                return redirect('hrm/epf_list?old_age=1')->with('message', 'EPF Updated Succesfully');
+              }else{
+                return redirect('hrm/epf_list')->with('message', 'EPF Updated Succesfully');
+              }
           }
       }
 }

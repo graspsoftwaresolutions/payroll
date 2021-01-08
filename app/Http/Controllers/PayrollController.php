@@ -491,6 +491,7 @@ class PayrollController extends Controller {
                      ->orwhere("name","LIKE","%{$keyword}%")
 					 ->orwhere("ic_no","LIKE","%{$keyword}%")
 					 ->orwhere("new_ic_no","LIKE","%{$keyword}%")
+					 ->limit(25)
                     // ->orwhere('c.zipcode','like', '%'.$keyword.'%')
                     // ->orwhere('cit.city_name','like', '%'.$keyword.'%')
                     
