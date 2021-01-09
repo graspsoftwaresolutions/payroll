@@ -155,6 +155,9 @@
 			
 			padding: 10px;
 		}
+		@media print {
+			.btn-print {display:none;}
+		}
 		
 	</style>
 	<script type="text/javascript">
@@ -163,7 +166,7 @@
 </head>
 
 <body>
-	
+	<button onclick="javascript:window.print()" style="padding: 5px 10px;margin-left: 20px;font-size: 15px;" class="btn-print">Print</button>
   	<table id="page-length-option" class="display table2excel" width="auto">
 		<thead>
 			<tr class="">
@@ -270,11 +273,13 @@
 			</tr>
 		</thead>
 		<tbody class="" >
-			
+				@php
+					$slno =1;
+				@endphp
 				@foreach($data['salaries'] as $salary)
 				<tr >
-					<td style="border: 1px solid #988989 !important; ">1</td>
-					<td style="border: 1px solid #988989 !important;">{{$salary->name}}</td>
+					<td style="border: 1px solid #988989 !important; ">{{ $slno }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ strtoupper($salary->name) }}</td>
 					<td style="border: 1px solid #988989 !important;"></td>
 					<td style="border: 1px solid #988989 !important;"></td>
 					<td style="border: 1px solid #988989 !important;"></td>
@@ -320,6 +325,9 @@
 					
 					
 				</tr> 
+				@php
+				 $slno++;
+				@endphp
 				@endforeach
 			
 		</tbody>
