@@ -402,6 +402,10 @@
 <script src ="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
 <script src ="{{ asset('public/assets/js/jquery-ui.js') }}"></script>
 <script type="text/javascript">
+    $("#additionalsalid").parents().addClass("active");
+    $("#additionalsalid").addClass("active");
+</script>
+<script type="text/javascript">
 $(document).ready(function(){
     // $('.total_deductioncalc').change(function(){
     //     var total = 0;
@@ -744,9 +748,9 @@ $(document).on('click', 'button.removebutton', function () {
 	function EnableEpfBox(){
 		if($("#epf_ee_check").prop("checked") == true){
 			$("#epf_ee,#EPF_ERid,#EPF_ERidper").removeClass('hide');
-			var net_salary = $("#net_salary").val();
-			if(net_salary!=''){
-				var url = "{{ url('/hrm/get-salary-contribution') }}" + '?net_salary=' + net_salary;
+			var basic_salary = $("#basic_salary").val();
+			if(basic_salary!=''){
+				var url = "{{ url('/hrm/get-salary-contribution') }}" + '?net_salary=' + basic_salary;
                 $.ajax({
                     url: url,
                     type: "GET",
@@ -804,9 +808,9 @@ $(document).on('click', 'button.removebutton', function () {
 	function EnablesipBox(){
 		if($("#epf_sip_check").prop("checked") == true){
 			$("#eis_sips,#SOSCO_EISid").removeClass('hide');
-			var net_salary = $("#net_salary").val();
-			if(net_salary!=''){
-				var url = "{{ url('/hrm/get-soscoins-contribution') }}" + '?net_salary=' + net_salary;
+			var basic_salary = $("#basic_salary").val();
+			if(basic_salary!=''){
+				var url = "{{ url('/hrm/get-soscoins-contribution') }}" + '?net_salary=' + basic_salary;
                 $.ajax({
                     url: url,
                     type: "GET",
@@ -837,7 +841,7 @@ $(document).on('click', 'button.removebutton', function () {
 			$("#EPF_ER").val(EPF_ERref);
 		}else{
 			var EPF_ERref = $("#EPF_ERref").val();
-			var net_salary = $("#net_salary").val()=='' ? 0 : $("#net_salary").val();
+			var net_salary = $("#basic_salary").val()=='' ? 0 : $("#basic_salary").val();
 			var EPF_ER = parseFloat(EPF_ERref)+parseFloat((net_salary*4)/100)+parseFloat(232);
 			$("#EPF_ER").val(EPF_ER);
 		}
