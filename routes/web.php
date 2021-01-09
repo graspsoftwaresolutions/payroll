@@ -396,4 +396,6 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::get('/hrm/empsalaryedit/{id}', 'PayrollController@empSalaryEdit')->name('emp.salaryEdit');
 
+	Route::get('/hrm/employee', 'PayrollController@EmployeeList');
+
 });
