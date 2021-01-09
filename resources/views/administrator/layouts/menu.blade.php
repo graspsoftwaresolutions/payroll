@@ -82,7 +82,7 @@
                <!-- <li><a href="{{ url('/hrm/provident-funds') }}"><i class="fa fa-circle-o"></i>{{ __(' Provident Fund') }}</a></li>
                 -->@endpermission
                 <li><a href="{{ route('payroll.addition') }}"><i class="fa fa-circle-o"></i>{{ __(' Addition') }}</a></li>
-                <li><a href="{{ route('payroll.addition_sal')  }}"><i class="fa fa-circle-o"></i>{{ __('Manage Additional Salary') }}</a></li>
+                <li id="additionalsalid"><a href="{{ route('payroll.addition_sal')  }}"><i class="fa fa-circle-o"></i>{{ __('Manage Additional Salary') }}</a></li>
                 <li><a href="{{ route('payroll.deduction')  }}"><i class="fa fa-circle-o"></i>{{ __(' Deduction') }}</a></li>
                 <li><a href="{{ route('payroll.other_deduction')  }}"><i class="fa fa-circle-o"></i>{{ __('Other Deduction') }}</a></li>
 

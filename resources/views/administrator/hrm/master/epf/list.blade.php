@@ -20,7 +20,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-          {{ __(' Manage EPF') }}
+          {{ __(' Manage EPF') }} @if($data['old_age']==1) (>60 Years) @endif
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('/dashboard') }}"><i class="fa fa-dashboard"></i> {{ __('Dashboard') }}</a></li>
