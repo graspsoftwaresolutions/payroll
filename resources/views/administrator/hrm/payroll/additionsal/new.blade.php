@@ -63,7 +63,7 @@
                   <label for="user_id" class="col-sm-3 control-label">{{ __('Employee Name') }}</label>
                   <div class="col-sm-6">
                   <input type="hidden" name="user_id" id="user_id">
-                  <input class="form-control clearable" type="text" id="employee_name" placeholder="Search Customer" name="employee_name">
+                  <input class="form-control clearable" type="text" id="employee_name" required="" placeholder="Search Customer" name="employee_name">
                          @if ($errors->has('name'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('name') }}</strong>
@@ -74,7 +74,7 @@
                 <div class="form-group{{ $errors->has('basic_salary') ? ' has-error' : '' }}">
                   <label for="basic_salary" class="col-sm-3 control-label">{{ __('Basic Salary') }}</label>
                   <div class="col-sm-6">
-                  <input type="text"  id="basic_salary" name="basic_salary" class="form-control" placeholder="{{ __('Basic Salary') }}">
+                  <input type="text"  id="basic_salary" name="basic_salary" required="" class="form-control" placeholder="{{ __('Basic Salary') }}">
                          @if ($errors->has('basic_salary'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('basic_salary') }}</strong>
@@ -136,7 +136,7 @@
                     </div>
                 </div>   
 				<div id="ee_sosco_section" class=" form-group {{ $errors->has('ee_sosco') ? ' has-error' : '' }}">
-                  <label for="ee_sosco" class="col-sm-3 control-label">{{ __('EE-SOSCO') }}
+                  <label for="ee_sosco" class="col-sm-3 control-label">{{ __('EE-SOCSO') }}
 					<input id="epf_sosco_check" name="epf_sosco_check" onClick="return EnablesoscoBox()" type="checkbox" value="1"/>
 				  </label>
                     <div id="ee_soscos" class="col-sm-6 hide">
@@ -239,16 +239,16 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('EPF_ER') ? ' has-error' : '' }}">
-                    <label for="SOSCO_ER" class="col-sm-3 control-label">{{ __('SOSCO-ER') }}</label>
+                    <label for="SOSCO_ER" class="col-sm-3 control-label">{{ __('SOCSO-ER') }}</label>
                       <div id="SOSCO_ERid" class="col-sm-6 hide">
-                      <input type="text" name="SOSCO_ER" class="form-control"  placeholder="SOSCO_ER" id="SOSCO_ER">
+                      <input type="text" name="SOSCO_ER" class="form-control"  placeholder="SOCSO_ER" id="SOSCO_ER">
                       </div>
                   </div>
 
                   <div class="form-group{{ $errors->has('SOSCO') ? ' has-error' : '' }}">
-                    <label for="SOSCO_ER" class="col-sm-3 control-label">{{ __('SOSCO-[EIS/SIP - ER]') }}</label>
+                    <label for="SOSCO_ER" class="col-sm-3 control-label">{{ __('SOCSO-[EIS/SIP - ER]') }}</label>
                       <div id="SOSCO_EISid" class="col-sm-6 hide">
-                      <input type="text" name="SOSCO_EISSIP" class="form-control"  placeholder="SOSCO-[EIS/SIP - ER]" id="SOSCO_EISSIP_ER">
+                      <input type="text" name="SOSCO_EISSIP" class="form-control"  placeholder="SOCSO-[EIS/SIP - ER]" id="SOSCO_EISSIP_ER">
                       </div>
                   </div>
 

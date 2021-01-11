@@ -224,8 +224,8 @@
 				<th nowrap rowspan="2" style="border: 1px solid #988989 !important;">TOTAL <br> DEDUCTIONS  RM</th>
 				<th nowrap rowspan="2" style="border: 1px solid #988989 !important;">NET PAY</th>
 				<th nowrap colspan="2" align="center" style="border: 1px solid #988989 !important;text-align:center;">EPF-ER</th>
-				<th nowrap align="center" style="border: 1px solid #988989 !important;text-align:center;">SOSCO - ER</th>
-				<th nowrap align="center" style="border: 1px solid #988989 !important;text-align:center;">SOSCO - EIS/SIP - ER</th>
+				<th nowrap align="center" style="border: 1px solid #988989 !important;text-align:center;">SOCSO - ER</th>
+				<th nowrap align="center" style="border: 1px solid #988989 !important;text-align:center;">SOCSO - EIS/SIP - ER</th>
 				<!--<th style="border: 1px solid #988989 !important;">DOJ</th>
 				<th  style="border: 1px solid #988989 !important;">LEVY</th>
 				<th style="border: 1px solid #988989 !important;">TDF</th>
@@ -242,8 +242,8 @@
 				<th nowrap style="border: 1px solid #988989 !important;">SPECIAL/COLA</th-->
 				<th style="border: 1px solid #988989 !important;">%</th>
 				<th style="border: 1px solid #988989 !important;">RM</th>
-				<th nowrap style="border: 1px solid #988989 !important;">SOSCO (RM)</th>
-				<th nowrap style="border: 1px solid #988989 !important;">SOSCO <br>(EIS/SIP)</th>
+				<th nowrap style="border: 1px solid #988989 !important;">SOCSO (RM)</th>
+				<th nowrap style="border: 1px solid #988989 !important;">SOCSO <br>(EIS/SIP)</th>
 				
 				@foreach($deductions_list as $deductions)
 				<th nowrap style="border: 1px solid #988989 !important;">{{$deductions->name}}</th>

@@ -134,14 +134,14 @@
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Allowance</td>
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->additional_allowance_total }}</td>
-				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Sosco</td>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Socso</td>
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->ee_sosco_amount }}<!--{{ $salary_data->ee_sosco_amount+$salary_data->sosco_er }}--></td>
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->sosco_er }}</td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Bonus</td>
 				<td style="font-weight:bold;text-align:right;"></td>
-				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Sosco - Sip</td>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Socso - Sip</td>
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->eis_sip_amount }}<!--{{ $salary_data->ee_sosco_amount+$salary_data->sosco_er }}--></td>
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->sosco_eissip }}</td>
 				</tr>

@@ -147,7 +147,7 @@
                     </div>
                 </div>   
 				<div id="ee_sosco_section" class=" form-group {{ $errors->has('ee_sosco') ? ' has-error' : '' }}">
-                  <label for="ee_sosco" class="col-sm-3 control-label">{{ __('EE-SOSCO') }}
+                  <label for="ee_sosco" class="col-sm-3 control-label">{{ __('EE-SOCSO') }}
 					
 				  </label>
                     <div id="ee_soscos" class="col-sm-6 ">
@@ -259,16 +259,16 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('EPF_ER') ? ' has-error' : '' }}">
-                    <label for="SOSCO_ER" class="col-sm-3 control-label">{{ __('SOSCO_ER') }}</label>
+                    <label for="SOSCO_ER" class="col-sm-3 control-label">{{ __('SOCSO_ER') }}</label>
                       <div id="SOSCO_ERid" class="col-sm-6">
-                      <input type="text" name="SOSCO_ER" class="form-control" value="{{ $salary_data->sosco_er }}"  placeholder="SOSCO_ER" id="SOSCO_ER">
+                      <input type="text" name="SOSCO_ER" class="form-control" value="{{ $salary_data->sosco_er }}"  placeholder="SOCSO_ER" id="SOSCO_ER">
                       </div>
                   </div>
 
                   <div class="form-group{{ $errors->has('SOSCO') ? ' has-error' : '' }}">
-                    <label for="SOSCO_ER" class="col-sm-3 control-label">{{ __('SOSCO-[EIS/SIP - ER]') }}</label>
+                    <label for="SOSCO_ER" class="col-sm-3 control-label">{{ __('SOCSO-[EIS/SIP - ER]') }}</label>
                       <div id="SOSCO_EISSIP_ERid" class="col-sm-6">
-                      <input type="text" name="SOSCO_EISSIP" class="form-control" value="{{ $salary_data->sosco_eissip }}"  placeholder="SOSCO-[EIS/SIP - ER]" id="SOSCO_EISSIP">
+                      <input type="text" name="SOSCO_EISSIP" class="form-control" value="{{ $salary_data->sosco_eissip }}"  placeholder="SOCSO-[EIS/SIP - ER]" id="SOSCO_EISSIP">
                       </div>
                   </div>
 
