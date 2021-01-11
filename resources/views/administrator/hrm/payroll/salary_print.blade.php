@@ -274,7 +274,7 @@
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:18%;">Net Income</td>
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->net_pay }}</td>
-				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Cheque No
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Online
 				</td>
 				<td colspan="2" style="font-weight:bold;text-align:right;"> </td>
 				</tr>
