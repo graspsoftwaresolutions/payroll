@@ -28,6 +28,7 @@
             </ul>
         </li>-->
         @endpermission
+
         <li class="treeview">
         <a href="#">
                 <i class="fa fa-dollar text-purple"></i> <span>{{ __('Master Management') }}</span>
@@ -43,6 +44,7 @@
                 <li id="epfoldli"><a href="{{  route('master.epf_list') }}?old_age=1"><i class="fa fa-circle-o"></i> {{ __('EPF (>60 Years)') }}</a></li>
             </ul>
         </li>
+         <li><a href="{{ url('/hrm/employee') }}"><i class="fa fa-user"></i> <span>{{ __('Employee List') }}</span></a></li>
         @permission('payroll-management')
         <li class="treeview">
             <a href="#">

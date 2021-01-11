@@ -3,12 +3,17 @@
 namespace App\Helpers;
 use DB;
 use Illuminate\Support\Facades\Crypt;
+use Carbon\Carbon;
 use Log;
 
 class CommonHelper
 {
 	public function __construct() {
        
+    }
+
+    public static function calculate_age($userDob){
+        return $years = Carbon::parse($userDob)->age;
     }
     
 

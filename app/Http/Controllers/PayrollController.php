@@ -1144,4 +1144,10 @@ class PayrollController extends Controller {
         return view('administrator.hrm.payroll.edit_salary')->with('data',$data);
         
 	}
+
+	public function EmployeeList()
+	{
+		$data['employee_list'] = DB::table('tbl_member as m')->get();
+		return view('administrator.hrm.employee.list')->with('data',$data);
+	}
 }
