@@ -38,8 +38,8 @@
             </a>
             <ul class="treeview-menu">
                 <li id="categorylistli"><a href="{{  route('master.category_list') }}"><i class="fa fa-circle-o"></i> {{ __('category') }}</a></li>
-                <li id="soscoInsuranceli"><a href="{{  route('master.soscoInsurance_list') }}"><i class="fa fa-circle-o"></i> {{ __('Sosco Insurance') }}</a></li>
-                <li id="soscoli" ><a href="{{  route('master.sosco_list') }}"><i class="fa fa-circle-o"></i> {{ __('Sosco') }}</a></li>
+                <li id="soscoInsuranceli"><a href="{{  route('master.soscoInsurance_list') }}"><i class="fa fa-circle-o"></i> {{ __('Socso Insurance') }}</a></li>
+                <li id="soscoli" ><a href="{{  route('master.sosco_list') }}"><i class="fa fa-circle-o"></i> {{ __('Socso') }}</a></li>
                 <li id="epfli"><a href="{{  route('master.epf_list') }}"><i class="fa fa-circle-o"></i> {{ __('EPF') }}</a></li>
                 <li id="epfoldli"><a href="{{  route('master.epf_list') }}?old_age=1"><i class="fa fa-circle-o"></i> {{ __('EPF (>60 Years)') }}</a></li>
             </ul>

@@ -1,5 +1,5 @@
 @extends('administrator.master')
-@section('title', __('Manage Sosco'))
+@section('title', __('Manage Socso'))
 
 @section('main_content')
 <link rel="stylesheet" type="text/css"
@@ -20,12 +20,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-          {{ __(' Manage Sosco') }}
+          {{ __(' Manage Socso') }}
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ url('/dashboard') }}"><i class="fa fa-dashboard"></i> {{ __('Dashboard') }}</a></li>
-            <li><a>{{ __('Sosco ') }}</a></li>
-            <li class="active">{{ __('Manage Sosco') }}</li>
+            <li><a>{{ __('Socso ') }}</a></li>
+            <li class="active">{{ __('Manage Socso') }}</li>
         </ol>
     </section>
 
@@ -34,7 +34,7 @@
         <!-- Default box -->
         <div class="box">
             <div class="box-header with-border">
-                <!-- <h3 class="box-title">{{ __('Manage Sosco ') }}</h3> -->
+                <!-- <h3 class="box-title">{{ __('Manage Socso ') }}</h3> -->
 
                 <!-- <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
@@ -43,7 +43,7 @@
             </div>
             <div class="box-body">
                 <div  class="col-md-3">
-                <a href="{{ route('master.sosco_add') }}" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> {{ __('add new Sosco') }}</a>
+                <a href="{{ route('master.sosco_add') }}" class="btn btn-primary btn-flat"><i class="fa fa-plus"></i> {{ __('add new Socso') }}</a>
             </div>
                 
                     <br> <br> <br> <br>
@@ -125,7 +125,7 @@
                 exportOptions: {
                     columns: [0,1,2,3,4,5,6]
                 },
-                title : 'Sosco List',
+                title : 'Socso List',
                 text:   '<i class="fa fa-print"></i> Print',
                 titleAttr: 'print'
            }  

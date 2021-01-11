@@ -1,5 +1,5 @@
 @extends('administrator.master')
-@section('title', __('Manage Sosco Insurance'))
+@section('title', __('Manage Socso Insurance'))
 
 @section('main_content')
 
@@ -9,12 +9,12 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      {{ __('Sosco Insurance') }}
+      {{ __('Socso Insurance') }}
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{ url('/dashboard') }}"><i class="fa fa-dashboard"></i> {{ __('Dashboard') }}</a></li>
-      <li><a>{{ __('Sosco Insurance') }}</a></li>
-      <li class="active">{{ __('Edit Sosco Insurance') }}</li>
+      <li><a>{{ __('Socso Insurance') }}</a></li>
+      <li class="active">{{ __('Edit Socso Insurance') }}</li>
     </ol>
   </section>
     @php $row = $data['insurance_list'][0]; @endphp
@@ -23,7 +23,7 @@
     <!-- Default box -->
     <div class="box">
       <div class="box-header with-border">
-        <h3 class="box-title">{{ __('Edit Sosco Insurance') }}</h3>
+        <h3 class="box-title">{{ __('Edit Socso Insurance') }}</h3>
 
         <!-- <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
@@ -120,7 +120,7 @@
               <!-- /.end group -->
               <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-10">
-                  <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-arrow-right"></i>{{ __('Update Sosco Insurance') }} </button>
+                  <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-arrow-right"></i>{{ __('Update Socso Insurance') }} </button>
                 </div>
               </div>
               <!-- /.end group -->
@@ -148,28 +148,28 @@
     const regex = /[^\d.]|\.(?=.*\.)/g;
     const subst=``;
 
-    $('#from_amount').keyup(function(){
+    $('#from_amount').blur(function(){
     const str=this.value;
     const result = str.replace(regex, subst);
     this.value=result;
     var from_amount = $('#from_amount').val();
       var to_amount = $('#to_amount').val();
-      if(from_amount < to_amount)
+      if(from_amount > to_amount && from_amount!='' && to_amount!='')
       {
-        alert('From amount should be higher than TO amount!');
+        alert('To amount should be higher than From amount!');
       }
   });
 
-    $('#to_amount').keyup(function(){
+    $('#to_amount').blur(function(){
     const str=this.value;
     const result = str.replace(regex, subst);
     this.value=result;
 
     var from_amount = $('#from_amount').val();
       var to_amount = $('#to_amount').val();
-      if(from_amount < to_amount)
+      if(from_amount > to_amount && from_amount!='' && to_amount!='')
       {
-        alert('From amount should be higher than TO amount!');
+        alert('To amount should be higher than From amount!');
       }
 
   });

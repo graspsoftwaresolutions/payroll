@@ -154,28 +154,28 @@
     const regex = /[^\d.]|\.(?=.*\.)/g;
     const subst=``;
 
-    $('#from_amount').keyup(function(){
+    $('#from_amount').blur(function(){
     const str=this.value;
     const result = str.replace(regex, subst);
     this.value=result;
     var from_amount = $('#from_amount').val();
-      var to_amount = $('#to_amount').val();
-      if(from_amount < to_amount)
-      {
-        alert('From amount should be higher than TO amount!');
-      }
+    var to_amount = $('#to_amount').val();
+    if(from_amount > to_amount && from_amount!='' && to_amount!='')
+    {
+      alert('To amount should be higher than From amount!');
+    }
   });
 
-    $('#to_amount').keyup(function(){
+    $('#to_amount').blur(function(){
     const str=this.value;
     const result = str.replace(regex, subst);
     this.value=result;
     var from_amount = $('#from_amount').val();
-      var to_amount = $('#to_amount').val();
-      if(from_amount < to_amount)
-      {
-        alert('From amount should be higher than TO amount!');
-      }
+    var to_amount = $('#to_amount').val();
+    if(from_amount > to_amount && from_amount!='' && to_amount!='')
+    {
+      alert('To amount should be higher than From amount!');
+    }
   });
 
     $('#employee_contribution').keyup(function(){

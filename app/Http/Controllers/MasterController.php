@@ -71,7 +71,7 @@ class MasterController extends Controller
     //Sosco Insuarnce 
     public function soscoInsuranceList()
     {
-        $data['sosco_list'] = SoscoInsurance::where('status','=','1')->get();
+        $data['sosco_list'] = SoscoInsurance::where('status','=','1')->orderBy('from_amount','asc')->get();
         return view('administrator.hrm.master.sosco_insurance.list')->with('data',$data);
     }
     public function soscoinsuranceAdd()
@@ -117,7 +117,7 @@ class MasterController extends Controller
       //Sosco  
       public function soscoList()
       {
-          $data['sosco_list'] = Sosco::where('status','=','1')->get();
+          $data['sosco_list'] = Sosco::where('status','=','1')->orderBy('from_amount','asc')->get();
           return view('administrator.hrm.master.sosco.list')->with('data',$data);
       }
       public function soscoAdd()
@@ -167,10 +167,10 @@ class MasterController extends Controller
           $data['old_age'] = $old_age;
           
           if($old_age==1){
-            $epf_list = DB::table('epf')->where('status','=','1')->where('old_age','=',1)->get();
+            $epf_list = DB::table('epf')->where('status','=','1')->where('old_age','=',1)->orderBy('from_amount','asc')->get();
 
           }else{
-            $epf_list = DB::table('epf')->where('status','=','1')->whereNull('old_age')->orWhere('old_age','=',0)->get();
+            $epf_list = DB::table('epf')->where('status','=','1')->whereNull('old_age')->orWhere('old_age','=',0)->orderBy('from_amount','asc')->get();
             ///dd($epf_list);
           }
           $data['epf_list'] = $epf_list;
