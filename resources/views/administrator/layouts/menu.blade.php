@@ -62,6 +62,8 @@
                 <li id="salarylistli"><a href="{{ url('/hrm/payroll/salary-list') }}"><i class="fa fa-circle-o"></i> {{ __('Salary List') }}</a></li>
                 @endpermission
 
+                <li id="bonussalarylistli"><a href="{{ url('/hrm/payroll/bonus-salary-list') }}"><i class="fa fa-circle-o"></i> {{ __('Bonus Salary List') }}</a></li>
+
                 <!--<li><a href="{{ url('/hrm/payroll/increment/search') }}"><i class="fa fa-circle-o"></i>{{ __(' New Increment') }}</a></li>
                 <li><a href="{{ url('/hrm/payroll/increment/list') }}"><i class="fa fa-circle-o"></i> {{ __('Increment List') }}</a></li>
                 -->

@@ -613,16 +613,11 @@ class PayrollController extends Controller {
 					}
 				}
 				
-
-				
 			}
-			
 		
 			return redirect('/hrm/payroll/salary-list')->with('message', 'Salary added successfully!!');
 
 		}
-	
-
 		
 	}
 
@@ -831,10 +826,7 @@ class PayrollController extends Controller {
 					}
 				}
 				
-
-				
 			}
-			
 		
 			return redirect('/hrm/additionSalList')->with('message', 'Salary added successfully!!');
 
@@ -1148,5 +1140,67 @@ class PayrollController extends Controller {
 	{
 		$data['employee_list'] = DB::table('tbl_member as m')->get();
 		return view('administrator.hrm.employee.list')->with('data',$data);
+	}
+
+	public function BonusList(){
+		$data['salaries'] = DB::table('bonus_salary as bs')
+					->select('m.name','bs.id','bs.salary_date','bs.gross_salary','bs.deductions_total as total_deductions','bs.net_pay')
+					->leftjoin('tbl_member as m', 'm.user_id', '=', 'bs.employee_id')
+					->orderBy('bs.salary_date', 'desc')
+                	->get();
+        //dd($data['salaries']);
+		
+		return view('administrator.hrm.payroll.bonus_salary_list')->with('data',$data);
+	}
+
+	public function addBonusSalary()
+	{
+		$data = [];
+		return view('administrator.hrm.payroll.add_bonus_salary')->with('data',$data);	
+	}
+
+	public function addBonusSave(Request $request)
+	{
+		
+		$dateofsalary = $request->input('dateofsalary');
+		if($dateofsalary!=""){
+			$dateofsalary = $dateofsalary.'-01';
+		}
+		$insertdata = [];
+		$insertdata['employee_id'] = $request->input('user_id');
+		$insertdata['bonus_salary'] = $request->input('basic_salary');
+		$insertdata['gross_salary'] = $request->input('gross_salary');
+		$insertdata['epf_ee_amount'] = $request->input('epf_ee_id');
+		$insertdata['ee_sosco_amount'] = $request->input('ee_sosco');
+		$insertdata['eis_sip_amount'] = $request->input('eis_sip');
+		$insertdata['deductions_total'] = $request->input('deductions_total');
+		
+		$insertdata['net_pay'] = $request->input('net_pay');
+		$insertdata['epf_er'] = $request->input('EPF_ER');
+		$insertdata['sosco_er'] = $request->input('SOSCO_ER');
+		$insertdata['sosco_eissip'] = $request->input('SOSCO_EISSIP');
+		$insertdata['status'] = 1;
+		$insertdata['created_at'] = date('Y-m-d h:i:s');
+		$insertdata['salary_date'] = $dateofsalary;
+		$insertdata['epf_percent'] = 13;
+
+		$existcount = DB::table('bonus_salary')
+		->where('employee_id','=',$request->input('user_id'))
+		->where('salary_date','=',$dateofsalary)
+		->count();
+
+		if($existcount>0){
+			return redirect('/hrm/payroll/bonus-salary-list')->with('exception','Salary for this month already added!!');	
+		}else{
+			$salarystatus = DB::table('bonus_salary')->insert(
+				$insertdata
+			);
+			$salaryid = DB::getPdo()->lastInsertId();;
+			//dd($salaryid);
+		
+			return redirect('/hrm/payroll/bonus-salary-list')->with('message', 'Salary added successfully!!');
+
+		}
+		
 	}
 }

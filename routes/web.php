@@ -177,6 +177,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/hrm/payroll/manage-salary/{id}', 'PayrollController@create');
 	Route::post('/hrm/payroll/store', 'PayrollController@store');
 	Route::get('/hrm/payroll/salary-list', 'PayrollController@list');
+	Route::get('/hrm/payroll/bonus-salary-list', 'PayrollController@BonusList');
 	Route::get('/hrm/payroll/details/{id}', 'PayrollController@show');
 	Route::post('/hrm/payroll/update/{id}', 'PayrollController@update');
 
@@ -366,11 +367,15 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::get('/hrm/salary_add', 'PayrollController@addSalary')->name('payroll.add_salary');
 	Route::post('staff_autocomplete','PayrollController@staffAutocomplete')->name('staff_autocomplete');
+
+	Route::get('/hrm/bonus_salary_add', 'PayrollController@addBonusSalary')->name('bonus.add_salary');
 	
 	Route::post('add_salary_save','PayrollController@addsalarySave')->name('add_salary_save');
+	Route::post('add_bonus_save','PayrollController@addBonusSave')->name('add_bonus_save');
 	Route::post('update_salary_save','PayrollController@UpdatesalarySave')->name('update_salary_save');
 	
 	Route::post('ajax_salaries_list','AjaxController@ajax_salaries_list')->name('master.ajaxsalarieslist');
+	Route::post('ajax_bonus_salaries_list','AjaxController@ajax_bonus_salaries_list')->name('bonus.ajaxsalarieslist');
 	
 	Route::get('/hrm/monthly_salary_report', 'PayrollController@SalaryReport')->name('monthly.salaryprint');
 
@@ -395,6 +400,7 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	
 	Route::get('/hrm/empsalaryedit/{id}', 'PayrollController@empSalaryEdit')->name('emp.salaryEdit');
+	Route::get('/hrm/bonussalaryedit/{id}', 'PayrollController@BonusSalaryEdit')->name('bonus.salaryEdit');
 
 	Route::get('/hrm/employee', 'PayrollController@EmployeeList');
 
