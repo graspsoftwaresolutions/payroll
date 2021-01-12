@@ -22,4 +22,14 @@ class CommonHelper
        return $cost;
     }
 
+    public static function getEpfBasicAmount($basicsalary){
+
+		$epfrecord = DB::table('epf')
+		->where('from_amount','<=',$basicsalary)
+		->where('to_amount','>=',$basicsalary)
+		->pluck('employer_contribution')
+		->first();
+		return $epfrecord;
+    }
+
 }

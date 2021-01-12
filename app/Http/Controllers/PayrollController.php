@@ -690,7 +690,6 @@ class PayrollController extends Controller {
 	}
 	public function getSalaryContribution(Request $request){
 		$salaryamt = $request->input('net_salary');
-		
 
 		$epfrecord = DB::table('epf')
 		->where('from_amount','<=',$salaryamt)

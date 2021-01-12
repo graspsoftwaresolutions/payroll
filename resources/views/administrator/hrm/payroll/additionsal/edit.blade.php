@@ -78,7 +78,7 @@
                 <div class="form-group{{ $errors->has('basic_salary') ? ' has-error' : '' }}">
                   <label for="basic_salary" class="col-sm-3 control-label">{{ __('Basic Salary') }}</label>
                   <div class="col-sm-6">
-                  <input type="text"  id="basic_salary" name="basic_salary" required="" class="form-control" value="{{ $salary_data->basic_salary }}" placeholder="{{ __('Basic Basic') }}">
+                  <input type="text"  id="basic_salary" name="basic_salary" required="" class="form-control" value="{{ $salary_data->basic_salary }}" placeholder="{{ __('Basic Salary') }}">
                          @if ($errors->has('basic_salary'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('basic_salary') }}</strong>
@@ -251,12 +251,15 @@
 						  
 						</div>
                     </div>
-
+                    @php
+                      $epf_amt = CommonHelper::getEpfBasicAmount($salary_data->basic_salary);
+                      //dd($epf_amt);
+                    @endphp
                   <div class="form-group{{ $errors->has('EPF_ER') ? ' has-error' : '' }}">
                     <label for="EPF_ER" class="col-sm-3 control-label">{{ __('EPF-ER') }}</label>
                       <div id="EPF_ERid" class="col-sm-6 @if($salary_data->epf_check==0) hide @endif">
                       <input type="text" name="EPF_ER" class="form-control" value="{{ $salary_data->epf_er }}"  placeholder="EPF_ER" id="EPF_ER">
-                      <input type="text" name="EPF_ERref" class="form-control hide" value="{{ $salary_data->epf_er }}"  placeholder="EPF_ER" id="EPF_ERref">
+                      <input type="text" name="EPF_ERref" class="form-control hide" value="{{ $salary_data->epf_percent==17 ? $epf_amt : $salary_data->epf_er }}"  placeholder="EPF_ER" id="EPF_ERref">
                       </div>
                   </div>
 
@@ -868,7 +871,7 @@ $(document).on('click', 'button.removebutton', function () {
 		}else{
 			var EPF_ERref = $("#EPF_ERref").val();
 			var net_salary = $("#basic_salary").val()=='' ? 0 : $("#basic_salary").val();
-			var EPF_ER = parseFloat(EPF_ERref)+parseFloat((net_salary*4)/100)+parseFloat(232);
+			var EPF_ER = parseFloat(EPF_ERref)+parseFloat((net_salary*4)/100);
 			$("#EPF_ER").val(EPF_ER);
 		}
 	}
