@@ -79,7 +79,8 @@ class AjaxController extends Controller
                // $saalry_enc_id = Crypt::encrypt($salary->id);
 
                 $editlink = route('emp.salaryEdit',Crypt::encrypt($salary->id));
-                $nestedData['actions'] = '<a style="font-size:19px" class="btn btn-sm red waves-effect waves-circle waves-light" href="'.$editlink.'"><i class="icon fa fa-edit"></i></a>';
+                $paysliplink = route('salaryStatementPrint',Crypt::encrypt($salary->id));
+                $nestedData['actions'] = '<a style="font-size:19px" class="btn btn-sm red waves-effect waves-circle waves-light" href="'.$editlink.'"><i class="icon fa fa-edit"></i></a>'.'<a style="font-size:19px" target="_blank" class="btn btn-sm yellow waves-effect waves-circle waves-light" href="'.$paysliplink.'"><i class="icon fa fa-money" title="payslip"></i></a>';
                 //$date = date('M/Y',strtotime($company->date));
                 
                         

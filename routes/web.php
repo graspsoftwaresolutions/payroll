@@ -394,7 +394,7 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::get('/hrm/salary/statement', 'PayrollController@salaryStatementSearch');
 	Route::post('/hrm/salary/statement', 'PayrollController@salaryStatementFilter');
-	Route::get('/hrm/salary/statementPrint/{id}', 'PayrollController@salaryStatementPrint');
+	Route::get('/hrm/salary/statementPrint/{id}', 'PayrollController@salaryStatementPrint')->name('salaryStatementPrint');
     
 	Route::post('update_additionalsalary_save','PayrollController@updateAdditionalsalary')->name('update_additionalsalary_save');
 	
