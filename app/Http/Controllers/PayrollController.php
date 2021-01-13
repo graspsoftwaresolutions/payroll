@@ -10,6 +10,7 @@ use App\Category;
 use App\PayrollNew;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use App\Helpers\CommonHelper;
 
 class PayrollController extends Controller {
 	/**
@@ -685,12 +686,34 @@ class PayrollController extends Controller {
 	}
 	public function getSalaryContribution(Request $request){
 		$salaryamt = $request->input('net_salary');
+		$user_id = $request->input('user_id');
 
-		$epfrecord = DB::table('epf')
-		->where('from_amount','<=',$salaryamt)
-		->where('to_amount','>=',$salaryamt)
-		//->dump()
+		$dob = DB::table('tbl_member')
+		->where('user_id','=',$user_id)
+		->pluck('dob')
 		->first();
+
+		if($dob!=''){
+			$age = CommonHelper::calculate_age($dob);
+			$epfqry = DB::table('epf')
+			->where('from_amount','<=',$salaryamt)
+			->where('to_amount','>=',$salaryamt);
+			if($age>60){
+				$epfqry = $epfqry->where('old_age','=',1);
+			}else{
+				$epfqry = $epfqry->whereNull('old_age')->orWhere('old_age','=',0);
+			}
+
+			//->dump()
+			$epfrecord = $epfqry->first();
+		}else{
+			$epfrecord = DB::table('epf')
+			->where('from_amount','<=',$salaryamt)
+			->where('to_amount','>=',$salaryamt)
+			//->dump()
+			->first();
+		}
+		
 		return json_encode($epfrecord);
 	}
 
@@ -1202,5 +1225,18 @@ class PayrollController extends Controller {
 
 		}
 		
+	}
+
+	public function BonusSalaryEdit($id)
+    {
+		$autoid = crypt::decrypt($id);
+		$data['salary_data']  = DB::table('bonus_salary')->where('id','=',$autoid)->first();
+	
+		$data['memberinfo'] = DB::table('tbl_member as m')->select('m.name','m.user_id')->where('m.user_id','=',$data['salary_data']->employee_id)->first();
+
+		// /return $data;
+        //$data['cat_list'] = Category::where('id','=',$autoid)->where('status','=',1)->get();
+        return view('administrator.hrm.payroll.edit_bonus_salary')->with('data',$data);
+        
 	}
 }

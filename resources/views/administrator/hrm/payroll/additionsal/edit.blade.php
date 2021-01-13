@@ -65,7 +65,7 @@
                 <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
                   <label for="user_id" class="col-sm-3 control-label">{{ __('Employee Name') }}</label>
                   <div class="col-sm-6">
-                  <input type="hidden" name="user_id" id="user_id">
+                  <input type="hidden" name="user_id" id="user_id" value="{{ $memberinfo->user_id }}">
 				   <input type="hidden" name="salary_id" id="salary_id" value="{{ $salary_data->id }}">
                   <input class="form-control clearable" type="text" id="employee_name" readonly placeholder="Search Customer" value="{{ $memberinfo->name }}" name="employee_name">
                          @if ($errors->has('name'))
@@ -252,7 +252,7 @@
 						</div>
                     </div>
                     @php
-                      $epf_amt = CommonHelper::getEpfBasicAmount($salary_data->basic_salary);
+                      $epf_amt = CommonHelper::getEpfBasicAmount($memberinfo->user_id, $salary_data->basic_salary);
                       //dd($epf_amt);
                     @endphp
                   <div class="form-group{{ $errors->has('EPF_ER') ? ' has-error' : '' }}">
@@ -775,8 +775,9 @@ $(document).on('click', 'button.removebutton', function () {
 		if($("#epf_ee_check").prop("checked") == true){
 			$("#epf_ee,#EPF_ERid,#EPF_ERidper").removeClass('hide');
 			var net_salary = $("#basic_salary").val();
-			if(net_salary!=''){
-				var url = "{{ url('/hrm/get-salary-contribution') }}" + '?net_salary=' + net_salary;
+      var user_id = $("#user_id").val();
+			if(net_salary!='' && user_id!=''){
+				var url = "{{ url('/hrm/get-salary-contribution') }}" + '?net_salary=' + net_salary + '&user_id='+user_id;
                 $.ajax({
                     url: url,
                     type: "GET",

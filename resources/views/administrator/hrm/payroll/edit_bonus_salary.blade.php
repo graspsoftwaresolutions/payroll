@@ -259,8 +259,7 @@ function gross_calc() {
  }
 
  function GetSalaryDeductions(basic_salary){
-  var user_id = $("#user_id").val();
-    var url = "{{ url('/hrm/get-salary-contribution') }}" + '?net_salary=' + basic_salary + '&user_id='+user_id;
+    var url = "{{ url('/hrm/get-salary-contribution') }}" + '?net_salary=' + basic_salary;
                 $.ajax({
                     url: url,
                     type: "GET",

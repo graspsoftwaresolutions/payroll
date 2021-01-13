@@ -749,8 +749,9 @@ $(document).on('click', 'button.removebutton', function () {
 		if($("#epf_ee_check").prop("checked") == true){
 			$("#epf_ee,#EPF_ERid,#EPF_ERidper").removeClass('hide');
 			var basic_salary = $("#basic_salary").val();
-			if(basic_salary!=''){
-				var url = "{{ url('/hrm/get-salary-contribution') }}" + '?net_salary=' + basic_salary;
+      var user_id = $("#user_id").val();
+			if(basic_salary!='' && user_id!=''){
+				var url = "{{ url('/hrm/get-salary-contribution') }}" + '?net_salary=' + basic_salary + '&user_id='+user_id;
                 $.ajax({
                     url: url,
                     type: "GET",
