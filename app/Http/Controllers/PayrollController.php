@@ -502,6 +502,28 @@ class PayrollController extends Controller {
         
         echo json_encode($result);
 	}
+	public function IncomestaffAutocomplete(Request $request)
+    {
+        $data = $request->all();
+        $keyword = $request->get('name');
+        $type = $request->type;
+        $search_param = "{$keyword}%";
+        if($keyword!='')
+        {
+            $result = DB::table('tbl_member')->select(DB::raw("CONCAT(name,'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER','name','new_ic_no')
+                     ->orwhere("name","LIKE","%{$keyword}%")
+					 ->orwhere("ic_no","LIKE","%{$keyword}%")
+					 ->orwhere("new_ic_no","LIKE","%{$keyword}%")
+					 ->limit(25)
+                    // ->orwhere('c.zipcode','like', '%'.$keyword.'%')
+                    // ->orwhere('cit.city_name','like', '%'.$keyword.'%')
+                    
+                  //  ->dump()
+                ->get();
+        }
+        
+        echo json_encode($result);
+	}
 	public function addsalarySave(Request $request)
 	{
 		// return $request->all();
@@ -730,7 +752,6 @@ class PayrollController extends Controller {
 	}
 	public function getSoscoInsContribution(Request $request){
 		$salaryamt = $request->input('net_salary');
-		
 
 		$soscorecord = DB::table('sosco_insurance')
 		->where('from_amount','<=',$salaryamt)
@@ -854,8 +875,6 @@ class PayrollController extends Controller {
 			return redirect('/hrm/additionSalList')->with('message', 'Salary added successfully!!');
 
 		}
-	
-
 		
 	}
 
@@ -916,8 +935,6 @@ class PayrollController extends Controller {
 		}
 		$data['status'] = 0;
 		return $data;
-		
-		
 
 		// $soscorecord = DB::table('sosco_insurance')
 		// ->where('from_amount','<=',$salaryamt)
@@ -1038,14 +1055,12 @@ class PayrollController extends Controller {
 		$insertdata['sosco_check'] = $sosco_check;
 		$insertdata['sip_check'] = $soscosip_check;
 
-
 		$salarystatus = DB::table('employee_add_salary')
 						->where('id', $salaryid)
 						->update( $insertdata);
 		//$salaryid = DB::getPdo()->lastInsertId();;
 		//dd($salaryid);
 		if($salaryid){
-			
 
 			$allowances_name = $request->input('allowances_name');
 
@@ -1109,15 +1124,9 @@ class PayrollController extends Controller {
 				}
 			}
 			
-
-			
 		}
-		
 	
 		return redirect('/hrm/additionSalList')->with('message', 'Salary updated successfully!!');
-
-	
-
 		
 	}
 
@@ -1238,5 +1247,76 @@ class PayrollController extends Controller {
         //$data['cat_list'] = Category::where('id','=',$autoid)->where('status','=',1)->get();
         return view('administrator.hrm.payroll.edit_bonus_salary')->with('data',$data);
         
+	}
+
+	public function incomeTaxList(){
+		$data['incometaxList'] = DB::table('income_tax as i')->leftjoin('tbl_member as m', 'm.user_id', '=', 'i.employee_id')->get();
+		return view('administrator.hrm.employee.income_tax_list')->with('data',$data);
+	}
+
+	public function addIncomeTax(){
+		$data['income_list'] = [];
+		return view('administrator.hrm.employee.add_income_tax')->with('data',$data);
+	}
+
+	public function incomeSave(Request $request){
+		//return $request->all();
+		$data['serial_no'] = $request->input('serial_no');
+		$data['income_tax_no'] = $request->input('income_tax_no');
+		$data['employee_no'] = $request->input('employee_no');
+		$data['endyear'] = $request->input('endyear');
+		$data['branch'] = $request->input('branch');
+		$data['employee_id'] = $request->input('employee_id');
+		$data['job_designation'] = $request->input('job_designation');
+		$data['staff_no'] = $request->input('staff_no');
+		$data['new_ic_no'] = $request->input('new_ic_no');
+		$data['passport_no'] = $request->input('passport_no');
+		$data['epf_no'] = $request->input('epf_no');
+		$data['socso_no'] = $request->input('socso_no');
+		$data['no_of_children'] = $request->input('no_of_children');
+		$data['date_commencement'] = $request->input('date_commencement');
+		$data['date_cessation'] = $request->input('date_cessation');
+		$data['gross_salary'] = $request->input('gross_salary');
+		$data['fees'] = $request->input('fees');
+		$data['gross_tips'] = $request->input('gross_tips');
+		$data['net_salary'] = $request->input('net_salary');
+		$data['employer_brone_amt'] = $request->input('employer_brone_amt');
+		$data['esos_benefit'] = $request->input('esos_benefit');
+		$data['gratuity_from'] = $request->input('gratuity_from');
+		$data['gratuity_to'] = $request->input('gratuity_to');
+		$data['gratuity'] = $request->input('gratuity');
+		$data['income_type_one'] = $request->input('income_type_one');
+		$data['income_type_two'] = $request->input('income_type_two');
+		$data['arrear_paid'] = $request->input('arrear_paid');
+		$data['benefits_details'] = $request->input('benefits_details');
+		$data['benefits_amount'] = $request->input('benefits_amount');
+		$data['accommodation_address'] = $request->input('accommodation_address');
+		$data['accommodation_value'] = $request->input('accommodation_value');
+		$data['refund_fund'] = $request->input('refund_fund');
+		$data['compensation_loss'] = $request->input('compensation_loss');
+		$data['pension'] = $request->input('pension');
+		$data['annuities_payment'] = $request->input('annuities_payment');
+		$data['pension_total'] = $request->input('pension_total');
+		$data['monthly_tax_deduction'] = $request->input('monthly_tax_deduction');
+		$data['cp_deduction'] = $request->input('cp_deduction');
+		$data['zakat_paid'] = $request->input('zakat_paid');
+		$data['relief_deduction'] = $request->input('relief_deduction');
+		$data['non_zakat_deduction'] = $request->input('non_zakat_deduction');
+		$data['child_relief'] = $request->input('child_relief');
+		$data['provident_fund_name'] = $request->input('provident_fund_name');
+		$data['contribution_paid'] = $request->input('contribution_paid');
+		$data['socso_contribution'] = $request->input('socso_contribution');
+		$data['total_tax'] = $request->input('total_tax');
+		$data['date_tax'] = $request->input('date_tax');
+		$data['officer_name'] = $request->input('officer_name');
+		$data['designation'] = $request->input('designation');
+		$data['employer_name'] = $request->input('employer_name');
+		$data['employer_address'] = $request->input('employer_address');
+		$data['employer_telno'] = $request->input('employer_telno');
+		$data['created_at'] = date('Y-m-d h:i:s');
+
+		DB::table('income_tax')->insert($data);
+
+		return redirect('/hrm/incometax')->with('message', 'Income Tax added successfully!!');
 	}
 }

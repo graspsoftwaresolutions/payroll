@@ -45,6 +45,7 @@
             </ul>
         </li>
          <li><a href="{{ url('/hrm/employee') }}"><i class="fa fa-user"></i> <span>{{ __('Employee List') }}</span></a></li>
+         <li id="incometaxli"><a href="{{ url('/hrm/incometax') }}"><i class="fa fa-money"></i> <span>{{ __('Income Tax') }}</span></a></li>
         @permission('payroll-management')
         <li class="treeview">
             <a href="#">

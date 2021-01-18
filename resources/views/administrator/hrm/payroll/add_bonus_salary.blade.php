@@ -48,7 +48,6 @@
               <form class="form-horizontal" id="EmployeeForm"  name="employee_select_form" action="{{ route('add_bonus_save') }}" method="post">
                 {{ csrf_field() }}
 				
-				
 				<div class="col-sm-offset-3 col-sm-6">
 				   <div class="form-group">
 					<div class="input-group margin">
@@ -93,7 +92,6 @@
                 <div id="epf_ee_section" class=" form-group {{ $errors->has('epf_ee_id') ? ' has-error' : '' }}">
 					<label for="epf_ee_id" class="col-sm-3 control-label">{{ __('EPF-EE') }}
 					</label>
-					
 					
                     <div id="epf_ee" class="col-sm-6 ">
 						<input type="text"  name="epf_ee_id" class="form-control deduction_price" value="" id="epf_ee_id">
@@ -140,7 +138,6 @@
 						   <input type="text" name="EPF_ERper" readonly class="form-control"  placeholder="EPF_ERper" id="EPF_ERper">
 						  </div>
 					</div>
-
 
                   <div class="form-group{{ $errors->has('EPF_ER') ? ' has-error' : '' }}">
                     <label for="EPF_ER" class="col-sm-3 control-label">{{ __('EPF_ER') }}</label>
@@ -312,12 +309,10 @@ function gross_calc() {
   //$("#deductions_total").keyup(CalculateDeductions);
   //$('#otherdeductions_total').keyup(other_deductions_cal);
 
-
 /* function other_deductions_cal() {
     var epf_eee  = $('#epf_ee_id').val();
     var ee_soscoe = $('#ee_sosco').val();
     var eis_sipe = $('#eis_sip').val();
-    
     
     //$("#deductions_total").trigger('keyup');
    var deductions_totall = $('#deductions_total').val()=='' ? 0 : $("#deductions_total").val();

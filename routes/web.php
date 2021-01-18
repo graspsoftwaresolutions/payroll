@@ -367,6 +367,7 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::get('/hrm/salary_add', 'PayrollController@addSalary')->name('payroll.add_salary');
 	Route::post('staff_autocomplete','PayrollController@staffAutocomplete')->name('staff_autocomplete');
+	Route::post('income_staff_autocomplete','PayrollController@IncomestaffAutocomplete')->name('income_staff_autocomplete');
 
 	Route::get('/hrm/bonus_salary_add', 'PayrollController@addBonusSalary')->name('bonus.add_salary');
 	
@@ -403,5 +404,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/hrm/bonussalaryedit/{id}', 'PayrollController@BonusSalaryEdit')->name('bonus.salaryEdit');
 
 	Route::get('/hrm/employee', 'PayrollController@EmployeeList');
+	Route::get('/hrm/incometax', 'PayrollController@incomeTaxList');
+
+	Route::get('/hrm/income_add', 'PayrollController@addIncomeTax')->name('payroll.add_income_tax');
+
+	Route::post('/hrm/income_save', 'PayrollController@incomeSave')->name('payroll.IncomeSave');
 
 });

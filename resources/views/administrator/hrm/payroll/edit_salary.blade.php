@@ -249,7 +249,6 @@
 						  </div>
 					</div>
 
-
                   <div class="form-group{{ $errors->has('EPF_ER') ? ' has-error' : '' }}">
                     <label for="EPF_ER" class="col-sm-3 control-label">{{ __('EPF_ER') }}</label>
                       <div id="EPF_ERid" class="col-sm-6">
@@ -329,8 +328,6 @@
 
       </div>
     </div>
-
-    
 
     <!-- Modal -->
     <div id="mydeductionModal" class="modal fade" role="dialog">
@@ -440,7 +437,6 @@ $(document).ready(function(){
     // });
 
 });
-
 
   $('#employee_name').autocomplete({
     // minChars: 1,
@@ -737,13 +733,11 @@ function gross_calc() {
 	CalculateDeductions();
  }
 
-
   $('#epf_ee_id').keyup(CalculateDeductions);
   $('#ee_sosco').keyup(CalculateDeductions);
   $('#eis_sip').keyup(CalculateDeductions);
   //$("#deductions_total").keyup(CalculateDeductions);
   //$('#otherdeductions_total').keyup(other_deductions_cal);
-
 
 /* function other_deductions_cal() {
     var epf_eee  = $('#epf_ee_id').val();
@@ -816,7 +810,6 @@ $(document).on('click', 'button.removebutton', function () {
 			addition_price = addition_price=='' ? 0 : addition_price;
 			sum_additional = parseFloat(sum_additional)+parseFloat(addition_price);
 		});
-		
 		
 		var epf_eee  = $('#epf_ee_id').val();
 		var ee_soscoe = $('#ee_sosco').val();
