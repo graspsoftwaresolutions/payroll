@@ -1250,7 +1250,7 @@ class PayrollController extends Controller {
 	}
 
 	public function incomeTaxList(){
-		$data['incometaxList'] = DB::table('income_tax as i')->leftjoin('tbl_member as m', 'm.user_id', '=', 'i.employee_id')->get();
+		$data['incometaxList'] = DB::table('income_tax as i')->select('i.id as incometaxid','i.income_tax_no','i.employee_no','i.new_ic_no','m.doj','m.dob','i.gross_salary','m.name')->leftjoin('tbl_member as m', 'm.user_id', '=', 'i.employee_id')->get();
 		return view('administrator.hrm.employee.income_tax_list')->with('data',$data);
 	}
 
@@ -1274,8 +1274,26 @@ class PayrollController extends Controller {
 		$data['epf_no'] = $request->input('epf_no');
 		$data['socso_no'] = $request->input('socso_no');
 		$data['no_of_children'] = $request->input('no_of_children');
-		$data['date_commencement'] = $request->input('date_commencement');
-		$data['date_cessation'] = $request->input('date_cessation');
+
+		$date_commencement = $request->input('date_commencement');
+		$date_cessation = $request->input('date_cessation');
+
+		if($date_commencement != null){
+            $datecommencement = str_replace('/', '-', $date_commencement);
+            $data['date_commencement'] = date('Y-m-d', strtotime($datecommencement));
+        }
+        else{
+             $data['date_commencement'] = "0000-00-00";
+        }
+
+        if($date_cessation != null){
+            $datecessation = str_replace('/', '-', $date_cessation);
+            $data['date_cessation'] = date('Y-m-d', strtotime($datecessation));
+        }
+        else{
+             $data['date_cessation'] = "0000-00-00";
+        }
+
 		$data['gross_salary'] = $request->input('gross_salary');
 		$data['fees'] = $request->input('fees');
 		$data['gross_tips'] = $request->input('gross_tips');
@@ -1307,16 +1325,32 @@ class PayrollController extends Controller {
 		$data['contribution_paid'] = $request->input('contribution_paid');
 		$data['socso_contribution'] = $request->input('socso_contribution');
 		$data['total_tax'] = $request->input('total_tax');
-		$data['date_tax'] = $request->input('date_tax');
+
+		$date_tax = $request->input('date_tax');
+		if($date_tax != null){
+            $datetax = str_replace('/', '-', $date_tax);
+            $data['date_tax'] = date('Y-m-d', strtotime($datetax));
+        }
+        else{
+             $data['date_tax'] = "0000-00-00";
+        }
+
 		$data['officer_name'] = $request->input('officer_name');
 		$data['designation'] = $request->input('designation');
 		$data['employer_name'] = $request->input('employer_name');
 		$data['employer_address'] = $request->input('employer_address');
 		$data['employer_telno'] = $request->input('employer_telno');
 		$data['created_at'] = date('Y-m-d h:i:s');
+		$data['status'] = 1;
 
 		DB::table('income_tax')->insert($data);
 
 		return redirect('/hrm/incometax')->with('message', 'Income Tax added successfully!!');
+	}
+
+	public function incomePrint(Request $request, $encincomeid){
+		$incomeid = crypt::decrypt($encincomeid);
+		$data['incometaxList'] = DB::table('income_tax as i')->select('i.id as incometaxid','i.income_tax_no','i.employee_no','i.new_ic_no','m.doj','m.dob','i.gross_salary','m.name')->leftjoin('tbl_member as m', 'm.user_id', '=', 'i.employee_id')->where('i.id','=',$incomeid)->get();
+		return view('administrator.hrm.employee.income_tax_print')->with('data',$data);
 	}
 }

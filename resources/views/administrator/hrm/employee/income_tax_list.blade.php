@@ -86,7 +86,7 @@
                             <td>{{$values->gross_salary }}</td>
                             
                             <td class="text-center action">
-                                
+                                <a style="font-size:19px" target="_blank" class="btn btn-sm red waves-effect waves-circle waves-light" href="{{ route('income.print',Crypt::encrypt($values->incometaxid)) }}"><i class="icon fa fa-print"></i> Print</a>
                             </td>
                         </tr>
                         @endforeach

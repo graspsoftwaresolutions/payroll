@@ -410,4 +410,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::post('/hrm/income_save', 'PayrollController@incomeSave')->name('payroll.IncomeSave');
 
+	Route::get('/hrm/income_Print/{id}', 'PayrollController@incomePrint')->name('income.print');
+
 });
