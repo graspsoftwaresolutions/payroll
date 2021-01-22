@@ -1350,7 +1350,8 @@ class PayrollController extends Controller {
 
 	public function incomePrint(Request $request, $encincomeid){
 		$incomeid = crypt::decrypt($encincomeid);
-		$data['incometaxList'] = DB::table('income_tax as i')->select('i.id as incometaxid','i.income_tax_no','i.employee_no','i.new_ic_no','m.doj','m.dob','i.gross_salary','m.name')->leftjoin('tbl_member as m', 'm.user_id', '=', 'i.employee_id')->where('i.id','=',$incomeid)->get();
+		$data['incometaxList'] = DB::table('income_tax as i')->select('i.*','m.doj','m.dob','m.name')->leftjoin('tbl_member as m', 'm.user_id', '=', 'i.employee_id')->where('i.id','=',$incomeid)->first();
+		//dd($data['incometaxList']);
 		return view('administrator.hrm.employee.income_tax_print')->with('data',$data);
 	}
 }
