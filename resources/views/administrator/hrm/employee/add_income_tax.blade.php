@@ -1,7 +1,14 @@
 @extends('administrator.master')
 @section('title', __('Manage Income Tax'))
 <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
-
+<style type="text/css">
+  input {
+      border: none !important;
+      border-bottom: 1px solid #d2d6de !important;
+     
+      outline: none !important;
+   }
+</style>
 @section('main_content')
 
 
@@ -190,13 +197,13 @@
                     <label class="col-sm-12 ">{{ __('9. If the period of employment is less than a year, please state') }}</label>
                     <label for="date_commencement" class="col-sm-4 ">{{ __('(a) Date of commencement') }}</label>
                     <div class="col-sm-8">
-                      <input type="text" name="date_commencement" id="date_commencement" class="form-control datepicker" placeholder="">
+                      <input type="date" name="date_commencement" id="date_commencement" class="form-control " placeholder="">
                       <br>
                     </div>
 
                     <label for="date_cessation" class="col-sm-4 ">{{ __('(b) Date of cessation') }}</label>
                     <div class="col-sm-8">
-                      <input type="text" name="date_cessation" id="date_cessation" class="form-control datepicker" placeholder="">
+                      <input type="date" name="date_cessation" id="date_cessation" class="form-control " placeholder="">
                     </div>
                   </div>
                 </div>
@@ -563,7 +570,7 @@
               <br>
               <br>
               <div class="row">
-                <h3 class="box-title">
+                <h3 class="box-title" style="font-size: 18px;">
                   <div class="col-sm-9">
                     <div class="row">
                       <div class="col-sm-11">
@@ -589,7 +596,7 @@
                       <div class="form-group">
                         <label for="date_tax" class="col-sm-4 ">{{ __('Date') }}</label>
                         <div class="col-sm-8">
-                          <input type="text" name="date_tax" id="date_tax" class="form-control datepicker" placeholder="">
+                          <input type="date" name="date_tax" id="date_tax" class="form-control " placeholder="">
                         </div>
                       </div>
                   </div>
