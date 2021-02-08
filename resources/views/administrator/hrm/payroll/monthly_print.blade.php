@@ -273,17 +273,31 @@
 			</tr>
 		</thead>
 		<tbody class="" >
+				
+				@foreach($data['cat_list'] as $category)
 				@php
 					$slno =1;
 				@endphp
 				@foreach($data['salaries'] as $salary)
+				@php
+				//var_dump($category->cat_name);
+				if($category->cat_name==$salary->category){
+				@endphp
 				<tr >
 					<td style="border: 1px solid #988989 !important; ">{{ $slno }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ strtoupper($salary->name) }}</td>
-					<td style="border: 1px solid #988989 !important;"></td>
-					<td style="border: 1px solid #988989 !important;"></td>
-					<td style="border: 1px solid #988989 !important;"></td>
-					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;">{{ strtoupper($salary->designation) }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ strtoupper($salary->category) }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ date('d/m/Y',strtotime($salary->doj)) }}</td>
+					<td style="border: 1px solid #988989 !important;">
+					@php
+					if($salary->status==0){
+					   if(($salary->resign_date)!="1970-01-01"){
+							echo date('d/m/Y',strtotime($salary->resign_date));	
+						}					
+					}
+					@endphp					
+					</td>
 					<td style="border: 1px solid #988989 !important;">{{$salary->basic_salary}}</td>
 					@foreach($additions_list as $additions)
 					@php
@@ -321,13 +335,53 @@
 					<td style="border: 1px solid #988989 !important;">{{$salary->epf_percent}}</td>
 					<td style="border: 1px solid #988989 !important;">{{$salary->epf_er}}</td>
 					<td style="border: 1px solid #988989 !important;">{{$salary->sosco_er}}</td>
-					<td style="border: 1px solid #988989 !important;">{{$salary->sosco_eissip}}</td>
-					
-					
+					<td style="border: 1px solid #988989 !important;">{{$salary->sosco_eissip}}</td>			
 				</tr> 
-				@php
-				 $slno++;
-				@endphp
+				@php				
+				}
+				$slno=$slno+1;
+				@endphp			
+				@endforeach
+				<tr>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				<td style="border: 1px solid #988989 !important; ">
+				</td>
+				</tr>
 				@endforeach
 			
 		</tbody>
