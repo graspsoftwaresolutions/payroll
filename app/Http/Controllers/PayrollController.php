@@ -646,13 +646,18 @@ class PayrollController extends Controller {
 
 	public function SalaryReport(Request $request){
 		$filterdate = $request->input('filterdate');
+		$data['cat_list'] = DB::table('tbl_category')->where('status','=','1')->get();
+
+	//	foreach($data['cat_list'] as $single){
 		$data['salaries'] = DB::table('employee_salary as es')
-		->select('m.name','es.id','es.salary_date','es.gross_salary','es.total_deductions','es.net_pay','es.basic_salary','es.additional_allowance_total','es.ot_amount','es.epf_ee_amount','es.ee_sosco_amount','es.eis_sip_amount','es.total_deductions','es.net_pay','es.epf_er','es.sosco_er','es.sosco_eissip','es.epf_percent')
+		->select('m.name','m.designation','m.doj','m.category','m.status','m.resign_date','es.id','es.salary_date','es.gross_salary','es.total_deductions','es.net_pay','es.basic_salary','es.additional_allowance_total','es.ot_amount','es.epf_ee_amount','es.ee_sosco_amount','es.eis_sip_amount','es.total_deductions','es.net_pay','es.epf_er','es.sosco_er','es.sosco_eissip','es.epf_percent')
 					->leftjoin('tbl_member as m', 'm.user_id', '=', 'es.employee_id')
 					->where('es.salary_date','=',$filterdate)
 					->orderBy('es.salary_date', 'desc')
+					//->groupBy()
+					//->orderBy('m.category', 'asc')
 					->get();
-					
+	//	}			
 		$data['addition_list'] = DB::table('payroll_addition_deduction as ad')->select('ad.id as additionid','ad.name','ad.assigned_to','c.cat_name')
 					->leftjoin('category_master as c','c.id','=','ad.cat_id')
 					->where('ad.status','=','1')
