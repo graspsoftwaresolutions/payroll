@@ -198,7 +198,7 @@
 			@endphp
 			<tr class="" style="text-align:center;">
 				<th rowspan="2" style="border: 1px solid #988989 !important;">NO</th>
-				<th rowspan="2" nowrap style="border: 1px solid #988989 !important;">STAFF NAME - AS PER NRIC</th>
+				<th rowspan="2" nowrap style="border: 1px solid #988989 !important;white-space: nowrap;">STAFF NAME - AS PER NRIC</th>
 				<th rowspan="2" nowrap style="border: 1px solid #988989 !important;">POSITION</th>
 				<th rowspan="2" nowrap style="border: 1px solid #988989 !important;" class="nric_no">BANK</th>
 				<th rowspan="2" nowrap style="border: 1px solid #988989 !important;">START DATE</th>
@@ -234,7 +234,9 @@
 			</tr>
 			<tr class="" style="">
 				@foreach($additions_list as $additions)
-				
+				@php
+					${"overall_additions" . $additions->additionid} = 0;
+				@endphp
 				<th nowrap style="border: 1px solid #988989 !important;">{{$additions->name}}</th>
 				@endforeach
 				<!--th nowrap style="border: 1px solid #988989 !important;">NEC</th>
@@ -246,6 +248,9 @@
 				<th nowrap style="border: 1px solid #988989 !important;">SOCSO <br>(EIS/SIP)</th>
 				
 				@foreach($deductions_list as $deductions)
+				@php
+					${"overall_deductions" . $deductions->additionid} = 0;
+				@endphp
 				<th nowrap style="border: 1px solid #988989 !important;">{{$deductions->name}}</th>
 				@endforeach
 				
@@ -256,6 +261,9 @@
 				<th nowrap style="border: 1px solid #988989 !important;">HOME/CAR LOAN</th-->
 				
 				@foreach($other_deductions_list as $deductions)
+				@php
+					${"overall_otherdeductions" . $deductions->additionid} = 0;
+				@endphp
 				<th nowrap style="border: 1px solid #988989 !important;">{{$deductions->name}}</th>
 				@endforeach
 				<!--th style="border: 1px solid #988989 !important;">UPL</th>
@@ -273,35 +281,136 @@
 			</tr>
 		</thead>
 		<tbody class="" >
-				
-				@foreach($data['cat_list'] as $category)
 				@php
+					$overall_total_basic_salary = 0;
+					$overall_total_additional_allowance = 0;
+					$overall_total_ot_amount = 0;
+					$overall_total_gross_salary = 0;
+					$overall_total_epf_ee_amount = 0;
+					$overall_total_ee_sosco_amount = 0;
+					$overall_total_eis_sip_amount = 0;
+					$overall_total_deductions_all = 0;
+					$overall_total_net_pay = 0;
+					$overall_total_epf_er = 0;
+					$overall_total_sosco_er = 0;
+					$overall_total_sosco_eissip = 0;
 					$slno =1;
 				@endphp
-				@foreach($data['salaries'] as $salary)
+				@foreach($data['cat_list'] as $category)
+				@php
+					//dd($data['salaries']);
+					$catcount = 0;
+					
+					$catsalaries = CommonHelper::getSalaryList($data['filterdate'], $category->cat_name);
+					$total_basic_salary = 0;
+					$total_additional_allowance = 0;
+					$total_ot_amount = 0;
+					$total_gross_salary = 0;
+					$total_epf_ee_amount = 0;
+					$total_ee_sosco_amount = 0;
+					$total_eis_sip_amount = 0;
+					$total_deductions_all = 0;
+					$total_net_pay = 0;
+					$total_epf_er = 0;
+					$total_sosco_er = 0;
+					$total_sosco_eissip = 0;
+				@endphp
+				@foreach($catsalaries as $salary)
+					@php
+						if($category->cat_name==$salary->category){
+							$catcount++;
+						}
+					@endphp
+				@endforeach
+				@if($catcount>0)
+				<tr >
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important;background: #f2f2f2;">{{$category->cat_name}}</td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;">
+								
+					</td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					@foreach($additions_list as $additions)
+					@php
+					 ${"additions" . $additions->additionid} = 0;
+					@endphp
+					<td style="border: 1px solid #988989 !important;"></td>
+					@endforeach
+					<!--td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td-->
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					
+					@foreach($deductions_list as $deductions)
+					@php
+					 ${"deductions" . $deductions->additionid} = 0;
+					@endphp
+					<td style="border: 1px solid #988989 !important;"></td>
+					@endforeach
+					
+					@foreach($other_deductions_list as $deductions)
+					@php
+					 ${"otherdeductions" . $deductions->additionid} = 0;
+					@endphp
+					<td style="border: 1px solid #988989 !important;"></td>
+					@endforeach
+					
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>			
+				</tr> 
+				@endif
+				@foreach($catsalaries as $salary)
 				@php
 				//var_dump($category->cat_name);
 				if($category->cat_name==$salary->category){
+				
 				@endphp
 				<tr >
 					<td style="border: 1px solid #988989 !important; ">{{ $slno }}</td>
-					<td style="border: 1px solid #988989 !important;">{{ strtoupper($salary->name) }}</td>
+					<td style="border: 1px solid #988989 !important;white-space: nowrap;">{{ strtoupper($salary->name) }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ strtoupper($salary->designation) }}</td>
-					<td style="border: 1px solid #988989 !important;">{{ strtoupper($salary->category) }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ strtoupper($salary->bank_account_no) }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ date('d/m/Y',strtotime($salary->doj)) }}</td>
 					<td style="border: 1px solid #988989 !important;">
 					@php
 					if($salary->status==0){
-					   if(($salary->resign_date)!="1970-01-01"){
+					   if(($salary->resign_date)!="1970-01-01" && ($salary->resign_date)!="0000-00-00"){
 							echo date('d/m/Y',strtotime($salary->resign_date));	
 						}					
 					}
+					$total_basic_salary += $salary->basic_salary;
+					$total_additional_allowance += $salary->additional_allowance_total;
+					$total_ot_amount += $salary->ot_amount;
+					$total_gross_salary += $salary->gross_salary;
+					$total_epf_ee_amount += $salary->epf_ee_amount;
+					$total_ee_sosco_amount += $salary->ee_sosco_amount;
+					$total_eis_sip_amount += $salary->eis_sip_amount;
+					$total_deductions_all += $salary->total_deductions;
+					$total_net_pay += $salary->net_pay;
+					$total_epf_er += $salary->epf_er;
+					$total_sosco_er += $salary->sosco_er;
+					$total_sosco_eissip += $salary->sosco_eissip;
 					@endphp					
 					</td>
 					<td style="border: 1px solid #988989 !important;">{{$salary->basic_salary}}</td>
 					@foreach($additions_list as $additions)
 					@php
 						$allowancecost = CommonHelper::getSalaryAllowanceCost($salary->id,$additions->additionid);
+						${"additions" . $additions->additionid} += $allowancecost;
+						
 					@endphp
 					<td style="border: 1px solid #988989 !important;">{{ $allowancecost }}</td>
 					@endforeach
@@ -319,6 +428,8 @@
 					@foreach($deductions_list as $deductions)
 					@php
 						$deductioncost = CommonHelper::getSalaryAllowanceCost($salary->id,$deductions->additionid);
+						${"deductions" . $deductions->additionid} += $deductioncost;
+						
 					@endphp
 					<td style="border: 1px solid #988989 !important;">{{ $deductioncost }}</td>
 					@endforeach
@@ -326,6 +437,8 @@
 					@foreach($other_deductions_list as $deductions)
 					@php
 						$adddeductioncost = CommonHelper::getSalaryAllowanceCost($salary->id,$deductions->additionid);
+						${"otherdeductions" . $deductions->additionid} += $adddeductioncost;
+						
 					@endphp
 					<td style="border: 1px solid #988989 !important;">{{ $adddeductioncost }}</td>
 					@endforeach
@@ -342,50 +455,148 @@
 				$slno=$slno+1;
 				@endphp			
 				@endforeach
-				<tr>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				<td style="border: 1px solid #988989 !important; ">
-				</td>
-				</tr>
+				@php
+					$overall_total_basic_salary += $total_basic_salary;
+					$overall_total_additional_allowance += $total_additional_allowance;
+					$overall_total_ot_amount += $total_ot_amount;
+					$overall_total_gross_salary += $total_gross_salary;
+					$overall_total_epf_ee_amount += $total_epf_ee_amount;
+					$overall_total_ee_sosco_amount += $total_ee_sosco_amount;
+					$overall_total_eis_sip_amount += $total_eis_sip_amount;
+					$overall_total_deductions_all += $total_deductions_all;
+					$overall_total_net_pay += $total_net_pay;
+					$overall_total_epf_er += $total_epf_er;
+					$overall_total_sosco_er += $total_sosco_er;
+					$overall_total_sosco_eissip += $total_sosco_eissip;
+
+
+				@endphp
+				@if($catcount>0)
+				<tr >
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;">
+								
+					</td>
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;">{{ $total_basic_salary }}</td>
+					@foreach($additions_list as $additions)
+					@php
+						${"overall_additions" . $additions->additionid} += ${"additions" . $additions->additionid};
+
+					@endphp
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;">{{ ${"additions" . $additions->additionid}==0 ? '' : ${"additions" . $additions->additionid} }}</td>
+					@endforeach
+					<!--td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td-->
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;">{{ $total_additional_allowance }}</td>
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;">{{ $total_ot_amount }}</td>
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;">{{ $total_gross_salary }}</td>
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;"></td>
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;">{{ $total_epf_ee_amount }}</td>
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;">{{ $total_ee_sosco_amount }}</td>
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;">{{ $total_eis_sip_amount }}</td>
+					
+					@foreach($deductions_list as $deductions)
+					@php
+						${"overall_deductions" . $deductions->additionid} += ${"deductions" . $deductions->additionid};
+					@endphp
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;">{{ ${"deductions" . $deductions->additionid}==0 ? '' : ${"deductions" . $deductions->additionid} }}</td>
+					@endforeach
+					
+					@foreach($other_deductions_list as $deductions)
+					@php
+						${"overall_otherdeductions" . $deductions->additionid} += ${"otherdeductions" . $deductions->additionid};
+					@endphp
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;">{{ ${"otherdeductions" . $deductions->additionid}==0 ? '' : ${"otherdeductions" . $deductions->additionid} }}</td>
+					@endforeach
+					
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;">{{$total_deductions_all}}</td>
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;">{{$total_net_pay}}</td>
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;"></td>
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;">{{$total_epf_er}}</td>
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;">{{$total_sosco_er}}</td>
+					<td style="border: 1px solid #988989 !important;text-decoration: underline;">{{$total_sosco_eissip}}</td>		
+				</tr> 
+				@endif
 				@endforeach
-			
+				<tr >
+					<td style=" " colspan="7"></td>
+					
+					@foreach($additions_list as $additions)
+					@php
+					 ${"additions" . $additions->additionid} = 0;
+					@endphp
+					<td style=""></td>
+					@endforeach
+					<!--td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td-->
+					<td style="" colspan="7"></td>
+					
+					@foreach($deductions_list as $deductions)
+					@php
+					 ${"deductions" . $deductions->additionid} = 0;
+					@endphp
+					<td style=""></td>
+					@endforeach
+					
+					@foreach($other_deductions_list as $deductions)
+					@php
+					 ${"otherdeductions" . $deductions->additionid} = 0;
+					@endphp
+					<td style=""></td>
+					@endforeach
+					<td style="" colspan="6"></td>
+				</tr> 
+
 		</tbody>
-		
+		<tfoot>
+			<tr >
+					<td style=" "></td>
+					<td style="text-align:center" colspan="2">GRAND TOTAL</td>
+					
+					<td style="" colspan="3"></td>
+					
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_basic_salary }}</td>
+					@foreach($additions_list as $additions)
+					@php
+					//dd(${"overall_additions" . $additions->additionid});
+					@endphp
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ ${"overall_additions" . $additions->additionid} }}</td>
+					@endforeach
+					<!--td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;"></td-->
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_additional_allowance }}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_ot_amount }}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_gross_salary }}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;"></td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_epf_ee_amount }}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_ee_sosco_amount }}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_eis_sip_amount }}</td>
+					
+					@foreach($deductions_list as $deductions)
+					
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ ${"overall_deductions" . $deductions->additionid}==0 ? '' : ${"overall_deductions" . $deductions->additionid} }}</td>
+					@endforeach
+					
+					@foreach($other_deductions_list as $deductions)
+					
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ ${"overall_otherdeductions" . $deductions->additionid}==0 ? '' : ${"overall_otherdeductions" . $deductions->additionid} }}</td>
+					@endforeach
+					
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{$overall_total_deductions_all}}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{$overall_total_net_pay}}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;"></td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{$overall_total_epf_er}}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{$overall_total_sosco_er}}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{$overall_total_sosco_eissip}}</td>		
+				</tr> 
+		</tfoot>
 	</table>	
 	
 </body>
