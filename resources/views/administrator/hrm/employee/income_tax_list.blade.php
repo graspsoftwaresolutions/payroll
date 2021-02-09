@@ -81,8 +81,8 @@
                             <td>{{$values->employee_no}}</td>
                             <td>{{$values->income_tax_no}}</td>
                             <td>{{$values->new_ic_no}}</td>
-                            <td>{{$values->doj}}</td>
-                            <td>{{$values->dob }}</td>
+                            <td>{{ $values->doj=='' || $values->doj=='0000-00-00' ? '' : date('d/m/Y',strtotime($values->doj)) }}</td>
+                            <td>{{ $values->dob=='' || $values->dob=='0000-00-00' ? '' : date('d/m/Y',strtotime($values->dob)) }}</td>
                             <td>{{$values->gross_salary }}</td>
                             
                             <td class="text-center action">

@@ -225,11 +225,11 @@
                 </tr>
                 <tr>
                   <td width="50%" style="margin: 0 !important;padding: 0 !important;">(a) Date of commencement</td>
-                  <td width="50%" style="margin: 0 !important;padding: 0 !important;"><p style="border-bottom: 1px dashed #000;">{{ $incomelist->date_commencement=='0000-00-00' ? '' : $incomelist->date_commencement }}</p></td>
+                  <td width="50%" style="margin: 0 !important;padding: 0 !important;"><p style="border-bottom: 1px dashed #000;">{{ $incomelist->date_commencement=='0000-00-00' ? '' : date('d/m/Y',strtotime($incomelist->date_commencement)) }}</p></td>
                 </tr>
                 <tr>
                   <td width="50%" style="margin: 0 !important;padding: 0 !important;">(b) Date of cessation</td>
-                  <td width="50%" style="margin: 0 !important;padding: 0 !important;"><p style="border-bottom: 1px dashed #000;">{{ $incomelist->date_cessation=='0000-00-00' ? '' : $incomelist->date_cessation }}</p></td>
+                  <td width="50%" style="margin: 0 !important;padding: 0 !important;"><p style="border-bottom: 1px dashed #000;">{{ $incomelist->date_cessation=='0000-00-00' ? '' : date('d/m/Y',strtotime($incomelist->date_cessation)) }}</p></td>
                 </tr>
               </table>
               
@@ -524,7 +524,7 @@
         <table>
           <tr>
             <td class="bottom-content"> <p> Date: </p></td>
-            <td class="bottom-content"> <p style="border-bottom: 1px dashed #000;min-width: 60px;">{{ $incomelist->date_tax=='0000-00-00' ? '&nbsp;' : $incomelist->date_tax }}</p></td>
+            <td class="bottom-content"> <p style="border-bottom: 1px dashed #000;min-width: 60px;">{{ $incomelist->date_tax=='0000-00-00' ? '&nbsp;' : date('d/m/Y',strtotime($incomelist->date_tax)) }}</p></td>
           </tr>
         </table>
         
