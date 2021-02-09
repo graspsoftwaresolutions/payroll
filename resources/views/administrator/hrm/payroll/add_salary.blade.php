@@ -124,17 +124,25 @@
                     <input type="text" readonly  id="gross_salary" name="gross_salary" class="form-control" placeholder="{{ __('Gross Basic') }}">
                     </div>
                 </div>
-				
+				        
+                <div id="EPF_EEdivid" class="form-group">
+                    <label for="EPF_EE" class="col-sm-3 control-label">{{ __('EPF-EE%') }}</label>
+                      <div id="EPF_EEid" class="col-sm-6 ">
+                        <input type="text" name="EPF_EE_percent" class="form-control" value="" placeholder="EPF_EE%" id="EPF_EE_percent">
+                      </div>
+                </div>
+
                 <div id="epf_ee_section" class=" form-group {{ $errors->has('epf_ee_id') ? ' has-error' : '' }}">
-					<label for="epf_ee_id" class="col-sm-3 control-label">{{ __('EPF-EE') }}
-					</label>
-					
+          					<label for="epf_ee_id" class="col-sm-3 control-label">{{ __('EPF-EE') }}
+          					</label>
+          					
 					
                     <div id="epf_ee" class="col-sm-6 ">
-						<input type="text"  name="epf_ee_id" class="form-control " value="" id="epf_ee_id">
+						            <input type="text"  name="epf_ee_id" class="form-control " value="" id="epf_ee_id">
                           
                     </div>
                 </div>   
+                
 				<div id="ee_sosco_section" class=" form-group {{ $errors->has('ee_sosco') ? ' has-error' : '' }}">
                   <label for="ee_sosco" class="col-sm-3 control-label">{{ __('EE-SOCSO') }}
 					
@@ -481,6 +489,7 @@ $("#otherdeductions_total").val('0.00');
 						$("#total_deductions").val(salaryinfo.total_deductions);
 						$("#net_pay").val(salaryinfo.net_pay);
 						$("#EPF_ER").val(salaryinfo.epf_er);
+            $("#EPF_EE_percent").val(salaryinfo.epf_ee_percent);
 						//alert(salaryinfo.epf_er);
 						$("#SOSCO_ER").val(salaryinfo.sosco_er);
 						$("#SOSCO_EISSIP").val(salaryinfo.sosco_eissip);

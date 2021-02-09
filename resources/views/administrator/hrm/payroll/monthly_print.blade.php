@@ -420,7 +420,7 @@
 					<td style="border: 1px solid #988989 !important;">{{$salary->additional_allowance_total}}</td>
 					<td style="border: 1px solid #988989 !important;">{{$salary->ot_amount}}</td>
 					<td style="border: 1px solid #988989 !important;">{{$salary->gross_salary}}</td>
-					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;">{{$salary->epf_ee_percent}}</td>
 					<td style="border: 1px solid #988989 !important;">{{$salary->epf_ee_amount}}</td>
 					<td style="border: 1px solid #988989 !important;">{{$salary->ee_sosco_amount}}</td>
 					<td style="border: 1px solid #988989 !important;">{{$salary->eis_sip_amount}}</td>

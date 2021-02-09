@@ -560,6 +560,8 @@ class PayrollController extends Controller {
 		$insertdata['salary_date'] = $dateofsalary;
 		$insertdata['epf_percent'] = $request->input('EPF_ERper');
 
+		$insertdata['epf_ee_percent'] = $request->input('EPF_EE_percent');
+
 		$existcount = DB::table('employee_salary')
 		->where('employee_id','=',$request->input('user_id'))
 		->where('salary_date','=',$dateofsalary)
@@ -650,7 +652,7 @@ class PayrollController extends Controller {
 
 	//	foreach($data['cat_list'] as $single){
 		$data['salaries'] = DB::table('employee_salary as es')
-		->select('m.name','m.designation','m.doj','m.category','m.status','m.resign_date','es.id','es.salary_date','es.gross_salary','es.total_deductions','es.net_pay','es.basic_salary','es.additional_allowance_total','es.ot_amount','es.epf_ee_amount','es.ee_sosco_amount','es.eis_sip_amount','es.total_deductions','es.net_pay','es.epf_er','es.sosco_er','es.sosco_eissip','es.epf_percent','e.bank_account_no')
+		->select('m.name','m.designation','m.doj','m.category','m.status','m.resign_date','es.id','es.salary_date','es.gross_salary','es.total_deductions','es.net_pay','es.basic_salary','es.additional_allowance_total','es.ot_amount','es.epf_ee_amount','es.ee_sosco_amount','es.eis_sip_amount','es.total_deductions','es.net_pay','es.epf_er','es.sosco_er','es.sosco_eissip','es.epf_percent','e.bank_account_no','es.epf_ee_percent')
 					->leftjoin('tbl_member as m', 'm.user_id', '=', 'es.employee_id')
 					->leftjoin('tbl_employee_details as e', 'm.employee_no', '=', 'e.membership_no')
 					->where('es.salary_date','=',$filterdate)
@@ -798,6 +800,7 @@ class PayrollController extends Controller {
 		$soscosip_check = isset($soscosip_check) ? 1 : 0;
 
 		$insertdata['epf_check'] = $epf_check;
+		$insertdata['epf_ee_percent'] = $request->input('EPF_EE_percent');
 		$insertdata['sosco_check'] = $sosco_check;
 		$insertdata['sip_check'] = $soscosip_check;
 
@@ -1058,6 +1061,7 @@ class PayrollController extends Controller {
 		$soscosip_check = isset($soscosip_check) ? 1 : 0;
 
 		$insertdata['epf_check'] = $epf_check;
+		$insertdata['epf_ee_percent'] = $request->input('EPF_EE_percent');
 		$insertdata['sosco_check'] = $sosco_check;
 		$insertdata['sip_check'] = $soscosip_check;
 

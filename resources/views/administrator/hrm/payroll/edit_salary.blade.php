@@ -135,14 +135,21 @@
                     <input type="text" readonly  id="gross_salary" name="gross_salary" class="form-control" value="{{ $salary_data->gross_salary }}" placeholder="{{ __('Gross Basic') }}">
                     </div>
                 </div>
-				
+				        
+                <div id="EPF_EEdivid" class="form-group">
+                    <label for="EPF_EE" class="col-sm-3 control-label">{{ __('EPF-EE%') }}</label>
+                      <div id="EPF_EEid" class="col-sm-6 ">
+                        <input type="text" name="EPF_EE_percent" class="form-control" value="{{ $salary_data->epf_ee_percent }}" placeholder="EPF_EE%" id="EPF_EE_percent">
+                      </div>
+                </div>
+                
                 <div id="epf_ee_section" class=" form-group {{ $errors->has('epf_ee_id') ? ' has-error' : '' }}">
-					<label for="epf_ee_id" class="col-sm-3 control-label">{{ __('EPF-EE') }}
-					</label>
+        					<label for="epf_ee_id" class="col-sm-3 control-label">{{ __('EPF-EE') }}
+        					</label>
 					
 					
                     <div id="epf_ee" class="col-sm-6 ">
-						<input type="text"  name="epf_ee_id" class="form-control " value="{{$salary_data->epf_ee_amount}}" id="epf_ee_id">
+				           	<input type="text"  name="epf_ee_id" class="form-control " value="{{$salary_data->epf_ee_amount}}" id="epf_ee_id">
                           
                     </div>
                 </div>   

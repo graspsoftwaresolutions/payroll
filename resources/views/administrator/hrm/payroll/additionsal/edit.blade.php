@@ -135,16 +135,22 @@
                     </div>
                 </div>
                  <div id="epf_ee_section" class=" form-group {{ $errors->has('epf_ee_id') ? ' has-error' : '' }}">
-					<label for="epf_ee_id" class="col-sm-3 control-label">{{ __('EPF-EE') }}
-						<input id="epf_ee_check" name="epf_ee_check" onClick="return EnableEpfBox()" @if($salary_data->epf_check==1) checked @endif type="checkbox" value="1" />
-					</label>
+          					<label for="epf_ee_id" class="col-sm-3 control-label">{{ __('EPF-EE') }}
+          						<input id="epf_ee_check" name="epf_ee_check" onClick="return EnableEpfBox()" @if($salary_data->epf_check==1) checked @endif type="checkbox" value="1" />
+          					</label>
 					
 					
                     <div id="epf_ee" class="col-sm-6 @if($salary_data->epf_check==0) hide @endif">
-						<input type="text"  name="epf_ee_id" class="form-control  " value="{{$salary_data->epf_ee_amount}}" id="epf_ee_id">
+						        <input type="text"  name="epf_ee_id" class="form-control  " value="{{$salary_data->epf_ee_amount}}" id="epf_ee_id">
                           
                     </div>
                 </div>   
+                <div id="EPF_EEdivid" class="form-group  @if($salary_data->epf_check==0) hide @endif">
+                    <label for="EPF_EE" class="col-sm-3 control-label">{{ __('EPF-EE%') }}</label>
+                      <div id="EPF_EEid" class="col-sm-6 ">
+                        <input type="text" name="EPF_EE_percent" class="form-control" value="{{$salary_data->epf_ee_percent}}" placeholder="EPF_EE%" id="EPF_EE_percent">
+                      </div>
+                </div>
 				<div id="ee_sosco_section" class=" form-group {{ $errors->has('ee_sosco') ? ' has-error' : '' }}">
                   <label for="ee_sosco" class="col-sm-3 control-label">{{ __('EE-SOCSO') }}
 					<input id="epf_sosco_check" name="epf_sosco_check" onClick="return EnablesoscoBox()" @if($salary_data->sosco_check==1) checked @endif type="checkbox" value="1"/>
@@ -773,7 +779,7 @@ $(document).on('click', 'button.removebutton', function () {
 	
 	function EnableEpfBox(){
 		if($("#epf_ee_check").prop("checked") == true){
-			$("#epf_ee,#EPF_ERid,#EPF_ERidper").removeClass('hide');
+			$("#epf_ee,#EPF_ERid,#EPF_ERidper,#EPF_EEdivid").removeClass('hide');
 			var net_salary = $("#basic_salary").val();
       var user_id = $("#user_id").val();
 			if(net_salary!='' && user_id!=''){
@@ -785,6 +791,7 @@ $(document).on('click', 'button.removebutton', function () {
                     success: function(result) {
 						$("#epf_ee_id").val(0);
 						$("#EPF_ER,#EPF_ERref").val(0);
+            $("#EPF_EE_percent").val(11);
 						if(result!=null){
 							$("#epf_ee_id").val(result.employee_contribution);
 							$("#EPF_ER,#EPF_ERref").val(result.employer_contribution);
@@ -798,9 +805,10 @@ $(document).on('click', 'button.removebutton', function () {
 			
 			
 		}else{
-			$("#epf_ee,#EPF_ERid,#EPF_ERidper").addClass('hide');
+			$("#epf_ee,#EPF_ERid,#EPF_ERidper,#EPF_EEdivid").addClass('hide');
 			$("#epf_ee_id").val(0);
 			$("#EPF_ER,#EPF_ERref").val(0);
+       $("#EPF_EE_percent").val(0);
 		}
 		CalculateAdditions();
 	}
