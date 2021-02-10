@@ -95,6 +95,21 @@
             </ul>
         </li>
         @endpermission
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-file-text-o text-purple"></i> <span>{{ __('Reports') }}</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>
+           
+            <ul class="treeview-menu">
+              
+                <li><a href="{{ route('reports.epfsocso') }}"><i class="fa fa-circle-o"></i>{{ __('EPF & SOCSO') }}</a></li>
+
+              
+            </ul>
+        </li>
         @permission('attendance-management')
   <!--      <li class="treeview">
             <a href="#">

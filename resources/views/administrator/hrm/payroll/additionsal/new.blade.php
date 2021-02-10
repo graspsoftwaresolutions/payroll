@@ -768,8 +768,8 @@ $(document).on('click', 'button.removebutton', function () {
 						$("#EPF_ER,#EPF_ERref").val(0);
             $("#EPF_EE_percent").val(11);
 						if(result!=null){
-							$("#epf_ee_id").val(result.employee_contribution);
-							$("#EPF_ER,#EPF_ERref").val(result.employer_contribution);
+							$("#epf_ee_id").val((result.employee_contribution).toFixed(0));
+							$("#EPF_ER,#EPF_ERref").val((result.employer_contribution).toFixed(0));
 						}
 					}
 				});

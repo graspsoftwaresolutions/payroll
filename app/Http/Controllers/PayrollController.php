@@ -1364,4 +1364,24 @@ class PayrollController extends Controller {
 		//dd($data['incometaxList']);
 		return view('administrator.hrm.employee.income_tax_print')->with('data',$data);
 	}
+
+	public function EpfSocsoReport(Request $request){
+		$employees = DB::table('tbl_member')->select(DB::raw("CONCAT(name,'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER')->get();
+
+        return view('administrator.hrm.payroll.epfsocso_report', compact('employees'));
+	}
+
+	public function EpfSocsoPrint(Request $request){
+		$filterdate = $request->input('date');
+		$fulldate = $filterdate.'-01';
+		$data['cat_list'] = DB::table('tbl_category')->where('status','=','1')->get();
+
+	
+		$data['salaries'] = [];
+		
+		$data['filterdate'] = $fulldate;
+		//$data = [];
+		//dd(2);
+		return view('administrator.hrm.payroll.epf_socso_print')->with('data',$data);
+	}
 }
