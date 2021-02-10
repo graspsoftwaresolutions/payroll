@@ -169,7 +169,7 @@
                                       <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Price</th>
+                                            <th>Amount</th>
                                             <th>Action</th>
                                         </tr>
                                       </thead>
@@ -612,7 +612,7 @@ $("#otherdeductions_total").val('0.00');
 			$('#myModal').modal('toggle');
 		}
 		else{
-			alert("Please select allownces and Enter price!");
+			alert("Please select allowances and Enter amount!");
 		}
 		$('#price').val('');
 		var emptyStr = '';
@@ -653,7 +653,7 @@ $("#otherdeductions_total").val('0.00');
 			$('#mydeductionModal').modal('toggle');
 		}
 		else{
-		  alert("Please select room type and Enter price!");
+		  alert("Please select type and Enter amount!");
 		}
 		$('#deduction_price').val('');
 		var emptyStr = '';
@@ -696,7 +696,7 @@ $('#other_deduction_price_add').click(function(){
 		$('#myotherdeductionModal').modal('toggle');
 	}
 	else{
-	  alert("Please select room type and Enter price!");
+	  alert("Please select type and Enter amount!");
 	}
 	$('#deduction_price').val('');
 	var emptyStr = '';

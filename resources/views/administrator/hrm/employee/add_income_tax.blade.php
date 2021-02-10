@@ -351,7 +351,7 @@
                 <div class="col-sm-9">
                    <div class="row">
                       <div class="col-sm-5">
-                       3. Benefits in kind Details of payment: 
+                       3. Benefits in kind: 
                       </div>
                        <div class="col-sm-1">
                         Specify:

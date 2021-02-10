@@ -101,7 +101,7 @@
 							<thead>
 							  <tr>
 								  <th>Name</th>
-								  <th>Price</th>
+								  <th>Amount</th>
 								  <th>Action</th>
 							  </tr>
 							</thead>
@@ -177,7 +177,7 @@
                                       <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Price</th>
+                                            <th>Amount</th>
                                             <th>Action</th>
                                         </tr>
                                       </thead>
@@ -210,7 +210,7 @@
                                       <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Price</th>
+                                            <th>Amount</th>
                                             <th>Action</th>
                                         </tr>
                                       </thead>
@@ -326,8 +326,8 @@
                 </div>   
                 <div class="col-sm-5">  
                    <div class="form-group">
-                          <label for="address_one" class="fixed-label">{{__('Price') }}</label>   
-                          <input placeholder="Price" class="clearable form-control" id="price" type="text">     
+                          <label for="address_one" class="fixed-label">{{__('Amount') }}</label>   
+                          <input placeholder="Amount" class="clearable form-control" id="price" type="text">     
                    </div>
                 </div>    
             </div><!-- /.row -->
@@ -371,8 +371,8 @@
                 </div>   
                 <div class="col-sm-5">  
                    <div class="form-group">
-                              <label for="address_one" class="fixed-label">{{__('Price') }}</label>   
-                              <input placeholder="Price" class="clearable  form-control" id="deduction_price" type="text">     
+                              <label for="address_one" class="fixed-label">{{__('Amount') }}</label>   
+                              <input placeholder="Amount" class="clearable  form-control" id="deduction_price" type="text">     
                    </div>
                 </div>    
               </div><!-- /.row -->
@@ -413,8 +413,8 @@
                 </div>   
                 <div class="col-sm-5">  
                    <div class="form-group">
-                              <label for="address_one" class="fixed-label">{{__('Price') }}</label>   
-                              <input placeholder="Price" class="clearable form-control" id="other_deduction_price" type="text">     
+                              <label for="address_one" class="fixed-label">{{__('Amount') }}</label>   
+                              <input placeholder="Amount" class="clearable form-control" id="other_deduction_price" type="text">     
                    </div>
                 </div>    
               </div><!-- /.row -->
@@ -534,7 +534,7 @@ $(document).ready(function(){
 			$('#myModal').modal('toggle');
 		}
 		else{
-			alert("Please select allownces and Enter price!");
+			alert("Please select allowances and Enter amount!");
 		}
 		$('#price').val('');
 		var emptyStr = '';
@@ -575,7 +575,7 @@ $(document).ready(function(){
 			$('#mydeductionModal').modal('toggle');
 		}
 		else{
-		  alert("Please select room type and Enter price!");
+		  alert("Please select type and Enter amount!");
 		}
 		$('#deduction_price').val('');
 		var emptyStr = '';
@@ -618,7 +618,7 @@ $('#other_deduction_price_add').click(function(){
 		$('#myotherdeductionModal').modal('toggle');
 	}
 	else{
-	  alert("Please select room type and Enter price!");
+	  alert("Please select type and Enter amount!");
 	}
 	$('#deduction_price').val('');
 	var emptyStr = '';
