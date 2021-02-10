@@ -566,18 +566,18 @@
 					@php
 					//dd(${"overall_additions" . $additions->additionid});
 					@endphp
-					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{  number_format(${"overall_additions" . $additions->additionid},2,".","")  }}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ ${"overall_additions" . $additions->additionid}==0 ? '' : number_format(${"overall_additions" . $additions->additionid},2,".","")  }}</td>
 					@endforeach
 					<!--td style="border: 1px solid #988989 !important;"></td>
 					<td style="border: 1px solid #988989 !important;"></td>
 					<td style="border: 1px solid #988989 !important;"></td-->
-					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{  number_format($overall_total_additional_allowance,2,".","")  }}</td>
-					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{  number_format($overall_total_ot_amount,2,".","")  }}</td>
-					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{  number_format($overall_total_gross_salary,2,".","")  }}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_additional_allowance==0 ? '' : number_format($overall_total_additional_allowance,2,".","")  }}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_ot_amount==0 ? '' : number_format($overall_total_ot_amount,2,".","")  }}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_gross_salary==0 ? '' : number_format($overall_total_gross_salary,2,".","")  }}</td>
 					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;"></td>
-					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{  number_format(round($overall_total_epf_ee_amount),2,".","")  }}</td>
-					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{  number_format($overall_total_ee_sosco_amount,2,".","") }}</td>
-					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{  number_format($overall_total_eis_sip_amount,2,".","") }}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_epf_ee_amount==0 ? '' : number_format(round($overall_total_epf_ee_amount),2,".","")  }}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_ee_sosco_amount==0 ? '' :  number_format($overall_total_ee_sosco_amount,2,".","") }}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_eis_sip_amount==0 ? '' : number_format($overall_total_eis_sip_amount,2,".","") }}</td>
 					
 					@foreach($deductions_list as $deductions)
 					
@@ -589,12 +589,12 @@
 					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ ${"overall_otherdeductions" . $deductions->additionid}==0 ? '' :  number_format(${"overall_otherdeductions" . $deductions->additionid},2,".","") }}</td>
 					@endforeach
 					
-					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ number_format($overall_total_deductions_all,2,".","") }}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_deductions_all==0 ? '' : number_format($overall_total_deductions_all,2,".","") }}</td>
 					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ number_format($overall_total_net_pay,2,".","") }}</td>
 					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;"></td>
-					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ number_format(round($overall_total_epf_er),2,".","") }}</td>
-					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ number_format($overall_total_sosco_er,2,".","") }}</td>
-					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ number_format($overall_total_sosco_eissip,2,".","") }}</td>		
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_epf_er==0 ? '' : number_format(round($overall_total_epf_er),2,".","") }}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_sosco_er==0 ? '' : number_format($overall_total_sosco_er,2,".","") }}</td>
+					<td style="border-top: 1px solid #988989 !important;border-bottom: double !important;">{{ $overall_total_sosco_eissip==0 ? '' : number_format($overall_total_sosco_eissip,2,".","") }}</td>		
 				</tr> 
 		</tfoot>
 	</table>	
