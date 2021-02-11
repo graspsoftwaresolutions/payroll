@@ -415,4 +415,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/hrm/epf_socso_report', 'PayrollController@EpfSocsoReport')->name('reports.epfsocso');
 	Route::get('/hrm/epf_socso_print', 'PayrollController@EpfSocsoPrint')->name('reports.epfsocsoprint');
 
+	Route::get('export-excel-epfsocso','ReportsController@exportExcelEPFSocso')->name('epfsocso.excel');
+
+
 });
