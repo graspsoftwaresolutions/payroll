@@ -167,7 +167,8 @@
 </head>
 
 <body>
-	<button onclick="javascript:window.print()" style="padding: 5px 10px;margin-left: 20px;font-size: 15px;" class="btn-print">Print</button>
+	<button onclick="javascript:window.print()" style="padding: 5px 10px;margin-left: 20px;font-size: 15px;" class="btn-print ">Print</button>
+	<button class="exportToExcel export-button " style="background:#227849;color: #fff;padding: 5px 10px;margin-left: 20px;font-size: 15px;">Excel</button>
   	<table id="page-length-option" class="display table2excel" width="auto">
 		<thead>
 			<tr class="">
@@ -179,12 +180,12 @@
 					<span style="text-align:center;font-weight: bold;font-size:18px;vertical-align:top;">NATIONAL UNION OF BANK EMPLOYEES</span>
 					<br>
 					<br>
-					<span style="text-align:center;font-weight: bold;font-size:16px;vertical-align:top;">EPF & SOCSO STATEMENT FOR MONTH OF</span>
+					<span style="text-align:center;font-weight: bold;font-size:16px;vertical-align:top;">EPF & SOCSO STATEMENT FOR MONTH OF {{ strtoupper(date('F Y',strtotime($data['filterdate']))) }}</span>
 				</td>
 				<td colspan="3">	
 					</br>
 					<br><br><br><br>
-					<span style="text-align:center;font-weight: bold;font-size:16px;vertical-align:top;">{{ strtoupper(date('F Y',strtotime($data['filterdate']))) }}</span>
+				
 				</td>
 				<td colspan="2" style="text-align:right;display: none;">
 					<img src="http://membership.nube.org.my/public/assets/images/logo/logo.png" height="50" />
@@ -237,9 +238,9 @@
 					<td style="border: 1px solid #988989 !important;">{{$slno}}</td>
 					<td style="border: 1px solid #988989 !important;">{{ $salary->epf_number}}</td>
 					<td style="border: 1px solid #988989 !important;">{{ strtoupper($salary->name) }}</td>
-					<td style="border: 1px solid #988989 !important;">{{ number_format($salary->epf_ee_amount,2,".","") }}</td>
-					<td style="border: 1px solid #988989 !important;">{{ number_format($salary->epf_er,2,".","") }}</td>
-					<td style="border: 1px solid #988989 !important;">{{ number_format($salary->epf_ee_amount+$salary->epf_er,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format(round($salary->epf_ee_amount),2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format(round($salary->epf_er),2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format(round($salary->epf_ee_amount+$salary->epf_er),2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;"></td>
 					<td style="border: 1px solid #988989 !important;">{{ $salary->socso_number }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ number_format($salary->ee_sosco_amount,2,".","") }}</td>
@@ -256,9 +257,9 @@
 				@endforeach
 				<tr style="font-weight: bold">
 					<td colspan="3" style="border: 1px solid #988989 !important;text-align: right;">Total</td>
-					<td style="border: 1px solid #988989 !important;">{{ number_format($total_epf_ee_amount,2,".","") }}</td>
-					<td style="border: 1px solid #988989 !important;">{{ number_format($total_epf_er,2,".","") }}</td>
-					<td style="border: 1px solid #988989 !important;">{{ number_format($total_epf_ee_amount+$total_epf_er,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format(round($total_epf_ee_amount),2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format(round($total_epf_er),2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format(round($total_epf_ee_amount+$total_epf_er),2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;"></td>
 					<td style="border: 1px solid #988989 !important;"></td>
 					<td style="border: 1px solid #988989 !important;">{{ number_format($total_ee_sosco_amount,2,".","") }}</td>
@@ -273,10 +274,10 @@
 				@endphp
 				@if($tot_cat-1 != $key)
 				<tr>
-					<td colspan="11" style="border: 1px solid #988989 !important;"></td>
+					<td colspan="11" style="border-left: 1px solid #988989 !important;border-right: 1px solid #988989 !important;"></td>
 				</tr>
 				<tr>
-					<td colspan="11" style="border: 1px solid #988989 !important;"></td>
+					<td colspan="11" style="border-left: 1px solid #988989 !important;border-right: 1px solid #988989 !important;"></td>
 				</tr>
 				@endif
 				@endif
@@ -289,9 +290,9 @@
 		<tfoot>
 			<tr style="font-weight: bold">
 					<td colspan="3" style="border: 1px solid #988989 !important;text-align: right;">Overall Total</td>
-					<td style="border: 1px solid #988989 !important;">{{ number_format($overall_total_epf_ee_amount,2,".","") }}</td>
-					<td style="border: 1px solid #988989 !important;">{{ number_format($overall_total_epf_er,2,".","") }}</td>
-					<td style="border: 1px solid #988989 !important;">{{ number_format($overall_total_epf_ee_amount+$overall_total_epf_er,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format(round($overall_total_epf_ee_amount),2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format(round($overall_total_epf_er),2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format(round($overall_total_epf_ee_amount+$overall_total_epf_er),2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;"></td>
 					<td style="border: 1px solid #988989 !important;"></td>
 					<td style="border: 1px solid #988989 !important;">{{ number_format($overall_total_ee_sosco_amount,2,".","") }}</td>
@@ -302,7 +303,26 @@
 	</table>	
 	
 </body>
+<script src="{{ asset('public/assets/js/jquery-1.12.4.min.js') }}" type="text/javascript"></script>
+<script src ="{{ asset('public/assets/js/jquery-ui.js') }}"></script>
+<script>
+	var excelfilenames="EPF SOCSO Report";
+</script>
+<script src="{{ asset('public/assets/js/jquery.table2excel.js') }}"></script>
+<!--script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.5/jspdf.plugin.autotable.min.js"></script>
+<script type="text/javascript" src="https://www.jqueryscript.net/demo/export-table-json-csv-txt-pdf/src/tableHTMLExport.js"></script-->
+<script>
+	$(document).ready( function() { 
+		$("html").css('opacity',1);
 
+		$(".exportToExcel").click(function(e){
+			$("#page-length-option").table2excel();
+		});
+    }); 
+	
+</script>
 
 
 </html>
