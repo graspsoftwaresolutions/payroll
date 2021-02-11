@@ -174,7 +174,7 @@
 			<tr class="">
 				
 				
-				<td colspan="8" style="padding:10px;vertical-align:top;">
+				<td colspan="11" style="padding:10px;vertical-align:top;">
 					<br>
 					<br>
 					<span style="text-align:center;font-weight: bold;font-size:18px;vertical-align:top;">NATIONAL UNION OF BANK EMPLOYEES</span>
@@ -182,14 +182,7 @@
 					<br>
 					<span style="text-align:center;font-weight: bold;font-size:16px;vertical-align:top;">EPF & SOCSO STATEMENT FOR MONTH OF {{ strtoupper(date('F Y',strtotime($data['filterdate']))) }}</span>
 				</td>
-				<td colspan="3">	
-					</br>
-					<br><br><br><br>
 				
-				</td>
-				<td colspan="2" style="text-align:right;display: none;">
-					<img src="http://membership.nube.org.my/public/assets/images/logo/logo.png" height="50" />
-				</td>
 			</tr>
 			<tr class="" style="text-align:center;">
 				<th rowspan="2" style="border: 1px solid #988989 !important;">No.</th>
