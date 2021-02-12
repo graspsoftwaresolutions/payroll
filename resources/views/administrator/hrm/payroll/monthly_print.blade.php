@@ -420,7 +420,7 @@
 					<td style="border: 1px solid #988989 !important;">{{ $salary->additional_allowance_total==0 ? '' : number_format($salary->additional_allowance_total,2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ $salary->ot_amount==0 ? '' : number_format($salary->ot_amount,2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ number_format($salary->gross_salary,2,".","") }}</td>
-					<td style="border: 1px solid #988989 !important;">{{ number_format($salary->epf_ee_percent,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ $salary->epf_ee_percent }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ $salary->epf_ee_amount==0 ? '' : number_format(round($salary->epf_ee_amount),2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ $salary->ee_sosco_amount==0 ? '' : number_format($salary->ee_sosco_amount,2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ $salary->eis_sip_amount==0 ? '' : number_format($salary->eis_sip_amount,2,".","") }}</td>
@@ -445,7 +445,7 @@
 					
 					<td style="border: 1px solid #988989 !important;">{{ $salary->total_deductions==0 ? '' : number_format($salary->total_deductions,2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ number_format($salary->net_pay,2,".","") }}</td>
-					<td style="border: 1px solid #988989 !important;">{{ number_format($salary->epf_percent,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ $salary->epf_percent }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ $salary->epf_er==0 ? '' : number_format(round($salary->epf_er),2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ $salary->sosco_er==0 ? '' : number_format($salary->sosco_er,2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ $salary->sosco_eissip==0 ? '' : number_format($salary->sosco_eissip,2,".","") }}</td>			
