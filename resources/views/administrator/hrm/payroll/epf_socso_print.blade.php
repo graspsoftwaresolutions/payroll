@@ -174,7 +174,7 @@
 			<tr class="">
 				
 				
-				<td colspan="11" style="padding:10px;vertical-align:top;">
+				<td colspan="16" style="padding:10px;vertical-align:top;">
 					<br>
 					<br>
 					<span style="text-align:center;font-weight: bold;font-size:18px;vertical-align:top;">NATIONAL UNION OF BANK EMPLOYEES</span>
@@ -192,8 +192,15 @@
 				<th nowrap style="border: 1px solid #988989 !important;"></th>
 				<th rowspan="2" nowrap style="border: 1px solid #988989 !important;">SOCSO No</th>
 				<th colspan="3" nowrap align="center" style="border: 1px solid #988989 !important;text-align:center;">SOCSO</th>
+				<th nowrap style="border: 1px solid #988989 !important;"></th>
+				<th colspan="3" nowrap align="center" style="border: 1px solid #988989 !important;text-align:center;">SIP</th>
+				<th rowspan="2" nowrap style="border: 1px solid #988989 !important;">PCB</th>
 			</tr>
 			<tr class="" style="">
+				<th nowrap style="border: 1px solid #988989 !important;">E'yee</th>
+				<th nowrap style="border: 1px solid #988989 !important;">E'yer</th>
+				<th nowrap style="border: 1px solid #988989 !important;">Total</th>
+				<th nowrap style="border: 1px solid #988989 !important;"></th>
 				<th nowrap style="border: 1px solid #988989 !important;">E'yee</th>
 				<th nowrap style="border: 1px solid #988989 !important;">E'yer</th>
 				<th nowrap style="border: 1px solid #988989 !important;">Total</th>
@@ -213,6 +220,9 @@
 				$overall_total_ee_sosco_amount = 0;
 				$overall_total_epf_er = 0;
 				$overall_total_sosco_er = 0;
+				$overall_total_sip_ee = 0;
+				$overall_total_sosco_sip = 0;
+				$overall_total_pcb = 0;
 			@endphp
 			@foreach($data['cat_list'] as $key => $category)
 				@php
@@ -223,10 +233,16 @@
 					$total_ee_sosco_amount = 0;
 					$total_epf_er = 0;
 					$total_sosco_er = 0;
+					$total_sosco_sip = 0;
+					$total_sosco_sip_er = 0;
+					$total_pcb = 0;
 				@endphp
 
 				@if($catcount>0)
 				@foreach($catsalaries as $salary)
+				@php
+					$adddeductioncost = CommonHelper::getSalaryAllowanceCost($salary->id,5);
+				@endphp
 				<tr>
 					<td style="border: 1px solid #988989 !important;">{{$slno}}</td>
 					<td style="border: 1px solid #988989 !important;">{{ $salary->epf_number}}</td>
@@ -239,6 +255,11 @@
 					<td style="border: 1px solid #988989 !important;">{{ number_format($salary->ee_sosco_amount,2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ number_format($salary->sosco_er,2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ number_format($salary->ee_sosco_amount+$salary->sosco_er,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format($salary->eis_sip_amount,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format($salary->sosco_eissip,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format($salary->eis_sip_amount+$salary->sosco_eissip,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ $adddeductioncost==0 ? '' : number_format($adddeductioncost,2,".","") }}</td>
 				</tr>
 				@php
 					$slno++;
@@ -246,6 +267,9 @@
 					$total_ee_sosco_amount += $salary->ee_sosco_amount;
 					$total_epf_er += $salary->epf_er;
 					$total_sosco_er += $salary->sosco_er;
+					$total_sosco_sip += $salary->eis_sip_amount;
+					$total_sosco_sip_er += $salary->sosco_eissip;
+					$total_pcb += $adddeductioncost;
 				@endphp
 				@endforeach
 				<tr style="font-weight: bold">
@@ -258,25 +282,33 @@
 					<td style="border: 1px solid #988989 !important;">{{ number_format($total_ee_sosco_amount,2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ number_format($total_sosco_er,2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ number_format($total_ee_sosco_amount+$total_sosco_er,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format($total_sosco_sip,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format($total_sosco_sip_er,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format($total_sosco_sip+$total_sosco_sip_er,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ $total_pcb==0 ? '' : number_format($total_pcb,2,".","") }}</td>
 				</tr>
 				@php
 					$overall_total_epf_ee_amount += $total_epf_ee_amount;
 					$overall_total_ee_sosco_amount += $total_ee_sosco_amount;
 					$overall_total_epf_er += $total_epf_er;
 					$overall_total_sosco_er += $total_sosco_er;
+					$overall_total_sip_ee += $total_sosco_sip;
+					$overall_total_sosco_sip += $total_sosco_sip_er;
+					$overall_total_pcb += $total_pcb;
 				@endphp
 				@if($tot_cat-1 != $key)
 				<tr>
-					<td colspan="11" style="border-left: 1px solid #988989 !important;border-right: 1px solid #988989 !important;"></td>
+					<td colspan="16" style="border-left: 1px solid #988989 !important;border-right: 1px solid #988989 !important;"></td>
 				</tr>
 				<tr>
-					<td colspan="11" style="border-left: 1px solid #988989 !important;border-right: 1px solid #988989 !important;"></td>
+					<td colspan="16" style="border-left: 1px solid #988989 !important;border-right: 1px solid #988989 !important;"></td>
 				</tr>
 				@endif
 				@endif
 			@endforeach
 			<tr>
-				<td colspan="11" style="border: 1px solid #988989 !important;"></td>
+				<td colspan="16" style="border: 1px solid #988989 !important;"></td>
 			</tr>
 
 		</tbody>
@@ -291,6 +323,11 @@
 					<td style="border: 1px solid #988989 !important;">{{ number_format($overall_total_ee_sosco_amount,2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ number_format($overall_total_sosco_er,2,".","") }}</td>
 					<td style="border: 1px solid #988989 !important;">{{ number_format($overall_total_ee_sosco_amount+$overall_total_sosco_er,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;"></td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format($overall_total_sip_ee,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format($overall_total_sosco_sip,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format($overall_total_sip_ee+$overall_total_sosco_sip,2,".","") }}</td>
+					<td style="border: 1px solid #988989 !important;">{{ number_format($overall_total_pcb,2,".","") }}</td>
 				</tr>
 		</tfoot>
 	</table>	
