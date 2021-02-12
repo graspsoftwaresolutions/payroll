@@ -43,13 +43,14 @@
 		}
 		
 		@page  {
-		  margin: 3mm
+			size: A3 landscape;
+		 	margin: 3mm;
 		}
 		
 		@media  print {
 			@page  {
-				size: landscape; 
-				margin: 3mm;
+				size: A3 landscape;
+				margin: 2mm;
 			}
 		    thead {display: table-header-group;} 
 		    tfoot {display: table-footer-group;}
@@ -191,28 +192,41 @@
 				$additions_list = $data['addition_list'];
 				//dd($additions_list);
 				$additions_count = count($additions_list);
-				$deductions_list = $data['deduction_list'];
+				//$deductions_list = $data['deduction_list'];
+				$newdeductions_list = [];
+				foreach($data['deduction_list'] as $key => $deduction){
+					if($key==4){
+						$newdeductions_list[] = $deduction;
+					}
+				}
+				foreach($data['deduction_list'] as $key => $deduction){
+					if($key!=4){
+						$newdeductions_list[] = $deduction;
+					}
+				}
+				$deductions_list = $newdeductions_list;
+				//dd($newdeductions_list);
 				$deductions_count = count($deductions_list);
 				$other_deductions_list = $data['other_deduction_list'];
 				$other_deductions_count = count($other_deductions_list);
 			@endphp
 			<tr class="" style="text-align:center;">
-				<th rowspan="2" style="border: 1px solid #988989 !important;">NO</th>
-				<th rowspan="2" nowrap style="border: 1px solid #988989 !important;white-space: nowrap;">STAFF NAME - AS PER NRIC</th>
-				<th rowspan="2" nowrap style="border: 1px solid #988989 !important;">POSITION</th>
-				<th rowspan="2" nowrap style="border: 1px solid #988989 !important;" class="nric_no">BANK</th>
-				<th rowspan="2" nowrap style="border: 1px solid #988989 !important;">START DATE</th>
-				<th rowspan="2" nowrap style="border: 1px solid #988989 !important;">RESIGN DATE</th>
-				<th rowspan="2" nowrap style="border: 1px solid #988989 !important;">BASIC SALARY(RM)</th>
+				<th rowspan="2" align="center" style="border: 1px solid #988989 !important;">NO</th>
+				<th rowspan="2" align="center" nowrap style="border: 1px solid #988989 !important;white-space: nowrap;">STAFF NAME - AS PER NRIC</th>
+				<th rowspan="2" align="center" nowrap style="border: 1px solid #988989 !important;">POSITION</th>
+				<th rowspan="2" align="center" nowrap style="border: 1px solid #988989 !important;" class="nric_no">BANK</th>
+				<th rowspan="2" align="center" nowrap style="border: 1px solid #988989 !important;">START DATE</th>
+				<th rowspan="2" align="center" nowrap style="border: 1px solid #988989 !important;">RESIGN DATE</th>
+				<th rowspan="2" align="center" nowrap style="border: 1px solid #988989 !important;">BASIC SALARY(RM)</th>
 				<th colspan="{{ $additions_count }}" nowrap align="center" style="border: 1px solid #988989 !important;text-align:center;">ALLOW(RM)</th>
-				<th rowspan="2" nowrap style="border: 1px solid #988989 !important;">TOTAL
+				<th rowspan="2" nowrap style="border: 1px solid #988989 !important;text-align: center;">TOTAL
 					<br>
 					ALLOWANCE RM
 				</th>
-				<th nowrap rowspan="2" style="border: 1px solid #988989 !important;">TOTAL
+				<th nowrap rowspan="2" style="border: 1px solid #988989 !important;text-align: center;">TOTAL
 					OT (RM)
 				</th>
-				<th nowrap rowspan="2" style="border: 1px solid #988989 !important;">GROSS
+				<th nowrap rowspan="2" style="border: 1px solid #988989 !important;text-align: center;">GROSS
 					<br>
 					SALARY &nbsp;&nbsp;&nbsp; (RM)
 				</th>
@@ -221,8 +235,8 @@
 				<th nowrap align="center" style="border: 1px solid #988989 !important;text-align:center;">EE</th>
 				<th nowrap colspan="{{ $deductions_count }}" align="center" style="border: 1px solid #988989 !important;text-align:center;">STANDING INSTRUCTION - DEDUCTION</th>
 				<th nowrap colspan="{{ $other_deductions_count }}" align="center" style="border: 1px solid #988989 !important;text-align:center;">OTHER DEDUCTION</th>
-				<th nowrap rowspan="2" style="border: 1px solid #988989 !important;">TOTAL <br> DEDUCTIONS  RM</th>
-				<th nowrap rowspan="2" style="border: 1px solid #988989 !important;">NET PAY</th>
+				<th nowrap rowspan="2" align="center" style="border: 1px solid #988989 !important;text-align: center;">TOTAL <br> DEDUCTIONS  RM</th>
+				<th nowrap rowspan="2" align="center" style="border: 1px solid #988989 !important;">NET PAY</th>
 				<th nowrap colspan="2" align="center" style="border: 1px solid #988989 !important;text-align:center;">EPF-ER</th>
 				<th nowrap align="center" style="border: 1px solid #988989 !important;text-align:center;">SOCSO - ER</th>
 				<th nowrap align="center" style="border: 1px solid #988989 !important;text-align:center;">SOCSO - EIS/SIP - ER</th>
