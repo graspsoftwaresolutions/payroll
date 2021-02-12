@@ -196,9 +196,9 @@
                   </div>
 
                   <div class="form-group{{ $errors->has('deductions_total') ? ' has-error' : '' }}">
-                  <label for="deductions_total" class="col-sm-3 control-label">{{ __('Total Deductions Allowances') }}</label>
+                  <label for="deductions_total" class="col-sm-3 control-label">{{ __('Total Deductions') }}</label>
                   <div class="col-sm-6">
-                  <input type="text" style="poniter-events:none;"  readonly id="deductions_total" name="deductions_total" value="{{ $salary_data->deductions_total }}" class="form-control total_deductioncalc" placeholder="{{ __('Deductions Total Allowances') }}">
+                  <input type="text" style="poniter-events:none;"  readonly id="deductions_total" name="deductions_total" value="{{ $salary_data->deductions_total }}" class="form-control total_deductioncalc" placeholder="{{ __('Total Deductions') }}">
                         
                   </div>
                 </div>
@@ -228,9 +228,9 @@
                   </div>
                   </div>
                   <div class="form-group{{ $errors->has('otherdeductions_total') ? ' has-error' : '' }}">
-                  <label for="otherdeductions_total" class="col-sm-3 control-label">{{ __('Total Other Deduction Allowances') }}</label>
+                  <label for="otherdeductions_total" class="col-sm-3 control-label">{{ __('Total Other Deduction') }}</label>
                   <div class="col-sm-6">
-                  <input type="text" readonly  id="otherdeductions_total" name="otherdeductions_total" value="{{ $salary_data->otherdeductions_total }}" class="form-control" placeholder="{{ __('Other deductions Total Allowances') }}">
+                  <input type="text" readonly  id="otherdeductions_total" name="otherdeductions_total" value="{{ $salary_data->otherdeductions_total }}" class="form-control" placeholder="{{ __('Other deductions Total') }}">
                         
                   </div>
                 </div>
@@ -251,7 +251,8 @@
 						<label for="EPF_ERper" class="col-sm-3 control-label">{{ __('EPF-ER %') }}</label>
 						<div id="EPF_ERidper" class="col-sm-6 @if($salary_data->epf_check==0) hide @endif">
 							<select name="EPF_ERper" onchange="return CalculateEPAmount(this.value)" id="EPF_ERper" class="form-control">
-								<option value="13" @if($salary_data->epf_percent==13) selected @endif >13</option>
+								<option value="12" @if($salary_data->epf_percent==12) selected @endif >12</option>
+                <option value="13" @if($salary_data->epf_percent==13) selected @endif >13</option>
 								<option value="17" @if($salary_data->epf_percent==17) selected @endif>17</option>
 							</select>
 						  
@@ -307,7 +308,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Modal Header</h4>
+            <h4 class="modal-title">Additional Allowances</h4>
           </div>
           <div class="modal-body">
             <div class="row">
@@ -359,10 +360,10 @@
 				<div class="col-sm-5">
 					<div class="form-group">
 					
-                      <label for="room_type" class="block fixed-label">{{__('Select Allowances') }}</label>                 
+                      <label for="room_type" class="block fixed-label">{{__('Select Deductions') }}</label>                 
                       <select id="deductions_allowances" name="deductions_allowances[]" class="form-control select-validate" data-live-search="true" data-width="100%">
 
-                          <option selected="true" disabled value="0">Select Allowances</option>
+                          <option selected="true" disabled value="0">Select Deductions</option>
                             @foreach($data['deduction_allownces'] as $deductions)
                               <option value="{{$deductions->additionid}}">{{$deductions->name}}</option>
                             @endforeach
@@ -401,9 +402,9 @@
 				 <div class="col-sm-5">  
 					<div class="form-group">
                
-                      <label for="room_type" class="block fixed-label">{{__('Select Allowances') }}</label>                 
+                      <label for="room_type" class="block fixed-label">{{__('Select Deductions') }}</label>                 
                       <select id="other_deductions_allowances" name="other_deductions_allowances[]" class="form-control select-validate" data-live-search="true" data-width="100%">
-                          <option selected="true" disabled value="0">Select Allowances</option>
+                          <option selected="true" disabled value="0">Select Deductions</option>
                         
                             @foreach($data['other_allownces'] as $otherdeductions)
                               <option value="{{$otherdeductions->additionid}}">{{$otherdeductions->name}}</option>
@@ -874,7 +875,7 @@ $(document).on('click', 'button.removebutton', function () {
 	}
 	
 	function CalculateEPAmount(pfpercent){
-		if(pfpercent==13){
+		if(pfpercent==13 || pfpercent==12){
 			var EPF_ERref = $("#EPF_ERref").val();
 			$("#EPF_ER").val(EPF_ERref);
 		}else{
