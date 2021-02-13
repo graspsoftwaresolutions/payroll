@@ -60,10 +60,10 @@
               <!--  <li><a href="{{ url('/hrm/payroll') }}"><i class="fa fa-circle-o"></i> {{ __('Manage Salary') }}</a></li>
               -->  @endpermission
                 @permission('salary-list')
-                <li id="salarylistli"><a href="{{ url('/hrm/payroll/salary-list') }}"><i class="fa fa-circle-o"></i> {{ __('Salary List') }}</a></li>
+                <li id="salarylistli"><a href="{{ url('/hrm/payroll/salary-list') }}"><i class="fa fa-circle-o"></i>{{ __('Salary List') }}</a></li>
                 @endpermission
 
-                <li id="bonussalarylistli"><a href="{{ url('/hrm/payroll/bonus-salary-list') }}"><i class="fa fa-circle-o"></i> {{ __('Bonus Salary List') }}</a></li>
+                <li id="bonussalarylistli"><a href="{{ url('/hrm/payroll/bonus-salary-list') }}"><i class="fa fa-circle-o"></i>{{ __('Bonus Salary List') }}</a></li>
 
                 <!--<li><a href="{{ url('/hrm/payroll/increment/search') }}"><i class="fa fa-circle-o"></i>{{ __(' New Increment') }}</a></li>
                 <li><a href="{{ url('/hrm/payroll/increment/list') }}"><i class="fa fa-circle-o"></i> {{ __('Increment List') }}</a></li>
@@ -86,9 +86,9 @@
                 @permission('provident-fund')
                <!-- <li><a href="{{ url('/hrm/provident-funds') }}"><i class="fa fa-circle-o"></i>{{ __(' Provident Fund') }}</a></li>
                 -->@endpermission
-                <li><a href="{{ route('payroll.addition') }}"><i class="fa fa-circle-o"></i>{{ __(' Addition') }}</a></li>
+                <li><a href="{{ route('payroll.addition') }}"><i class="fa fa-circle-o"></i>{{ __('Addition') }}</a></li>
                 <li id="additionalsalid"><a href="{{ route('payroll.addition_sal')  }}"><i class="fa fa-circle-o"></i>{{ __('Manage Additional Salary') }}</a></li>
-                <li><a href="{{ route('payroll.deduction')  }}"><i class="fa fa-circle-o"></i>{{ __(' Deduction') }}</a></li>
+                <li><a href="{{ route('payroll.deduction')  }}"><i class="fa fa-circle-o"></i>{{ __('Deduction') }}</a></li>
                 <li><a href="{{ route('payroll.other_deduction')  }}"><i class="fa fa-circle-o"></i>{{ __('Other Deduction') }}</a></li>
 
               
