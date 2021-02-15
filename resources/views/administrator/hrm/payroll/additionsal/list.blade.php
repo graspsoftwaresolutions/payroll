@@ -72,7 +72,7 @@
                         <tbody id="myTable">
                             @foreach($data['salaries'] as $salary)
 								 <tr>
-									<td>{{ $salary->name }}</td>
+									<td>{{ strtoupper($salary->name) }}</td>
 									<td>{{ $salary->gross_salary }}</td>
 									<td>{{ $salary->total_deductions }}</td>
 									<td>{{ $salary->net_pay }}</td>

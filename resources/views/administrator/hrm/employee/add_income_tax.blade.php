@@ -119,7 +119,7 @@
                   <div class="form-group">
                     <label for="employee_name" class="col-sm-4 ">{{ __('1. Full Name of Employee/Pensioner (Mr./Miss/Madam)') }}<span style="color:red;">*</span></label>
                     <div class="col-sm-8">
-                      <input type="text" required="" name="employee_name" id="employee_name" class="form-control" placeholder="">
+                      <input type="text" required="" name="employee_name" id="employee_name" autocomplete="new-password" class="form-control clearable" placeholder="Employee Name">
                       <input type="text" name="employee_id" id="employee_id" class="form-control hide" placeholder="">
                     </div>
                   </div>
@@ -679,7 +679,7 @@
     $("#incometaxli").addClass("active");
 
     $('#employee_name').autocomplete({
-    // minChars: 1,
+    //minChars:0,
     source: function(request, response) {
       $.ajaxSetup({
        headers: {
@@ -697,7 +697,7 @@
           // alert('hii');
         //   $('.customer_details').hide();
         //   $('.customer_add').show();
-          var res_msg = "No Results found, please add Customer";
+          var res_msg = "No Results found, please add Employee";
            alert(res_msg);
           
         }
@@ -713,8 +713,9 @@
       }
       });
     },
+    minLength: 0,
     select: function (event, ui) {
-      console.log(ui.item.employee_id);
+     // console.log(ui.item.employee_id);
        $("#employee_name").val(ui.item.name);
        $("#employee_id").val(ui.item.user_id);
        $("#new_ic_no").val(ui.item.new_ic_no);

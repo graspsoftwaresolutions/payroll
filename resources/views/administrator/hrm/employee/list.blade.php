@@ -77,7 +77,7 @@
                     
                         @foreach($data['employee_list'] as $values)
                         <tr>
-                            <td>{{$values->name}}</td>
+                            <td>{{ strtoupper($values->name) }}</td>
                             <td>{{$values->category}}</td>
                             <td>{{$values->ic_no}}</td>
                             <td>{{$values->new_ic_no}}</td>
@@ -90,7 +90,18 @@
                                 }
                             @endphp
                             <td>{{$age}}</td>
-                            <td>{{$values->status==1 ? 'Active' : 'InActive' }}</td>
+                            <td>
+                                @php
+                                    if($values->status==1){
+                                        $statusname = 'Active';
+                                    }else if($values->status==2){
+                                        $statusname = 'InActive';
+                                    }else{
+                                        $statusname = 'Resigned';
+                                    }
+                                @endphp
+                                {{ $statusname }}
+                            </td>
                             <td class="text-center action">
                                 
                             </td>

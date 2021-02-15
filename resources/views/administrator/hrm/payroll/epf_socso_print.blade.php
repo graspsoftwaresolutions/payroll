@@ -180,7 +180,7 @@
 					<span style="text-align:center;font-weight: bold;font-size:18px;vertical-align:top;">NATIONAL UNION OF BANK EMPLOYEES</span>
 					<br>
 					<br>
-					<span style="text-align:center;font-weight: bold;font-size:16px;vertical-align:top;">EPF & SOCSO STATEMENT FOR MONTH OF {{ strtoupper(date('F Y',strtotime($data['filterdate']))) }}</span>
+					<span style="text-align:center;font-weight: bold;font-size:16px;vertical-align:top;">EPF, SOCSO, SIP & PCB STATEMENT FOR MONTH OF {{ strtoupper(date('F Y',strtotime($data['filterdate']))) }}</span>
 				</td>
 				
 			</tr>

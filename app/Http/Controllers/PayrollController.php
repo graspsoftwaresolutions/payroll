@@ -486,19 +486,17 @@ class PayrollController extends Controller {
         $keyword = $request->get('name');
         $type = $request->type;
         $search_param = "{$keyword}%";
-        if($keyword!='')
-        {
-            $result = DB::table('tbl_member')->select(DB::raw("CONCAT(name,'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER')
-                     ->orwhere("name","LIKE","%{$keyword}%")
-					 ->orwhere("ic_no","LIKE","%{$keyword}%")
-					 ->orwhere("new_ic_no","LIKE","%{$keyword}%")
-					 ->limit(25)
-                    // ->orwhere('c.zipcode','like', '%'.$keyword.'%')
-                    // ->orwhere('cit.city_name','like', '%'.$keyword.'%')
-                    
-                  //  ->dump()
+       
+            $result = DB::table('tbl_member')->select(DB::raw("CONCAT(upper(name),'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER')
+          			 ->Where("status","!=",3)
+          			 ->where(function($query) use ($keyword){
+							$query->orwhere("name","LIKE","%{$keyword}%")
+							 ->orwhere("ic_no","LIKE","%{$keyword}%")
+							 ->orwhere("new_ic_no","LIKE","%{$keyword}%");
+						})
+				
                 ->get();
-        }
+        
         
         echo json_encode($result);
 	}
@@ -508,19 +506,18 @@ class PayrollController extends Controller {
         $keyword = $request->get('name');
         $type = $request->type;
         $search_param = "{$keyword}%";
-        if($keyword!='')
-        {
-            $result = DB::table('tbl_member')->select(DB::raw("CONCAT(name,'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER','name','new_ic_no')
+        
+            $result = DB::table('tbl_member')->select(DB::raw("CONCAT(upper(name),'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER','name','new_ic_no')
                      ->orwhere("name","LIKE","%{$keyword}%")
 					 ->orwhere("ic_no","LIKE","%{$keyword}%")
 					 ->orwhere("new_ic_no","LIKE","%{$keyword}%")
-					 ->limit(25)
+					
                     // ->orwhere('c.zipcode','like', '%'.$keyword.'%')
                     // ->orwhere('cit.city_name','like', '%'.$keyword.'%')
                     
-                  //  ->dump()
+                 // ->dump()
                 ->get();
-        }
+      // dd($result);
         
         echo json_encode($result);
 	}
@@ -693,12 +690,17 @@ class PayrollController extends Controller {
     public function additionSalNew()
     {   
         $data['cat_list'] = Category::where('status','=','1')->get();
+       
+        $data['employees'] = DB::table('tbl_member')->select(DB::raw("CONCAT(name,'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER')->get();
+
         return view('administrator.hrm.payroll.additionsal.new')->with('data',$data);
     }
     public function additional_salary()
     {   
         //$data['cat_list'] = Category::where('status','=','1')->get();
         //return view('administrator.hrm.payroll.additionsal.new')->with('data',$data);
+        $data['employees'] = DB::table('tbl_member')->select(DB::raw("CONCAT(name,'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER')->get();
+
         $data['addition_allownces'] = DB::table('payroll_addition_deduction as ad')->select('ad.id as additionid','ad.name')
                                         ->where('ad.status','=','1')
                                         ->where('ad.main_cat_name','=','1')

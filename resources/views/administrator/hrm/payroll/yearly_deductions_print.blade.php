@@ -171,6 +171,7 @@
 @endphp
 <body>
 	<button onclick="javascript:window.print()" style="padding: 5px 10px;margin-left: 20px;font-size: 15px;" class="btn-print">Print</button>
+	<button class="exportToExcel export-button " style="background:#227849;color: #fff;padding: 5px 10px;margin-left: 20px;font-size: 15px;">Excel</button>
   	<table id="page-length-option" class="display table2excel" width="auto">
 		<thead>
 			<tr class="">
@@ -420,7 +421,20 @@
 	</table>	
 	
 </body>
+<script src="{{ asset('public/assets/js/jquery-1.12.4.min.js') }}" type="text/javascript"></script>
+<script src ="{{ asset('public/assets/js/jquery-ui.js') }}"></script>
+<script>
+	var excelfilenames="Yearly Deductions Report";
+</script>
+<script src="{{ asset('public/assets/js/jquery.table2excel.js') }}"></script>
+<script>
+	$(document).ready( function() { 
+		$("html").css('opacity',1);
 
-
-
+		$(".exportToExcel").click(function(e){
+			$("#page-length-option").table2excel();
+		});
+    }); 
+	
+</script>
 </html>

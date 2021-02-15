@@ -144,7 +144,7 @@
         <p>1. Full Name of Employee/Pensioner (Mr./Miss/Madam) </p>
       </div>
       <div style="float: left;width: 30%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->name }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ strtoupper($incomelist->name) }}</p>
       </div>
       <div class="clearfix"></div>
        <table width="100%" style="margin-left: -4px !important;padding: 0 !important;">

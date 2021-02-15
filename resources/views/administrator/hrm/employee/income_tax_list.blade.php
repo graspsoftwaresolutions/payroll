@@ -77,7 +77,7 @@
                     
                         @foreach($data['incometaxList'] as $values)
                         <tr>
-                            <td>{{$values->name}}</td>
+                            <td>{{ strtoupper($values->name) }}</td>
                             <td>{{$values->employee_no}}</td>
                             <td>{{$values->income_tax_no}}</td>
                             <td>{{$values->new_ic_no}}</td>

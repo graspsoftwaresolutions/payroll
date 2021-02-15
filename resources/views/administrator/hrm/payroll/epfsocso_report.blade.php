@@ -9,12 +9,12 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      {{ __('Epf Socso Statement') }}
+      {{ __('Deduction Report') }}
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{ url('/dashboard') }}"><i class="fa fa-dashboard"></i> {{ __('Dashboard') }}</a></li>
       <li><a>{{ __('Payroll') }}</a></li>
-      <li class="active">{{ __('Epf Socso Statement') }}</li>
+      <li class="active">{{ __('Deduction Report') }}</li>
     </ol>
   </section>
 
@@ -23,7 +23,7 @@
     <!-- Default box -->
     <div class="box">
       <div class="box-header with-border">
-        <h3 class="box-title">{{ __('Epf Socso Statement') }}</h3>
+        <h3 class="box-title">{{ __('Deduction Report') }}</h3>
 
         <!-- <div class="box-tools pull-right">
           <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
@@ -86,7 +86,7 @@
              
               <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-10">
-                  <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-arrow-right"></i> {{ __('VIEW EPF SOCSO STATEMENT') }}</button>
+                  <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-arrow-right"></i> {{ __('VIEW DEDUCTION REPORT') }}</button>
                 </div>
               </div>
               <!-- /.end group -->

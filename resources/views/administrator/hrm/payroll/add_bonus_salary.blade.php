@@ -222,6 +222,7 @@
 			}
 		  });
 		},
+    minLength: 0,
 		select: function (event, ui) {
 			 $("#employee_name").val(ui.item.value);
 			 $("#user_id").val(ui.item.user_id);

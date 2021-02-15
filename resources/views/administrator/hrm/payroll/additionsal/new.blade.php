@@ -63,7 +63,7 @@
                   <label for="user_id" class="col-sm-3 control-label">{{ __('Employee Name') }}</label>
                   <div class="col-sm-6">
                   <input type="hidden" name="user_id" id="user_id">
-                  <input class="form-control clearable" type="text" id="employee_name" required="" placeholder="Search Customer" name="employee_name">
+                  <input class="form-control clearable" type="text" id="employee_name" required="" placeholder="Search Employee" name="employee_name">
                          @if ($errors->has('name'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('name') }}</strong>
@@ -467,6 +467,7 @@ $(document).ready(function(){
 			}
 		  });
 		},
+     minLength: 0,
 		select: function (event, ui) {
 			 $("#employee_name").val(ui.item.value);
 			 $("#user_id").val(ui.item.user_id);

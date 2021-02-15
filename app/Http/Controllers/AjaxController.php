@@ -72,7 +72,7 @@ class AjaxController extends Controller
             foreach ($salary_qry as $salary)
             {
                 $nestedData['month_year'] = date('M/Y',strtotime($salary->salary_date));
-                $nestedData['name'] = $salary->name;
+                $nestedData['name'] = strtoupper($salary->name);
                 $nestedData['gross_salary'] = $salary->gross_salary;
                 $nestedData['total_deductions'] = $salary->total_deductions;
                 $nestedData['net_pay'] = $salary->net_pay;
@@ -161,14 +161,14 @@ class AjaxController extends Controller
             foreach ($salary_qry as $salary)
             {
                 $nestedData['month_year'] = date('M/Y',strtotime($salary->salary_date));
-                $nestedData['name'] = $salary->name;
+                $nestedData['name'] = strtoupper($salary->name);
                 $nestedData['gross_salary'] = $salary->gross_salary;
                 $nestedData['total_deductions'] = $salary->deductions_total;
                 $nestedData['net_pay'] = $salary->net_pay;
                // $saalry_enc_id = Crypt::encrypt($salary->id);
 
                 $editlink = route('bonus.salaryEdit',Crypt::encrypt($salary->id));
-                $nestedData['actions'] = '<a style="font-size:19px" class="btn btn-sm red waves-effect waves-circle waves-light" href="'.$editlink.'"><i class="icon fa fa-edit"></i></a>';
+                $nestedData['actions'] = '<a style="font-size:19px" class="btn btn-sm red waves-effect waves-circle waves-light" href="#"><i class="icon fa fa-edit"></i></a>';
                 //$date = date('M/Y',strtotime($company->date));
                 
                         

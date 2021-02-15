@@ -68,7 +68,7 @@
                   <div class="col-sm-6">
                   <input type="hidden" name="user_id" id="user_id">
                   <input type="hidden" name="auto_id" id="auto_id" value="{{ $salary_data->id }}" />
-                  <input class="form-control clearable" type="text" id="employee_name" readonly placeholder="Search Customer" value="{{ $memberinfo->name }}" name="employee_name">
+                  <input class="form-control clearable" type="text" id="employee_name" readonly placeholder="Search Employee" value="{{ strtoupper($memberinfo->name) }}" name="employee_name">
                          @if ($errors->has('name'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('name') }}</strong>
