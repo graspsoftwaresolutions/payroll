@@ -105,7 +105,8 @@
            
             <ul class="treeview-menu">
               
-                <li><a href="{{ route('reports.epfsocso') }}"><i class="fa fa-circle-o"></i>{{ __('EPF & SOCSO') }}</a></li>
+                <li><a href="{{ route('reports.epfsocso') }}"><i class="fa fa-circle-o"></i>{{ __('Deduction Report') }}</a></li>
+                <li><a href="{{ route('reports.yearly') }}"><i class="fa fa-circle-o"></i>{{ __('Yearly Report') }}</a></li>
 
               
             </ul>

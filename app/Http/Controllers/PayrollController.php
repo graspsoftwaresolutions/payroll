@@ -1384,4 +1384,51 @@ class PayrollController extends Controller {
 		//dd(2);
 		return view('administrator.hrm.payroll.epf_socso_print')->with('data',$data);
 	}
+
+	public function yearlyReport(Request $request){
+		$employees = DB::table('tbl_member')->select(DB::raw("CONCAT(name,'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER')->get();
+
+        return view('administrator.hrm.payroll.yearly_report', compact('employees'));
+	}
+
+	public function yearlyDeductionsPrint(Request $request){
+		$reportyear = $request->input('reportyear');
+		$user_id = $request->input('user_id');
+
+		$salaries = DB::table('employee_salary as es')
+		->select('es.id','es.salary_date','es.gross_salary','es.total_deductions','es.net_pay','es.basic_salary','es.additional_allowance_total','es.ot_amount','es.epf_ee_amount','es.ee_sosco_amount','es.eis_sip_amount','es.total_deductions','es.net_pay','es.epf_er','es.sosco_er','es.sosco_eissip','es.epf_percent','es.epf_ee_percent')
+					->whereYear('es.salary_date','=',$reportyear)
+					->where('es.employee_id','=',$user_id)
+					->orderBy('es.salary_date', 'asc')
+					//->groupBy()
+					->get();
+			
+		$data['salaries'] = $salaries;
+		$data['employee'] = DB::table('tbl_member as m')
+		->select('m.name','m.designation','m.doj','m.category','m.status','m.resign_date','e.bank_account_no','e.epf_number','e.socso_number')
+					->leftjoin('tbl_employee_details as e', 'm.employee_no', '=', 'e.membership_no')
+					->where('m.user_id','=',$user_id)
+					->first();
+		
+		$data['reportyear'] = $reportyear;
+
+		$data['addition_list'] = DB::table('payroll_addition_deduction as ad')->select('ad.id as additionid','ad.name','ad.assigned_to','c.cat_name')
+					->leftjoin('category_master as c','c.id','=','ad.cat_id')
+					->where('ad.status','=','1')
+					->where('ad.main_cat_name','=','1')
+					->get();
+		$data['deduction_list'] = DB::table('payroll_addition_deduction as ad')->select('ad.id as additionid','ad.name','ad.assigned_to','c.cat_name')
+					->leftjoin('category_master as c','c.id','=','ad.cat_id')
+					->where('ad.status','=','1')
+					->where('ad.main_cat_name','=','2')
+					->get();
+		$data['other_deduction_list'] = DB::table('payroll_addition_deduction as ad')->select('ad.id as additionid','ad.name','ad.assigned_to','c.cat_name')
+					->leftjoin('category_master as c','c.id','=','ad.cat_id')
+					->where('ad.status','=','1')
+					->where('ad.main_cat_name','=','3')
+					->get();
+		//$data = [];
+		//dd(2);
+		return view('administrator.hrm.payroll.yearly_deductions_print')->with('data',$data);
+	}
 }
