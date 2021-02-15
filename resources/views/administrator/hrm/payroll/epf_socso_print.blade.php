@@ -239,6 +239,24 @@
 				@endphp
 
 				@if($catcount>0)
+				<tr >
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important;background: #f2f2f2;">{{$category->cat_name}}</td>
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important; "></td>
+					<td style="border: 1px solid #988989 !important; "></td>
+				</tr>
 				@foreach($catsalaries as $salary)
 				@php
 					$adddeductioncost = CommonHelper::getSalaryAllowanceCost($salary->id,5);
