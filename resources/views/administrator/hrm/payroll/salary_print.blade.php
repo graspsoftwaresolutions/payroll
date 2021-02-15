@@ -99,8 +99,8 @@
 				<td colspan="5" style="font-weight:bold;padding:1%;text-align:center;">Pay slip for the period of {{ date('M Y',strtotime($salary_data->salary_date)) }}</td>
 				</tr>
 				<tr>
-				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Name</td>
-				<td style="font-weight:bold;">{{ $memberinfo->name }}</td>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">NAME</td>
+				<td style="font-weight:bold;">{{ strtoupper($memberinfo->name) }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Code</td>
 				<td colspan="2"></td>
 				</tr>

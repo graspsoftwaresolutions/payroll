@@ -58,9 +58,9 @@
               <label for="user_id" class="col-sm-3 control-label">{{ __('Employee Name') }}</label>
               <div class="col-sm-3">
                 <select name="emp_id" id="user_id" required class="form-control">
-                  <option selected value="" disabled>{{ __('Select One') }}</option>
+                  <option selected value="" disabled>{{ __('SELECT ONE') }}</option>
                   @foreach($employees as $employee)
-                  <option value="{{ $employee->user_id }}"><strong>{{ $employee->value }} </option>
+                  <option value="{{ $employee->user_id }}"><strong>{{ strtoupper($employee->value) }} </option>
                     @endforeach
                   </select>
                   @if ($errors->has('user_id'))
