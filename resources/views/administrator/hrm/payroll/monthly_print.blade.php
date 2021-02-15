@@ -400,7 +400,7 @@
 					<td style="border: 1px solid #988989 !important;">{{ date('d/m/Y',strtotime($salary->doj)) }}</td>
 					<td style="border: 1px solid #988989 !important;">
 					@php
-					if($salary->status==0){
+					if($salary->status==3){
 					   if(($salary->resign_date)!="1970-01-01" && ($salary->resign_date)!="0000-00-00"){
 							echo date('d/m/Y',strtotime($salary->resign_date));	
 						}					

@@ -322,12 +322,12 @@
 					$total_additional_allowance += $salary->additional_allowance_total;
 					$total_ot_amount += $salary->ot_amount;
 					$total_gross_salary += $salary->gross_salary;
-					$total_epf_ee_amount += $salary->epf_ee_amount;
+					$total_epf_ee_amount += round($salary->epf_ee_amount);
 					$total_ee_sosco_amount += $salary->ee_sosco_amount;
 					$total_eis_sip_amount += $salary->eis_sip_amount;
 					$total_deductions_all += $salary->total_deductions;
 					$total_net_pay += $salary->net_pay;
-					$total_epf_er += $salary->epf_er;
+					$total_epf_er += round($salary->epf_er);
 					$total_sosco_er += $salary->sosco_er;
 					$total_sosco_eissip += $salary->sosco_eissip;
 					$slno++;
