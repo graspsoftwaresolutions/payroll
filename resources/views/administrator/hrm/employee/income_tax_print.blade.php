@@ -4,40 +4,17 @@
 <head>
   <title>Income tax print</title>
   <style>
-    .company-details{
-      text-align:center;
-      font-weight: 900;
-      font-size:15px;
-    }
+   
     .page{
-      padding:30px;
+      padding:20px;
     }
     .align-right{
       text-align:right;
     }
-    .sign-top{
-      padding-top:90px
-    }
-    .member-info{
-      font-size:13px;
-    }
-    .member-info td{
-      padding-top:5px;
-    }
-    .payment-info td{
-      border-right: 2px dotted grey;
-      border-collapse: separate;
-      border-spacing: 2px;
-      padding-right:10px;
-    }
-    .payment-info td{
-      padding-top:7px;
-    }
-    .payment-info{
-      font-size:14px;
-    }
+    
     body {
       font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
     }
     .clearfix {
       clear: both;
@@ -48,7 +25,7 @@
     }
     .panel-info {
         border: 1px solid #353738;
-        padding: 10px;
+        padding:  1px 10px;
     }
     p{
       padding: 1px;
@@ -77,7 +54,7 @@
           MALAYSIA
 
         </td>
-        <td width="30%" style="font-size: 14px;">
+        <td width="30%" style="font-size: 11px;">
           PRIVATE SECTOR Employee’s <br> Statement of Remuneration
         </td>
       </tr>
@@ -89,12 +66,12 @@
           INCOME TAX
 
         </td>
-        <td style="font-size: 14px;">
+        <td style="font-size: 11px;">
           Employee’s Income Tax No.
         </td>
       </tr>
       <tr>
-        <td style="font-size: 12px;">
+        <td style="font-size: 10px;">
           <table width="100%">
             <tr>
               <td width="50%">Serial No.</td>
@@ -102,7 +79,7 @@
             </tr>
           </table>
         </td>
-        <td align="center" style="font-size: 12px;">
+        <td align="center" style="">
           <br>
           STATEMENT OF REMUNERATION FROM EMPLOYMENT
 
@@ -112,7 +89,7 @@
         </td>
       </tr>
       <tr>
-        <td style="font-size: 12px;">
+        <td style="">
           <table width="100%">
             <tr>
               <td width="50%">Employer’s No.</td>
@@ -120,13 +97,13 @@
             </tr>
           </table>
         </td>
-        <td align="center" style="font-size: 12px;">
+        <td align="center" style="">
          
           FOR THE YEAR ENDED 31 DECEMBER <span style="border-bottom: 1px dashed #000;"> &nbsp; {{ $incomelist->endyear }} &nbsp;  </span>
 
         </td>
         <td >
-          <div style="float: left;width: 50%;font-size: 12px;margin-top: 7px;">
+          <div style="float: left;width: 50%;font-size: 10px;margin-top: 2px;">
             <p>LHDNM Branch</p>
           </div>
           
@@ -137,9 +114,9 @@
       </tr>
     </table>
     
-    <p style="text-align:center;padding:5px; margin: 10px 0px;background:#000;color: #fff;font-size: 13px;font-weight: bold;">THIS FORM EA MUST BE PREPARED AND PROVIDED TO THE EMPLOYEE FOR INCOME TAX PURPOSE</p>
-    <p style="padding:5px 0px; margin: 10px 0px;font-size: 14px;font-weight: bold;"> <span style="background:#000;color: #fff;padding:8px 8px 8px 10px; font-size: 16px;">  A </span> &nbsp; PARTICULARS OF EMPLOYEE</p>
-    <div style="padding-left: 35px;font-size: 13px;">
+    <p style="text-align:center;padding:5px; margin: 3px 0px;background:#000;color: #fff;font-size: 11px;font-weight: bold;">THIS FORM EA MUST BE PREPARED AND PROVIDED TO THE EMPLOYEE FOR INCOME TAX PURPOSE</p>
+    <p style="padding:5px 0px; margin: 5px 0px;font-size: 11px;font-weight: bold;"> <span style="background:#000;color: #fff;padding:4px 4px 4px 4px; font-size: 14px;">  A </span> &nbsp; PARTICULARS OF EMPLOYEE</p>
+    <div style="padding-left: 35px;font-size: 11px;">
       <div style="float: left;width: 70%;">
         <p>1. Full Name of Employee/Pensioner (Mr./Miss/Madam) </p>
       </div>
@@ -237,12 +214,12 @@
           </tr>
         </table>
     </div>
-    <p style="text-align:center;padding:5px; margin: 10px 0px;background:#000;color: #fff;font-size: 13px;">EMPLOYMENT INCOME, BENEFITS AND LIVING ACCOMMODATION</p>
-    <p style="padding:5px 0px; margin: 10px 0px;font-size: 14px;font-weight: bold;"> <span style="background:#000;color: #fff;padding:8px 8px 14px 10px; font-size: 16px;">  B </span> &nbsp; EMPLOYMENT INCOME, BENEFITS AND LIVING ACCOMMODATION <span style="float: right;margin-right: 50px;"> RM</span><br>
+    <p style="text-align:center;padding:5px; margin: 3px 0px;background:#000;color: #fff;font-size: 11px;">EMPLOYMENT INCOME, BENEFITS AND LIVING ACCOMMODATION</p>
+    <p style="padding:5px 0px; margin: 4px 0px;font-size: 11px;font-weight: bold;"> <span style="background:#000;color: #fff;padding:4px 4px 7px 5px; font-size: 12px;">  B </span> &nbsp; EMPLOYMENT INCOME, BENEFITS AND LIVING ACCOMMODATION <span style="float: right;margin-right: 50px;"> RM</span><br>
       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <small> (Excluding Tax Exempt Allowances/Perquisites/Gifts/Benefits)</small>
 
     </p>
-    <div style="padding-left: 30px;font-size: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;">
       <div style="float: left;width: 80%;">
         <p>1. (a) Gross salary, wages or leave pay (including overtime pay) </p>
       </div>
@@ -250,7 +227,7 @@
         <p style="border-bottom: 1px dashed #000;">{{ $incomelist->gross_salary }}</p>
       </div>
     </div>
-    <div style="padding-left: 30px;font-size: 13px;margin-left: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;margin-left: 13px;">
       <div style="float: left;width: 80%;">
         <p>(b) Fees (including director fees), commission or bonus </p>
       </div>
@@ -258,7 +235,7 @@
         <p style="border-bottom: 1px dashed #000;">{{ $incomelist->fees }}</p>
       </div>
     </div>
-    <div style="padding-left: 30px;font-size: 13px;margin-left: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;margin-left: 13px;">
       <div style="float: left;width: 80%;">
         <p>(c) Gross tips, perquisites, awards/rewards or other allowances (Details of payment: <small style="border-bottom: 1px dashed #000;">{{ $incomelist->gross_tips }}</small> ) </p>
         
@@ -267,7 +244,7 @@
         <p style="border-bottom: 1px dashed #000;">{{ $incomelist->net_salary }}</p>
       </div>
     </div>
-    <div style="padding-left: 30px;font-size: 13px;margin-left: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;margin-left: 13px;">
       <div style="float: left;width: 80%;">
         <p>(d) Income Tax borne by the Employer in respect of his Employee </p>
       </div>
@@ -275,7 +252,7 @@
         <p style="border-bottom: 1px dashed #000;">{{ $incomelist->employer_brone_amt }}</p>
       </div>
     </div>
-    <div style="padding-left: 30px;font-size: 13px;margin-left: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;margin-left: 13px;">
       <div style="float: left;width: 80%;">
         <p>(e) Employee Share Option Scheme (ESOS) benefit </p>
       </div>
@@ -283,7 +260,7 @@
         <p style="border-bottom: 1px dashed #000;">{{ $incomelist->esos_benefit }}</p>
       </div>
     </div>
-    <div style="padding-left: 30px;font-size: 13px;margin-left: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;margin-left: 13px;">
       <div style="float: left;width: 80%;">
         <table>
           <tr>
@@ -299,14 +276,14 @@
         <p style="border-bottom: 1px dashed #000;">{{ $incomelist->gratuity }}</p>
       </div>
     </div>
-    <div style="padding-left: 30px;font-size: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;">
       <div style="float: left;width: 100%;">
         <p>2. Details of arrears and others for preceding years paid in the current year </p>
       </div>
      
     </div>
     <div class="clearfix"></div>
-    <div style="padding-left: 30px;font-size: 13px;margin-left: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;margin-left: 13px;">
       <div style="float: left;width: 40%;">
         <table width="100%">
           <tr>
@@ -333,7 +310,7 @@
     </div>
     
     <div class="clearfix"></div>
-    <div style="padding-left: 30px;font-size: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;">
       <div style="float: left;width: 80%;">
         <p>3. Benefits in kind ( Specify: <small style="border-bottom: 1px dashed #000;">{{ $incomelist->benefits_details }}</small> ) </p>
         
@@ -343,7 +320,7 @@
       </div>
     </div>
     <div class="clearfix"></div>
-    <div style="padding-left: 30px;font-size: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;">
       <div style="float: left;width: 80%;">
         <p>4. Value of living accommodation provided (Address: <small style="border-bottom: 1px dashed #000;">{{ $incomelist->accommodation_address }}</small> ) </p>
         
@@ -352,7 +329,7 @@
         <p style="border-bottom: 1px dashed #000;">{{ $incomelist->accommodation_value }}</p>
       </div>
     </div>
-    <div style="padding-left: 30px;font-size: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;">
       <div style="float: left;width: 80%;">
         <p>5. Refund from unapproved Provident/Pension Fund </p>
       </div>
@@ -360,7 +337,7 @@
         <p style="border-bottom: 1px dashed #000;">{{ $incomelist->refund_fund }}</p>
       </div>
     </div>
-    <div style="padding-left: 30px;font-size: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;">
       <div style="float: left;width: 80%;">
         <p>6. Compensation for loss of employment </p>
       </div>
@@ -371,8 +348,8 @@
     <div class="clearfix">
       
     </div>
-    <p style="padding:3px 0px; margin: 10px 0px 10px 0px;font-size: 14px;font-weight: bold;"> <span style="background:#000;color: #fff;padding:8px 8px 8px 10px; font-size: 16px;">  C </span> &nbsp; PENSION AND OTHERS</p>
-     <div style="padding-left: 30px;font-size: 13px;">
+    <p style="padding:3px 0px; margin: 5px 0px 5px 0px;font-size: 11px;font-weight: bold;"> <span style="background:#000;color: #fff;padding:4px 4px 4px 5px; font-size: 14px;">  C </span> &nbsp; PENSION AND OTHERS</p>
+     <div style="padding-left: 30px;font-size: 11px;">
       <div style="float: left;width: 80%;">
         <p>1. Pension </p>
       </div>
@@ -380,7 +357,7 @@
         <p style="border-bottom: 1px dashed #000;">{{ $incomelist->pension }}</p>
       </div>
     </div>
-    <div style="padding-left: 30px;font-size: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;">
       <div style="float: left;width: 80%;">
         <p>2. Annuities or other Periodical Payments</p>
       </div>
@@ -388,7 +365,7 @@
         <p style="border-bottom: 1px dashed #000;">{{ $incomelist->annuities_payment }}</p>
       </div>
     </div>
-    <div style="padding-left: 30px;font-size: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;">
       <div style="float: left;width: 80%;">
         <p>TOTAL</p>
       </div>
@@ -399,8 +376,8 @@
      <div class="clearfix">
       
     </div>
-    <p style="padding:5px 0px; margin: 10px 0px;font-size: 14px;font-weight: bold;"> <span style="background:#000;color: #fff;padding:8px 8px 8px 10px; font-size: 16px;">  D </span> &nbsp; TOTAL DEDUCTION</p>
-     <div style="padding-left: 30px;font-size: 13px;">
+    <p style="padding:5px 0px; margin: 3px 0px;font-size: 11px;font-weight: bold;"> <span style="background:#000;color: #fff;padding:4px 4px 4px 4px; font-size: 14px;">  D </span> &nbsp; TOTAL DEDUCTION</p>
+     <div style="padding-left: 30px;font-size: 11px;">
       <div style="float: left;width: 80%;">
         <p>1. Monthly Tax Deductions (MTD) remitted to LHDNM </p>
       </div>
@@ -408,7 +385,7 @@
         <p style="border-bottom: 1px dashed #000;">{{ $incomelist->monthly_tax_deduction }}</p>
       </div>
     </div>
-    <div style="padding-left: 30px;font-size: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;">
       <div style="float: left;width: 80%;">
         <p>2. CP 38 Deductions</p>
       </div>
@@ -416,7 +393,7 @@
         <p style="border-bottom: 1px dashed #000;">{{ $incomelist->cp_deduction }}</p>
       </div>
     </div>
-    <div style="padding-left: 30px;font-size: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;">
       <div style="float: left;width: 80%;">
         <p>3. Zakat paid via salary deduction</p>
       </div>
@@ -424,13 +401,13 @@
         <p style="border-bottom: 1px dashed #000;">{{ $incomelist->zakat_paid }}</p>
       </div>
     </div>
-    <div style="padding-left: 30px;font-size: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;">
       <div style="float: left;width: 100%;">
         <p>4. Total claim for deduction by employee via Form TP1 in respect of:</p>
       </div>
      
     </div>
-    <div style="padding-left: 30px;font-size: 13px;margin-left: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;margin-left: 13px;">
       <div style="float: left;width: 80%;">
         <table width="100%">
           <tr>
@@ -456,7 +433,7 @@
       
       
     </div>
-    <div style="padding-left: 30px;font-size: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;">
       <div style="float: left;width: 80%;">
         <p>5. Total qualifying child relief</p>
       </div>
@@ -466,21 +443,21 @@
     </div>
     <div class="clearfix"></div>
     
-    <p style="padding:5px 0px; margin: 10px 0px;font-size: 14px;font-weight: bold;"> <span style="background:#000;color: #fff;padding:8px 8px 8px 10px; font-size: 16px;">  E </span> &nbsp; CONTRIBUTIONS PAID BY EMPLOYEE TO APPROVED PROVIDENT/PENSION FUND AND SOCSO</p>
-    <div style="padding-left: 30px;font-size: 13px;">
-      <div style="width: 100%;margin-top: 10px;">
+    <p style="padding:5px 0px; margin: 4px 0px;font-size: 11px;font-weight: bold;"> <span style="background:#000;color: #fff;padding:4px 4px 4px 7px; font-size: 14px;">  E </span> &nbsp; CONTRIBUTIONS PAID BY EMPLOYEE TO APPROVED PROVIDENT/PENSION FUND AND SOCSO</p>
+    <div style="padding-left: 30px;font-size: 11px;">
+      <div style="width: 100%;margin-top: 3px;">
         <table width="100%">
           <tr>
-            <td width="23%"> <br>
+            <td width="23%"> 
             1. Name of Provident Fund</td>
-            <td width="77%"><br><p style="border-bottom: 1px dashed #000;">{{ $incomelist->provident_fund_name!='' ? $incomelist->provident_fund_name : '&nbsp;' }}</p></td>
+            <td width="77%"><p style="border-bottom: 1px dashed #000;">{{ $incomelist->provident_fund_name!='' ? $incomelist->provident_fund_name : '&nbsp;' }}</p></td>
           </tr>
         </table>
         
       </div>
       
     </div>
-    <div style="padding-left: 30px;font-size: 13px;margin-left: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;margin-left: 13px;">
       <div style="float: left;width: 75%;">
        <p>
         Amount of compulsory contribution paid (state the employee’s share of contribution only)
@@ -493,7 +470,7 @@
         <p style="border-bottom: 1px dashed #000;">{{ $incomelist->contribution_paid!='' ? $incomelist->contribution_paid : '&nbsp;' }}</p>
       </div>
     </div>
-    <div style="padding-left: 30px;font-size: 13px;">
+    <div style="padding-left: 30px;font-size: 11px;">
       <div style="float: left;width: 75%;">
        <p>
         2. SOCSO : Amount of compulsory contribution paid (state the employee’s share of <br> &nbsp;&nbsp;&nbsp; contribution only)
@@ -509,18 +486,18 @@
     <div class="clearfix"></div>
     <div style="">
       <div style="float: left;width: 76%;">
-        <p style="padding:5px 0px; margin: 10px 0px;font-size: 14px;font-weight: bold;"> <span style="background:#000;color: #fff;padding:8px 8px 8px 10px; font-size: 16px;">  F </span> &nbsp; TOTAL TAX EXEMPT ALLOWANCES / PERQUISITES / GIFTS / BENEFITS</p>
+        <p style="padding:5px 0px; margin: 3px 0px;font-size: 11px;font-weight: bold;"> <span style="background:#000;color: #fff;padding:4px 4px 4px 4px; font-size: 12px;">  F </span> &nbsp; TOTAL TAX EXEMPT ALLOWANCES / PERQUISITES / GIFTS / BENEFITS</p>
       </div>
       <div style="float: left;width: 5%;">
-       <p style="padding:5px 0px; margin: 10px 0px;font-size: 13px;"> &nbsp; RM</p>
+       <p style="padding:5px 0px; margin: 3px 0px;font-size: 11px;"> &nbsp; RM</p>
       </div>
-      <div style="float: left;width: 19%;font-size: 13px;">
-        <p style="border-bottom: 1px dashed #000;padding:5px 0px; margin: 10px 0px;">{{ $incomelist->total_tax!='' ? $incomelist->total_tax : '&nbsp;' }}</p>
+      <div style="float: left;width: 19%;font-size: 11px;">
+        <p style="border-bottom: 1px dashed #000;padding:5px 0px; margin: 3px 0px;">{{ $incomelist->total_tax!='' ? $incomelist->total_tax : '&nbsp;' }}</p>
       </div>
     </div>
     <div class="clearfix"></div>
-    <div style="padding-left: 30px;font-size: 13px;">
-      <div class="bottom-section" style="float: left;width: 20%;vertical-align: bottom;margin-top: 90px;">
+    <div style="padding-left: 30px;font-size: 11px;">
+      <div class="bottom-section" style="float: left;width: 20%;vertical-align: bottom;margin-top: 65px;">
         <table>
           <tr>
             <td class="bottom-content"> <p> Date: </p></td>
