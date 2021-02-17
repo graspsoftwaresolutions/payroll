@@ -11,10 +11,6 @@
 		    border-bottom: none !important; 
 		}
 
-		.page-header, .page-header-space {
-		  height: 100px;
-		  z-index:999;
-		}
 		
 		.page-footer, .page-footer-space {
 		  height: 50px;
@@ -29,14 +25,7 @@
 		  background: #fff; /* for demo */
 		  color:#000;
 		}
-		
-		.page-header {
-		  position: fixed;
-		  top: 0mm;
-		  width: 100%;
-		  background: #fff; /* for demo */
-		  color:#000;
-		}
+	
 		
 		.page {
 		  page-break-after: always;
@@ -45,6 +34,11 @@
 		@page  {
 			size: A3 landscape;
 		 	margin: 3mm;
+		}
+		#page-length-option td, #page-length-option th {
+		  //border: 1px solid #ddd !important;
+		  padding: 4px;
+		  font-size:17px;
 		}
 		
 		@media  print {
@@ -61,14 +55,7 @@
 			.export-button{
 				display:none !important;
 			}
-			.page-header, .page-header-space {
-			  height: 70px;
-			  z-index:999;
-			}
-			.page-header,.page-table-header-space {
-			  //background: #fff; /* for demo */
-			  //color:#000;
-			}
+		
 			#page-length-option {
 			  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 			  border-collapse: collapse;
@@ -78,7 +65,7 @@
 			#page-length-option td, #page-length-option th {
 			  //border: 1px solid #ddd !important;
 			  padding: 4px;
-			  font-size:5px;
+			  font-size:17px;
 			}
 			html {
 
@@ -86,20 +73,12 @@
 			    font-weight: normal;
 			    line-height: 1; 
 			    color: rgba(0, 0, 0, .87);
-			    font-size: 12px;
+			    font-size: 17px;
 			}
 			.nric_no{
 				width:10% !important;
 			}
 			
-			.report-address{
-				font-weight:bold;
-				font-size:14px;
-			}
-
-			.page-header-area{
-				display: none;
-			}
 			
 		}
 		@media  not print {
@@ -109,16 +88,7 @@
 			    border-spacing: 0;
 			    border-collapse: none;
 			}
-			.page-table-header-space {
-			  width: 100%;
-			 // position: fixed;
-			  top:101px;
-			  margin-bottom:20px;
-			  background: #343d9f; /* for demo */
-			  z-index:999;
-			  color:#fff;
-			  font-size: 14px;
-			}
+			
 			.tbody-area{
 				top:140px;
 				//position: absolute;
@@ -126,9 +96,7 @@
 			.nric_no{
 				width:150px !important;
 			}
-			.page-header-area{
-				display: none;
-			}
+			
 		}
 		td, th {
 			display: table-cell;

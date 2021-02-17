@@ -507,10 +507,11 @@ class PayrollController extends Controller {
         $type = $request->type;
         $search_param = "{$keyword}%";
         
-            $result = DB::table('tbl_member')->select(DB::raw("CONCAT(upper(name),'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER','name','new_ic_no')
-                     ->orwhere("name","LIKE","%{$keyword}%")
-					 ->orwhere("ic_no","LIKE","%{$keyword}%")
-					 ->orwhere("new_ic_no","LIKE","%{$keyword}%")
+            $result = DB::table('tbl_member as t')->select(DB::raw("CONCAT(upper(t.name),'-',t.new_ic_no) AS value"),'t.user_id','t.short_code','t.email','t.EPF_EE','t.basic_salary','t.EE_SOSCO','t.EIS_SIP','t.EPS_ER','t.EPS_ER_perentage','t.SOSCO_ER','t.name','t.new_ic_no','e.epf_number','e.socso_number','t.employee_no')
+            		->leftjoin('tbl_employee_details as e', 't.employee_no', '=', 'e.membership_no')
+                     ->orwhere("t.name","LIKE","%{$keyword}%")
+					 ->orwhere("t.ic_no","LIKE","%{$keyword}%")
+					 ->orwhere("t.new_ic_no","LIKE","%{$keyword}%")
 					
                     // ->orwhere('c.zipcode','like', '%'.$keyword.'%')
                     // ->orwhere('cit.city_name','like', '%'.$keyword.'%')
@@ -1262,7 +1263,7 @@ class PayrollController extends Controller {
 	}
 
 	public function incomeTaxList(){
-		$data['incometaxList'] = DB::table('income_tax as i')->select('i.id as incometaxid','i.income_tax_no','i.employee_no','i.new_ic_no','m.doj','m.dob','i.gross_salary','m.name')->leftjoin('tbl_member as m', 'm.user_id', '=', 'i.employee_id')->get();
+		$data['incometaxList'] = DB::table('income_tax as i')->select('i.id as incometaxid','i.income_tax_no','i.employee_no','i.new_ic_no','m.doj','m.dob','i.gross_salary','m.name','i.endyear')->leftjoin('tbl_member as m', 'm.user_id', '=', 'i.employee_id')->get();
 		return view('administrator.hrm.employee.income_tax_list')->with('data',$data);
 	}
 
@@ -1286,6 +1287,15 @@ class PayrollController extends Controller {
 		$data['epf_no'] = $request->input('epf_no');
 		$data['socso_no'] = $request->input('socso_no');
 		$data['no_of_children'] = $request->input('no_of_children');
+
+		if($data['endyear']!='' && $data['employee_id']!=''){
+			$existcount = DB::table('income_tax as i')->select('i.id')->where('i.employee_id','=',$data['employee_id'])->where('i.endyear','=',$data['endyear'])->count();
+			if($existcount==1){
+				return redirect('/hrm/incometax')->with('exception', 'Income Tax already exists for this employee !!');
+			}
+		}else{
+			return redirect('/hrm/incometax')->with('exception', 'please pick employee and year!!');
+		}
 
 		$date_commencement = $request->input('date_commencement');
 		$date_cessation = $request->input('date_cessation');

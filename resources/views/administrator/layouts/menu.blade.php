@@ -46,7 +46,7 @@
         </li>
          <li><a href="{{ url('/hrm/employee') }}"><i class="fa fa-user"></i> <span>{{ __('Employee List') }}</span></a></li>
          <li id="incometaxli"><a href="{{ url('/hrm/incometax') }}"><i class="fa fa-money"></i> <span>{{ __('Income Tax') }}</span></a></li>
-        @permission('payroll-management')
+       
         <li class="treeview">
             <a href="#">
                 <i class="fa fa-dollar text-purple"></i> <span>{{ __('Payroll Management') }}</span>
@@ -59,9 +59,9 @@
                 @permission('manage-salary')
               <!--  <li><a href="{{ url('/hrm/payroll') }}"><i class="fa fa-circle-o"></i> {{ __('Manage Salary') }}</a></li>
               -->  @endpermission
-                @permission('salary-list')
+                
                 <li id="salarylistli"><a href="{{ url('/hrm/payroll/salary-list') }}"><i class="fa fa-circle-o"></i>{{ __('Salary List') }}</a></li>
-                @endpermission
+                
 
                 <li id="bonussalarylistli"><a href="{{ url('/hrm/payroll/bonus-salary-list') }}"><i class="fa fa-circle-o"></i>{{ __('Bonus Salary List') }}</a></li>
 
@@ -94,7 +94,6 @@
               
             </ul>
         </li>
-        @endpermission
         <li class="treeview">
             <a href="#">
                 <i class="fa fa-file-text-o text-purple"></i> <span>{{ __('Reports') }}</span>
@@ -229,9 +228,9 @@
             </ul>
          </li>-->
          @endpermission
-       @permission('file-upload')
+       
         <li><a href="{{ url('/hrm/salary/statement') }}"><i class="fa fa-certificate"></i> <span>{{ __('Salary Statement') }}</span></a></li>
-        @endpermission
+       
 
         @permission('hrm-setting')
       <!--  <li class="treeview">

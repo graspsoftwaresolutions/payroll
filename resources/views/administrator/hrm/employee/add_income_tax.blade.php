@@ -119,7 +119,7 @@
                   <div class="form-group">
                     <label for="employee_name" class="col-sm-4 ">{{ __('1. Full Name of Employee/Pensioner (Mr./Miss/Madam)') }}<span style="color:red;">*</span></label>
                     <div class="col-sm-8">
-                      <input type="text" required="" name="employee_name" id="employee_name" autocomplete="new-password" class="form-control clearable" placeholder="Employee Name">
+                      <input type="text" required="" name="employee_name" id="employee_name" autocomplete="new-password" class="form-control" placeholder="Employee Name">
                       <input type="text" name="employee_id" id="employee_id" class="form-control hide" placeholder="">
                     </div>
                   </div>
@@ -231,7 +231,7 @@
                  1. (a) Gross salary, wages or leave pay (including overtime pay)
                 </div>
                 <div class="col-sm-3">
-                  <input type="text" name="gross_salary" id="gross_salary" class="form-control" placeholder="">
+                  <input type="text" name="gross_salary" id="gross_salary" class="form-control allow_decimal" onkeyup="CalulateTotal()" placeholder="">
                   <br>
                 </div>
               </div>
@@ -240,7 +240,7 @@
                  &nbsp; (b) Fees (including director fees), commission or bonus
                 </div>
                 <div class="col-sm-3">
-                  <input type="text" name="fees" id="fees" class="form-control" placeholder="">
+                  <input type="text" name="fees" id="fees" onkeyup="CalulateTotal()" class="form-control allow_decimal" placeholder="">
                   <br>
                 </div>
               </div>
@@ -256,7 +256,7 @@
                   </div>
                 </div>
                 <div class="col-sm-3">
-                  <input type="text" name="net_salary" id="net_salary" class="form-control" placeholder="">
+                  <input type="text" name="net_salary" id="net_salary" onkeyup="CalulateTotal()" class="form-control allow_decimal" placeholder="">
                    <br>
                 </div>
               </div>
@@ -265,7 +265,7 @@
                 &nbsp; (d) Income Tax borne by the Employer in respect of his Employee
                 </div>
                 <div class="col-sm-3">
-                  <input type="text" name="employer_brone_amt" id="employer_brone_amt" class="form-control" placeholder="">
+                  <input type="text" name="employer_brone_amt" id="employer_brone_amt" onkeyup="CalulateTotal()" class="form-control allow_decimal" placeholder="">
                   <br>
                 </div>
               </div>
@@ -274,7 +274,7 @@
                 &nbsp; (e) Employee Share Option Scheme (ESOS) benefit
                 </div>
                 <div class="col-sm-3">
-                  <input type="text" name="esos_benefit" id="esos_benefit" class="form-control" placeholder="">
+                  <input type="text" name="esos_benefit" id="esos_benefit" class="form-control allow_decimal" onkeyup="CalulateTotal()" placeholder="">
                   <br>
                 </div>
               </div>
@@ -294,7 +294,7 @@
                   <br>
                 </div>
                 <div class="col-sm-3">
-                  <input type="text" name="gratuity" id="gratuity" class="form-control" placeholder="">
+                  <input type="text" name="gratuity" id="gratuity" onkeyup="CalulateTotal()" class="form-control allow_decimal" placeholder="">
                   <br>
                 </div>
               </div>
@@ -343,7 +343,7 @@
                   </div>
                 </div>
                 <div class="col-sm-3 ">
-                  <input type="text" name="arrear_paid" id="arrear_paid" class="form-control" placeholder="">
+                  <input type="text" name="arrear_paid" id="arrear_paid" onkeyup="CalulateTotal()" class="form-control allow_decimal" placeholder="">
                    <br>
                 </div>
               </div>
@@ -362,7 +362,7 @@
                   </div>
                 </div>
                 <div class="col-sm-3">
-                  <input type="text" name="benefits_amount" id="benefits_amount" class="form-control" placeholder="">
+                  <input type="text" name="benefits_amount" id="benefits_amount" onkeyup="CalulateTotal()" class="form-control allow_decimal" placeholder="">
                    <br>
                 </div>
               </div>
@@ -381,7 +381,7 @@
                   </div>
                 </div>
                 <div class="col-sm-3">
-                  <input type="text" name="accommodation_value" id="accommodation_value" class="form-control" placeholder="">
+                  <input type="text" name="accommodation_value" id="accommodation_value" onkeyup="CalulateTotal()" class="form-control allow_decimal" placeholder="">
                    <br>
                 </div>
               </div>
@@ -390,7 +390,7 @@
                  5. Refund from unapproved Provident/Pension Fund
                 </div>
                 <div class="col-sm-3">
-                  <input type="text" name="refund_fund" id="refund_fund" class="form-control" placeholder="">
+                  <input type="text" name="refund_fund" id="refund_fund" onkeyup="CalulateTotal()" class="form-control allow_decimal" placeholder="">
                   <br>
                 </div>
               </div>
@@ -399,7 +399,7 @@
                  6. Compensation for loss of employment
                 </div>
                 <div class="col-sm-3">
-                  <input type="text" name="compensation_loss" id="compensation_loss" class="form-control" placeholder="">
+                  <input type="text" name="compensation_loss" id="compensation_loss" onkeyup="CalulateTotal()" class="form-control allow_decimal" placeholder="">
                   <br>
                 </div>
               </div>
@@ -413,7 +413,7 @@
                  1. Pension
                 </div>
                 <div class="col-sm-3">
-                  <input type="text" name="pension" id="pension" class="form-control" placeholder="">
+                  <input type="text" name="pension" id="pension" onkeyup="CalulateTotal()" class="form-control allow_decimal" placeholder="">
                   <br>
                 </div>
               </div>
@@ -422,16 +422,16 @@
                  2. Annuities or other Periodical Payments
                 </div>
                 <div class="col-sm-3">
-                  <input type="text" name="annuities_payment" id="annuities_payment" class="form-control" placeholder="">
+                  <input type="text" name="annuities_payment" id="annuities_payment" onkeyup="CalulateTotal()" class="form-control allow_decimal" placeholder="">
                   <br>
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-9 bold">
+                <div class="col-sm-9 bold" style="font-size: 16px;">
                  TOTAL
                 </div>
                 <div class="col-sm-3">
-                  <input type="text" name="pension_total" id="pension_total" class="form-control" placeholder="">
+                  <input type="text" name="pension_total" id="pension_total" readonly="" class="form-control" style="border-color: #000 !important;" placeholder="">
                   <br>
                 </div>
               </div>
@@ -674,6 +674,7 @@
         format: 'dd/mm/yyyy',
         autoHide: true,
     });
+    $('#employee_name').attr('autocomplete','off');
 
     //$("#categorylistli").parents().addClass("active");
     $("#incometaxli").addClass("active");
@@ -707,6 +708,9 @@
             object.value = item.name;
             object.user_id = item.user_id;
             object.new_ic_no = item.new_ic_no;
+            object.epf_number = item.epf_number;
+            object.socso_number = item.socso_number;
+            object.employee_no = item.employee_no;
            
             return object         
         }));
@@ -720,8 +724,39 @@
        $("#employee_id").val(ui.item.user_id);
        $("#new_ic_no").val(ui.item.new_ic_no);
        $("#basic_salary").val(ui.item.basic_salary);
+       $("#epf_no").val(ui.item.epf_number);
+       $("#socso_no").val(ui.item.socso_number);
        
       },
      });
-      </script>
+    $(".allow_decimal").on("input", function(evt) {
+       var self = $(this);
+       self.val(self.val().replace(/[^0-9\.]/g, ''));
+       if ((evt.which != 46 || self.val().indexOf('.') != -1) && (evt.which < 48 || evt.which > 57)) 
+       {
+         evt.preventDefault();
+       }
+     });
+
+    function CalulateTotal(){
+      //alert('hi');
+      var gross_salary = $("#gross_salary").val()=='' ? 0 : $("#gross_salary").val();
+      var fees = $("#fees").val()=='' ? 0 : $("#fees").val();
+      var net_salary = $("#net_salary").val()=='' ? 0 : $("#net_salary").val();
+      var employer_brone_amt = $("#employer_brone_amt").val()=='' ? 0 : $("#employer_brone_amt").val();
+      var esos_benefit = $("#esos_benefit").val()=='' ? 0 : $("#esos_benefit").val();
+      var gratuity = $("#gratuity").val()=='' ? 0 : $("#gratuity").val();
+      var arrear_paid = $("#arrear_paid").val()=='' ? 0 : $("#arrear_paid").val();
+      var benefits_amount = $("#benefits_amount").val()=='' ? 0 : $("#benefits_amount").val();
+      var accommodation_value = $("#accommodation_value").val()=='' ? 0 : $("#accommodation_value").val();
+      var refund_fund = $("#refund_fund").val()=='' ? 0 : $("#refund_fund").val();
+      var compensation_loss = $("#compensation_loss").val()=='' ? 0 : $("#compensation_loss").val();
+      var pension = $("#pension").val()=='' ? 0 : $("#pension").val();
+      var annuities_payment = $("#annuities_payment").val()=='' ? 0 : $("#annuities_payment").val();
+      var total_tax = (parseFloat(gross_salary)+parseFloat(fees)+parseFloat(net_salary)+parseFloat(employer_brone_amt)+parseFloat(esos_benefit)+parseFloat(gratuity)+parseFloat(arrear_paid)+parseFloat(benefits_amount)+parseFloat(accommodation_value)+parseFloat(refund_fund)+parseFloat(compensation_loss)+parseFloat(pension)+parseFloat(annuities_payment)).toFixed(2);
+        ///alert(total_tax);
+      $("#pension_total").val(total_tax);
+    }
+
+    </script>
   @endsection

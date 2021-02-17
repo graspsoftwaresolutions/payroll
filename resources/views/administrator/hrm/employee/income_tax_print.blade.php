@@ -224,7 +224,7 @@
         <p>1. (a) Gross salary, wages or leave pay (including overtime pay) </p>
       </div>
       <div style="float: left;width: 20%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->gross_salary }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->gross_salary!='' ? $incomelist->gross_salary : '&nbsp;' }}</p>
       </div>
     </div>
     <div style="padding-left: 30px;font-size: 11px;margin-left: 13px;">
@@ -232,7 +232,7 @@
         <p>(b) Fees (including director fees), commission or bonus </p>
       </div>
       <div style="float: left;width: 20%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->fees }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->fees!='' ? $incomelist->fees : '&nbsp;' }}</p>
       </div>
     </div>
     <div style="padding-left: 30px;font-size: 11px;margin-left: 13px;">
@@ -241,7 +241,7 @@
         
       </div>
       <div style="float: left;width: 20%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->net_salary }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->net_salary!='' ? $incomelist->net_salary : '&nbsp;' }}</p>
       </div>
     </div>
     <div style="padding-left: 30px;font-size: 11px;margin-left: 13px;">
@@ -249,7 +249,7 @@
         <p>(d) Income Tax borne by the Employer in respect of his Employee </p>
       </div>
       <div style="float: left;width: 20%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->employer_brone_amt }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->employer_brone_amt!='' ? $incomelist->employer_brone_amt : '&nbsp;' }}</p>
       </div>
     </div>
     <div style="padding-left: 30px;font-size: 11px;margin-left: 13px;">
@@ -257,7 +257,7 @@
         <p>(e) Employee Share Option Scheme (ESOS) benefit </p>
       </div>
       <div style="float: left;width: 20%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->esos_benefit }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->esos_benefit!='' ? $incomelist->esos_benefit : '&nbsp;' }}</p>
       </div>
     </div>
     <div style="padding-left: 30px;font-size: 11px;margin-left: 13px;">
@@ -273,7 +273,7 @@
         
       </div>
       <div style="float: left;width: 20%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->gratuity }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->gratuity!='' ? $incomelist->gratuity : '&nbsp;' }}</p>
       </div>
     </div>
     <div style="padding-left: 30px;font-size: 11px;">
@@ -316,7 +316,7 @@
         
       </div>
       <div style="float: left;width: 20%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->benefits_amount }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->benefits_amount!='' ? $incomelist->benefits_amount : '&nbsp;' }}</p>
       </div>
     </div>
     <div class="clearfix"></div>
@@ -326,7 +326,7 @@
         
       </div>
       <div style="float: left;width: 20%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->accommodation_value }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->accommodation_value!='' ? $incomelist->accommodation_value : '&nbsp;' }}</p>
       </div>
     </div>
     <div style="padding-left: 30px;font-size: 11px;">
@@ -334,7 +334,7 @@
         <p>5. Refund from unapproved Provident/Pension Fund </p>
       </div>
       <div style="float: left;width: 20%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->refund_fund }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->refund_fund!='' ? $incomelist->refund_fund : '&nbsp;' }}</p>
       </div>
     </div>
     <div style="padding-left: 30px;font-size: 11px;">
@@ -342,7 +342,7 @@
         <p>6. Compensation for loss of employment </p>
       </div>
       <div style="float: left;width: 20%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->compensation_loss }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->compensation_loss!='' ? $incomelist->compensation_loss : '&nbsp;' }}</p>
       </div>
     </div>
     <div class="clearfix">
@@ -354,7 +354,7 @@
         <p>1. Pension </p>
       </div>
       <div style="float: left;width: 20%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->pension }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->pension!='' ? $incomelist->pension : '&nbsp;' }}</p>
       </div>
     </div>
     <div style="padding-left: 30px;font-size: 11px;">
@@ -362,7 +362,7 @@
         <p>2. Annuities or other Periodical Payments</p>
       </div>
       <div style="float: left;width: 20%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->annuities_payment }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->annuities_payment!='' ? $incomelist->annuities_payment : '&nbsp;' }}</p>
       </div>
     </div>
     <div style="padding-left: 30px;font-size: 11px;">
@@ -382,7 +382,7 @@
         <p>1. Monthly Tax Deductions (MTD) remitted to LHDNM </p>
       </div>
       <div style="float: left;width: 20%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->monthly_tax_deduction }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->monthly_tax_deduction!='' ? $incomelist->monthly_tax_deduction : '&nbsp;' }}</p>
       </div>
     </div>
     <div style="padding-left: 30px;font-size: 11px;">
@@ -390,7 +390,7 @@
         <p>2. CP 38 Deductions</p>
       </div>
       <div style="float: left;width: 20%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->cp_deduction }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->cp_deduction!='' ? $incomelist->cp_deduction : '&nbsp;' }}</p>
       </div>
     </div>
     <div style="padding-left: 30px;font-size: 11px;">
@@ -398,7 +398,7 @@
         <p>3. Zakat paid via salary deduction</p>
       </div>
       <div style="float: left;width: 20%;">
-        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->zakat_paid }}</p>
+        <p style="border-bottom: 1px dashed #000;">{{ $incomelist->zakat_paid!='' ? $incomelist->zakat_paid : '&nbsp;' }}</p>
       </div>
     </div>
     <div style="padding-left: 30px;font-size: 11px;">

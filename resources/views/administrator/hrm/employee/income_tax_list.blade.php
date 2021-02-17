@@ -67,6 +67,7 @@
                             <th>{{ __('Employee No') }}</th>
                             <th>{{ __('Income Tax No') }}</th>
                             <th>{{ __('New Ic No') }}</th>
+                            <th>{{ __('Year') }}</th>
                             <th>{{ __('DOJ') }}</th>
                             <th>{{ __('DOB') }}</th>
                             <th>{{ __('Gross Salary') }}</th>
@@ -81,6 +82,7 @@
                             <td>{{$values->employee_no}}</td>
                             <td>{{$values->income_tax_no}}</td>
                             <td>{{$values->new_ic_no}}</td>
+                            <td>{{$values->endyear}}</td>
                             <td>{{ $values->doj=='' || $values->doj=='0000-00-00' ? '' : date('d/m/Y',strtotime($values->doj)) }}</td>
                             <td>{{ $values->dob=='' || $values->dob=='0000-00-00' ? '' : date('d/m/Y',strtotime($values->dob)) }}</td>
                             <td>{{$values->gross_salary }}</td>
