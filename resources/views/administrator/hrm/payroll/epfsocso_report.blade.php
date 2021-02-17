@@ -54,7 +54,7 @@
 
 
 
-            <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }} hide">
+            <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
               <label for="user_id" class="col-sm-3 control-label">{{ __('Employee Name') }}</label>
               <div class="col-sm-3">
                 <select name="emp_id" id="user_id" required class="form-control">
@@ -113,7 +113,8 @@
     <script type="text/javascript">
       $("#searchform").submit(function(e){
           var monthyear = $("#monthpicker").val();
-          win = window.open('{{ $redirecturl }}?date='+monthyear, '_blank');
+          var user_id = $("#user_id").val();
+          win = window.open('{{ $redirecturl }}?date='+monthyear+'&user_id='+user_id, '_blank');
           return false;
       });
 

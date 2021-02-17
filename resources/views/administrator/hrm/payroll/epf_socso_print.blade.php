@@ -211,6 +211,8 @@
 				
 			</tr>
 		</thead>
+	
+		@if($data['user_id']=='null' || $data['user_id']==null || $data['user_id']=='')
 		<tbody class="" >
 			@php
 				$tot_cat = count($data['cat_list']);
@@ -348,6 +350,33 @@
 					<td style="border: 1px solid #988989 !important;">{{ number_format($overall_total_pcb,2,".","") }}</td>
 				</tr>
 		</tfoot>
+		@else
+		<tbody>
+			@foreach($data['salaries'] as $salary)
+			@php
+					$adddeductioncost = CommonHelper::getSalaryAllowanceCost($salary->id,5);
+			@endphp
+			<tr>
+				<td style="border: 1px solid #988989 !important;">1</td>
+				<td style="border: 1px solid #988989 !important;">{{ $salary->epf_number}}</td>
+				<td style="border: 1px solid #988989 !important;">{{ strtoupper($salary->name) }}</td>
+				<td style="border: 1px solid #988989 !important;">{{ number_format(round($salary->epf_ee_amount),2,".","") }}</td>
+				<td style="border: 1px solid #988989 !important;">{{ number_format(round($salary->epf_er),2,".","") }}</td>
+				<td style="border: 1px solid #988989 !important;">{{ number_format(round($salary->epf_ee_amount+$salary->epf_er),2,".","") }}</td>
+				<td style="border: 1px solid #988989 !important;"></td>
+				<td style="border: 1px solid #988989 !important;">{{ $salary->socso_number }}</td>
+				<td style="border: 1px solid #988989 !important;">{{ number_format($salary->ee_sosco_amount,2,".","") }}</td>
+				<td style="border: 1px solid #988989 !important;">{{ number_format($salary->sosco_er,2,".","") }}</td>
+				<td style="border: 1px solid #988989 !important;">{{ number_format($salary->ee_sosco_amount+$salary->sosco_er,2,".","") }}</td>
+				<td style="border: 1px solid #988989 !important;"></td>
+				<td style="border: 1px solid #988989 !important;">{{ number_format($salary->eis_sip_amount,2,".","") }}</td>
+				<td style="border: 1px solid #988989 !important;">{{ number_format($salary->sosco_eissip,2,".","") }}</td>
+				<td style="border: 1px solid #988989 !important;">{{ number_format($salary->eis_sip_amount+$salary->sosco_eissip,2,".","") }}</td>
+				<td style="border: 1px solid #988989 !important;">{{ $adddeductioncost==0 ? '' : number_format($adddeductioncost,2,".","") }}</td>
+			</tr>
+			@endforeach
+		</tbody>
+		@endif
 	</table>	
 	
 </body>

@@ -449,7 +449,7 @@ $(document).ready(function(){
 				  // alert('hii');
 				//   $('.customer_details').hide();
 				//   $('.customer_add').show();
-					var res_msg = "No Results found, please add Customer";
+					var res_msg = "No Results found, please add Employee";
 				   alert(res_msg);
 				  
 				}
