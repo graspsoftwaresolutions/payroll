@@ -11,7 +11,7 @@
     <ol class="breadcrumb">
       <li><a href="{{ url('/dashboard') }}"><i class="fa fa-dashboard"></i>{{ __('Dashboard') }} </a></li>
       <li><a>{{ __('Payroll') }}</a></li>
-      <li class="active">{{ __('Add Bonus Salary') }}</li>
+      <li class="active">{{ __('Edit Bonus Salary') }}</li>
     </ol>
   </section>
   <!-- Main content -->`
@@ -21,13 +21,17 @@
         <!-- Default box -->
         <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">{{ __('Add Bonus Salary') }}</h3>
+            <h3 class="box-title">{{ __('Edit Bonus Salary') }}</h3>
 
             <!-- <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
               <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
             </div> -->
           </div>
+          @php
+            $memberinfo = $data['memberinfo'];
+            $salary_data = $data['salary_data'];
+          @endphp
           <div class="box-body">
             <!-- Notification Box -->
             <div class="col-md-12">
@@ -45,7 +49,7 @@
             </div>
             <!-- /.Notification Box -->
             <div class="col-md-12">
-              <form class="form-horizontal" id="EmployeeForm"  name="employee_select_form" action="{{ route('add_bonus_save') }}" method="post">
+              <form class="form-horizontal" id="EmployeeForm"  name="employee_select_form" action="{{ route('update_bonus_save') }}" method="post">
                 {{ csrf_field() }}
 				
 				
@@ -53,7 +57,7 @@
 				   <div class="form-group">
 					<div class="input-group margin">
 					  <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-					  <input type="text" name="dateofsalary" readonly class="form-control" id="monthpicker">
+					  <input type="text" name="dateofsalary" readonly class="form-control"  value="{{ date('Y-m',strtotime($salary_data->salary_date)) }}" id="monthpickers">
 					 
 					</div>
 				  </div>
@@ -62,8 +66,9 @@
                 <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
                   <label for="user_id" class="col-sm-3 control-label">{{ __('Employee Name') }}</label>
                   <div class="col-sm-6">
-                  <input type="hidden" name="user_id" id="user_id">
-                  <input class="form-control clearable" type="text" id="employee_name" required="" placeholder="Search Employee" name="employee_name">
+                  <input type="hidden" name="user_id" id="user_id" value="{{ $memberinfo->user_id }}">
+                  <input type="hidden" name="auto_id" id="auto_id" value="{{ $salary_data->id }}">
+                  <input class="form-control clearable" type="text" id="employee_name" readonly="" placeholder="Search Employee" value="{{ $memberinfo->name }}" name="employee_name">
                          @if ($errors->has('name'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('name') }}</strong>
@@ -74,7 +79,7 @@
                 <div class="form-group{{ $errors->has('basic_salary') ? ' has-error' : '' }}">
                   <label for="basic_salary" class="col-sm-3 control-label">{{ __('Bonus Salary') }}</label>
                   <div class="col-sm-6">
-                  <input type="text"  id="basic_salary" name="basic_salary" class="form-control" required="" placeholder="{{ __('Bonus Salary') }}">
+                  <input type="text"  id="basic_salary" name="basic_salary" class="form-control" required="" value="{{ $salary_data->bonus_salary }}" placeholder="{{ __('Bonus Salary') }}">
                          @if ($errors->has('basic_salary'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('basic_salary') }}</strong>
@@ -86,7 +91,7 @@
                   <div class="form-group{{ $errors->has('gross_salary') ? ' has-error' : '' }}">
                   <label for="gross_salary" class="col-sm-3 control-label">{{ __('Gross Salary') }}</label>
                     <div class="col-sm-6">
-                    <input type="text" readonly  id="gross_salary" name="gross_salary" class="form-control" placeholder="{{ __('Gross Basic') }}">
+                    <input type="text" readonly  id="gross_salary" name="gross_salary" class="form-control" value="{{ $salary_data->gross_salary }}" placeholder="{{ __('Gross Basic') }}">
                     </div>
                 </div>
 				
@@ -96,7 +101,7 @@
 					
 					
                     <div id="epf_ee" class="col-sm-6 ">
-						<input type="text"  name="epf_ee_id" class="form-control deduction_price" value="" id="epf_ee_id">
+						<input type="text"  name="epf_ee_id" class="form-control deduction_price" value="{{ $salary_data->epf_ee_amount }}" id="epf_ee_id">
                           
                     </div>
                 </div>   
@@ -105,7 +110,7 @@
 					
 				  </label>
                     <div id="ee_soscos" class="col-sm-6 ">
-                       <input type="text" name="ee_sosco" class="form-control  deduction_price" value=""  id="ee_sosco">
+                       <input type="text" name="ee_sosco" class="form-control  deduction_price" value="{{ $salary_data->ee_sosco_amount }}"  id="ee_sosco">
                           
                     </div>
                 </div>   
@@ -114,7 +119,7 @@
 					
 				  </label>
                     <div id="eis_sips" class="col-sm-6 ">
-                       <input type="text" name="eis_sip" class="form-control deduction_price" value=""   id="eis_sip">
+                       <input type="text" name="eis_sip" class="form-control deduction_price" value="{{ $salary_data->eis_sip_amount }}"   id="eis_sip">
                           
                     </div>
                 </div>   
@@ -122,7 +127,7 @@
                   <div class="form-group{{ $errors->has('deductions_total') ? ' has-error' : '' }}">
                   <label for="deductions_total" class="col-sm-3 control-label">{{ __('Total Deductions') }}</label>
                   <div class="col-sm-6">
-                  <input type="text" style="poniter-events:none;"  readonly id="deductions_total" name="deductions_total" class="form-control total_deductioncalc" placeholder="{{ __('Deductions Total') }}">
+                  <input type="text" style="poniter-events:none;"  readonly id="deductions_total" value="{{ $salary_data->deductions_total }}" name="deductions_total" class="form-control total_deductioncalc" placeholder="{{ __('Deductions Total') }}">
                         
                   </div>
                 </div>
@@ -130,14 +135,14 @@
                   <div class="form-group{{ $errors->has('net_pay') ? ' has-error' : '' }}">
                     <label for="net_pay" class="col-sm-3 control-label">{{ __('Net Pay') }}</label>
                       <div class="col-sm-6">
-                      <input type="text" name="net_pay" class="form-control" readonly  placeholder="Net Pay" id="net_pay">
+                      <input type="text" name="net_pay" class="form-control" readonly  value="{{ $salary_data->net_pay }}" placeholder="Net Pay" id="net_pay">
                       </div>
                   </div>
 					
 					<div class="form-group{{ $errors->has('EPF_ER') ? ' has-error' : '' }} hide">
 						<label for="EPF_ER" class="col-sm-3 control-label">{{ __('EPF-ER %') }}</label>
 						  <div id="EPF_ERid" class="col-sm-6">
-						   <input type="text" name="EPF_ERper" readonly class="form-control"  placeholder="EPF_ERper" id="EPF_ERper">
+						   <input type="text" name="EPF_ERper" readonly class="form-control" value="{{ $salary_data->epf_percent }}"  placeholder="EPF_ERper" id="EPF_ERper">
 						  </div>
 					</div>
 
@@ -145,7 +150,7 @@
                   <div class="form-group{{ $errors->has('EPF_ER') ? ' has-error' : '' }}">
                     <label for="EPF_ER" class="col-sm-3 control-label">{{ __('EPF_ER') }}</label>
                       <div id="EPF_ERid" class="col-sm-6">
-                      <input type="text" name="EPF_ER" class="form-control"  placeholder="EPF_ER" id="EPF_ER">
+                      <input type="text" name="EPF_ER" class="form-control"  value="{{ $salary_data->epf_er }}" placeholder="EPF_ER" id="EPF_ER">
 					   
                       </div>
                   </div>
@@ -153,14 +158,14 @@
                   <div class="form-group{{ $errors->has('EPF_ER') ? ' has-error' : '' }}">
                     <label for="SOSCO_ER" class="col-sm-3 control-label">{{ __('SOCSO_ER') }}</label>
                       <div id="SOSCO_ERid" class="col-sm-6">
-                      <input type="text" name="SOSCO_ER" class="form-control"  placeholder="SOCSO_ER" id="SOSCO_ER">
+                      <input type="text" name="SOSCO_ER" class="form-control" value="{{ $salary_data->sosco_er }}" placeholder="SOCSO_ER" id="SOSCO_ER">
                       </div>
                   </div>
 
                   <div class="form-group{{ $errors->has('SOSCO') ? ' has-error' : '' }}">
                     <label for="SOSCO_ER" class="col-sm-3 control-label">{{ __('SOCSO-[EIS/SIP - ER]') }}</label>
                       <div id="SOSCO_EISSIP_ERid" class="col-sm-6">
-                      <input type="text" name="SOSCO_EISSIP" class="form-control"  placeholder="SOCSO-[EIS/SIP - ER]" id="SOSCO_EISSIP_ER">
+                      <input type="text" name="SOSCO_EISSIP" class="form-control" value="{{ $salary_data->sosco_eissip }}" placeholder="SOCSO-[EIS/SIP - ER]" id="SOSCO_EISSIP_ER">
                       </div>
                   </div>
 
@@ -243,6 +248,11 @@
 	   });
 
 $("#basic_salary").keyup(gross_calc);
+//$("#basic_salary").blur(CalculateDeductions);
+
+$('#basic_salary').on('blur', function() {
+    //CalculateDeductions();
+});
 
 function gross_calc() {
 	var basic_salary = Math.round(parseFloat(jQuery("#basic_salary").val()) * 100.0) / 100.0;
@@ -251,7 +261,7 @@ function gross_calc() {
 	if((basic_salary!='') && (basic_salary!=NaN) ) 
 	{
 		var total = basic_salary ;
-        jQuery("#gross_salary").val(total.toFixed(2));
+        $("#gross_salary").val(total.toFixed(2));
         GetSalaryDeductions(basic_salary);
 	//	$('#gross_salary').val(parseFloat(basic_salary) + parseFloat(addition_total) +  parseFloat(ot) );
 	}
@@ -270,6 +280,7 @@ function gross_calc() {
                         if(result!=null){
                           $("#epf_ee_id").val(result.employee_contribution);
                           $("#EPF_ER,#EPF_ERref").val(result.employer_contribution);
+                          CalculateDeductions();
                         }
                       }
                     });
@@ -285,6 +296,7 @@ function gross_calc() {
                       if(result!=null){
                         $("#ee_sosco").val(result.employee_contribution);
                         $("#SOSCO_ER").val(result.employer_contribution);
+                        CalculateDeductions();
                       }
                     }
                   });
@@ -303,6 +315,7 @@ function gross_calc() {
             }
           }
         });
+      CalculateDeductions();
  }
 
   $('#epf_ee_id').keyup(CalculateDeductions);
@@ -343,7 +356,7 @@ function gross_calc() {
       sum_deductions = parseFloat(sum_deductions)+parseFloat(addition_price);
     });
 
-    $("#deductions_total").val(sum_deductions);
+    $("#deductions_total").val(sum_deductions.toFixed(2));
 
 		var gross_salary = $("#gross_salary").val();
 		gross_salary = gross_salary=='' ? 0 : gross_salary;

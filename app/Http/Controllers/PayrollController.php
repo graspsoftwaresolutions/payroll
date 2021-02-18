@@ -1461,4 +1461,41 @@ class PayrollController extends Controller {
 		//dd(2);
 		return view('administrator.hrm.payroll.yearly_deductions_print')->with('data',$data);
 	}
+
+	public function UpdateBonusSave(Request $request)
+	{
+		
+		$dateofsalary = $request->input('dateofsalary');
+		if($dateofsalary!=""){
+			$dateofsalary = $dateofsalary.'-01';
+		}
+		$insertdata = [];
+		//$insertdata['employee_id'] = $request->input('user_id');
+		$insertdata['bonus_salary'] = $request->input('basic_salary');
+		$insertdata['gross_salary'] = $request->input('gross_salary');
+		$insertdata['epf_ee_amount'] = $request->input('epf_ee_id');
+		$insertdata['ee_sosco_amount'] = $request->input('ee_sosco');
+		$insertdata['eis_sip_amount'] = $request->input('eis_sip');
+		$insertdata['deductions_total'] = $request->input('deductions_total');
+		
+		$insertdata['net_pay'] = $request->input('net_pay');
+		$insertdata['epf_er'] = $request->input('EPF_ER');
+		$insertdata['sosco_er'] = $request->input('SOSCO_ER');
+		$insertdata['sosco_eissip'] = $request->input('SOSCO_EISSIP');
+		$insertdata['status'] = 1;
+		$insertdata['created_at'] = date('Y-m-d h:i:s');
+		$insertdata['salary_date'] = $dateofsalary;
+		$insertdata['epf_percent'] = 13;
+
+		$upstatus = DB::table('bonus_salary')
+						->where('id', $request->input('auto_id'))
+						->update( $insertdata);
+
+		if($upstatus){
+			return redirect('/hrm/payroll/bonus-salary-list')->with('message','Salary updated successfully!!');	
+		}else{
+			return redirect('/hrm/payroll/bonus-salary-list')->with('exception', 'Failed to update salary!!');
+		}
+		
+	}
 }

@@ -168,7 +168,7 @@ class AjaxController extends Controller
                // $saalry_enc_id = Crypt::encrypt($salary->id);
 
                 $editlink = route('bonus.salaryEdit',Crypt::encrypt($salary->id));
-                $nestedData['actions'] = '<a style="font-size:19px" class="btn btn-sm red waves-effect waves-circle waves-light" href="#"><i class="icon fa fa-edit"></i></a>';
+                $nestedData['actions'] = '<a style="font-size:19px" class="btn btn-sm red waves-effect waves-circle waves-light" href="'.$editlink.'"><i class="icon fa fa-edit"></i></a>';
                 //$date = date('M/Y',strtotime($company->date));
                 
                         

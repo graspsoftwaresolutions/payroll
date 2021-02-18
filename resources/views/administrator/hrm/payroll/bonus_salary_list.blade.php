@@ -1,5 +1,5 @@
 @extends('administrator.master')
-@section('title', __('Salary List'))
+@section('title', __('Bonus Salary List'))
 @section('headSection')
 <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>

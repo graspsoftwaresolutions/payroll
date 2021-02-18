@@ -241,6 +241,10 @@
 	   });
 
 $("#basic_salary").keyup(gross_calc);
+$('#basic_salary').on('blur', function() {
+   // CalculateDeductions();
+});
+
 
 function gross_calc() {
 	var basic_salary = Math.round(parseFloat(jQuery("#basic_salary").val()) * 100.0) / 100.0;
@@ -269,6 +273,7 @@ function gross_calc() {
                         if(result!=null){
                           $("#epf_ee_id").val(result.employee_contribution);
                           $("#EPF_ER,#EPF_ERref").val(result.employer_contribution);
+                          CalculateDeductions();
                         }
                       }
                     });
@@ -284,6 +289,7 @@ function gross_calc() {
                       if(result!=null){
                         $("#ee_sosco").val(result.employee_contribution);
                         $("#SOSCO_ER").val(result.employer_contribution);
+                        CalculateDeductions();
                       }
                     }
                   });
@@ -302,6 +308,7 @@ function gross_calc() {
             }
           }
         });
+      CalculateDeductions();
  }
 
   $('#epf_ee_id').keyup(CalculateDeductions);
@@ -339,8 +346,8 @@ function gross_calc() {
       addition_price = addition_price=='' ? 0 : addition_price;
       sum_deductions = parseFloat(sum_deductions)+parseFloat(addition_price);
     });
-
-    $("#deductions_total").val(sum_deductions);
+    //alert(sum_deductions);
+    $("#deductions_total").val(sum_deductions.toFixed(2));
 
 		var gross_salary = $("#gross_salary").val();
 		gross_salary = gross_salary=='' ? 0 : gross_salary;
