@@ -735,7 +735,10 @@ class PayrollController extends Controller {
 			if($age>60){
 				$epfqry = $epfqry->where('old_age','=',1);
 			}else{
-				$epfqry = $epfqry->whereNull('old_age')->orWhere('old_age','=',0);
+				$epfqry = $epfqry->where(function($query) use ($user_id){
+                                $query->whereNull('old_age')
+									->orWhere('old_age', '=',0);
+							});
 			}
 
 			//->dump()
