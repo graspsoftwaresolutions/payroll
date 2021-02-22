@@ -750,7 +750,7 @@ $(document).on('click', 'button.removebutton', function () {
 		$("#total_deductions").val(total_deductions);
 		var gross_salary = $("#gross_salary").val();
 		gross_salary = gross_salary=='' ? 0 : gross_salary;
-		var netpay = parseFloat(gross_salary)-parseFloat(total_deductions);
+		var netpay = (parseFloat(gross_salary)-parseFloat(total_deductions)).toFixed(2);
 		$("#net_pay").val(netpay);
 	}
 	
@@ -772,6 +772,7 @@ $(document).on('click', 'button.removebutton', function () {
 						if(result!=null){
 							$("#epf_ee_id").val((result.employee_contribution).toFixed(0));
 							$("#EPF_ER,#EPF_ERref").val((result.employer_contribution).toFixed(0));
+              CalculateDeductions();
 						}
 					}
 				});
@@ -786,7 +787,10 @@ $(document).on('click', 'button.removebutton', function () {
 			$("#epf_ee_id").val(0);
 			$("#EPF_ER,#EPF_ERref").val(0);
        $("#EPF_EE_percent").val(0);
+        CalculateDeductions();
 		}
+    
+    //alert('hi');  
 	}
 	function EnablesoscoBox(){
 		if($("#epf_sosco_check").prop("checked") == true){
@@ -804,6 +808,7 @@ $(document).on('click', 'button.removebutton', function () {
 						if(result!=null){
 							$("#ee_sosco").val(result.employee_contribution);
 							$("#SOSCO_ER").val(result.employer_contribution);
+              CalculateDeductions();
 						}
 					}
 				});
@@ -815,7 +820,9 @@ $(document).on('click', 'button.removebutton', function () {
 			$("#ee_soscos,#SOSCO_ERid").addClass('hide');
 			$("#ee_sosco").val(0);
 			$("#SOSCO_ER").val(0);
+       CalculateDeductions();
 		}
+    //CalculateDeductions();
 	}
 	function EnablesipBox(){
 		if($("#epf_sip_check").prop("checked") == true){
@@ -833,18 +840,22 @@ $(document).on('click', 'button.removebutton', function () {
 						if(result!=null){
 							$("#eis_sip").val(result.employee_contribution);
 							$("#SOSCO_EISSIP_ER").val(result.employer_contribution);
+              CalculateDeductions();
 						}
 					}
 				});
 			}else{
 				$("#eis_sip").val(0);
 				$("#SOSCO_EISSIP_ER").val(0);
+         CalculateDeductions();
 			}
 		}else{
 			$("#eis_sips,#SOSCO_EISid").addClass('hide');
 			$("#eis_sip").val(0);
 			$("#SOSCO_EISSIP_ER").val(0);
+      CalculateDeductions();
 		}
+    //CalculateDeductions();
 	}
 	
 	function CalculateEPAmount(pfpercent){
