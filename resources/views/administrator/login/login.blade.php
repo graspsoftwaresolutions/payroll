@@ -23,7 +23,7 @@
        
         <div class="login-box">
             <div class="login-logo">
-                <a><b>{{ __('HRM & Payroll') }}</b></a>
+                <a><b>{{ __('Payroll Management') }}</b></a>
             </div>
             <!-- /.login-logo -->
             <div class="login-box-body">
@@ -31,7 +31,7 @@
                 <form action="{{ route('login') }}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} has-feedback">
-                        <input type="email" name="email" class="form-control" value="admin@mail.com">
+                        <input type="email" name="email" class="form-control" placeholder="Email Address" value="">
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                         @if ($errors->has('email'))
                         <span class="help-block">
@@ -40,7 +40,7 @@
                         @endif
                     </div>
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} has-feedback">
-                        <input type="password" name="password" class="form-control" placeholder="{{ __('Password') }}"  value="demo">
+                        <input type="password" name="password" class="form-control" placeholder="{{ __('Password') }}"  value="">
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                         @if ($errors->has('password'))
                         <span class="help-block">
@@ -54,7 +54,7 @@
                             <button type="submit" class="btn btn-primary btn-block btn-flat">{{ __('Admin Login') }}</button>
                         </div>
                     </form>
-                    <form action="{{ route('login') }}" method="post">
+                    <form action="{{ route('login') }}" class="hide" method="post">
                         {{ csrf_field() }}
                         
                         <input type="hidden" name="email" value="waliullahbiplob786@gmail.com">
