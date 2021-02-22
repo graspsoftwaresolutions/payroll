@@ -64,13 +64,13 @@
                         <tr>
                             <th>{{ __('Name') }}</th>
                             <th>{{ __('Category') }}</th>
-                            <th>{{ __('Ic No') }}</th>
+                            
                             <th>{{ __('New Ic No') }}</th>
                             <th>{{ __('DOJ') }}</th>
                             <th>{{ __('DOB') }}</th>
                             <th>{{ __('Age') }}</th>
                             <th>{{ __('Status') }}</th>
-                            <th class="text-center action">{{ __('Actions') }}</th>
+                            <th class="text-center action hide">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
                     <tbody id="myTable">
@@ -79,10 +79,10 @@
                         <tr>
                             <td>{{ strtoupper($values->name) }}</td>
                             <td>{{$values->category}}</td>
-                            <td>{{$values->ic_no}}</td>
+                            
                             <td>{{$values->new_ic_no}}</td>
-                            <td>{{$values->doj}}</td>
-                            <td>{{$values->dob }}</td>
+                            <td>{{ date('d-m-Y',strtotime($values->doj)) }}</td>
+                            <td>{{ $values->dob!='' && $values->dob!='1970-01-01' ? date('d-m-Y',strtotime($values->dob)) : ''  }}</td>
                             @php
                                 $age = '';
                                 if($values->dob!='0000-00-00'){
@@ -102,7 +102,7 @@
                                 @endphp
                                 {{ $statusname }}
                             </td>
-                            <td class="text-center action">
+                            <td class="text-center action hide">
                                 
                             </td>
                         </tr>

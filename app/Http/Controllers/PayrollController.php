@@ -489,6 +489,7 @@ class PayrollController extends Controller {
        
             $result = DB::table('tbl_member')->select(DB::raw("CONCAT(upper(name),'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER')
           			 ->Where("status","!=",3)
+          			 ->Where("remove_status","=",1)
           			 ->where(function($query) use ($keyword){
 							$query->orwhere("name","LIKE","%{$keyword}%")
 							 ->orwhere("ic_no","LIKE","%{$keyword}%")
@@ -508,7 +509,7 @@ class PayrollController extends Controller {
         $search_param = "{$keyword}%";
         
             $result = DB::table('tbl_member as t')->select(DB::raw("CONCAT(upper(t.name),'-',t.new_ic_no) AS value"),'t.user_id','t.short_code','t.email','t.EPF_EE','t.basic_salary','t.EE_SOSCO','t.EIS_SIP','t.EPS_ER','t.EPS_ER_perentage','t.SOSCO_ER','t.name','t.new_ic_no','e.epf_number','e.socso_number','t.employee_no')
-            		->leftjoin('tbl_employee_details as e', 't.employee_no', '=', 'e.membership_no')
+            		->leftjoin('tbl_employee_details as e', 't.emp_id', '=', 'e.id')
                      ->orwhere("t.name","LIKE","%{$keyword}%")
 					 ->orwhere("t.ic_no","LIKE","%{$keyword}%")
 					 ->orwhere("t.new_ic_no","LIKE","%{$keyword}%")
@@ -652,7 +653,7 @@ class PayrollController extends Controller {
 		$data['salaries'] = DB::table('employee_salary as es')
 		->select('m.name','m.designation','m.doj','m.category','m.status','m.resign_date','es.id','es.salary_date','es.gross_salary','es.total_deductions','es.net_pay','es.basic_salary','es.additional_allowance_total','es.ot_amount','es.epf_ee_amount','es.ee_sosco_amount','es.eis_sip_amount','es.total_deductions','es.net_pay','es.epf_er','es.sosco_er','es.sosco_eissip','es.epf_percent','e.bank_account_no','es.epf_ee_percent')
 					->leftjoin('tbl_member as m', 'm.user_id', '=', 'es.employee_id')
-					->leftjoin('tbl_employee_details as e', 'm.employee_no', '=', 'e.membership_no')
+					->leftjoin('tbl_employee_details as e', 'm.emp_id', '=', 'e.id')
 					->where('es.salary_date','=',$filterdate)
 					->orderBy('es.salary_date', 'desc')
 					//->groupBy()
@@ -957,7 +958,7 @@ class PayrollController extends Controller {
 	}
 
 	public function salaryStatementSearch(){
-    	$employees = DB::table('tbl_member')->select(DB::raw("CONCAT(name,'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER')->get();
+    	$employees = DB::table('tbl_member')->select(DB::raw("CONCAT(name,'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER')->where('remove_status','=',1)->get();
 
         return view('administrator.hrm.payroll.salary_search', compact('employees'));
 
@@ -1183,7 +1184,7 @@ class PayrollController extends Controller {
 
 	public function EmployeeList()
 	{
-		$data['employee_list'] = DB::table('tbl_member as m')->get();
+		$data['employee_list'] = DB::table('tbl_member as m')->where('remove_status','=',1)->get();
 		return view('administrator.hrm.employee.list')->with('data',$data);
 	}
 
@@ -1378,7 +1379,7 @@ class PayrollController extends Controller {
 	}
 
 	public function EpfSocsoReport(Request $request){
-		$employees = DB::table('tbl_member')->select(DB::raw("CONCAT(name,'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER')->get();
+		$employees = DB::table('tbl_member')->select(DB::raw("CONCAT(name,'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER')->where('remove_status','=',1)->get();
 
         return view('administrator.hrm.payroll.epfsocso_report', compact('employees'));
 	}
@@ -1402,7 +1403,7 @@ class PayrollController extends Controller {
 			$data['salaries'] = DB::table('employee_salary as es')
 						->select('m.name','m.designation','m.doj','m.category','m.status','m.resign_date','es.id','es.salary_date','es.gross_salary','es.total_deductions','es.net_pay','es.basic_salary','es.additional_allowance_total','es.ot_amount','es.epf_ee_amount','es.ee_sosco_amount','es.eis_sip_amount','es.total_deductions','es.net_pay','es.epf_er','es.sosco_er','es.sosco_eissip','es.epf_percent','e.bank_account_no','es.epf_ee_percent','e.epf_number','e.socso_number')
 							->leftjoin('tbl_member as m', 'm.user_id', '=', 'es.employee_id')
-							->leftjoin('tbl_employee_details as e', 'm.employee_no', '=', 'e.membership_no')
+							->leftjoin('tbl_employee_details as e', 'm.emp_id', '=', 'e.id')
 							->where('es.employee_id','=',$user_id)
 							->where('es.salary_date','=',$fulldate)
 							->orderBy('es.salary_date', 'desc')
@@ -1416,7 +1417,7 @@ class PayrollController extends Controller {
 	}
 
 	public function yearlyReport(Request $request){
-		$employees = DB::table('tbl_member')->select(DB::raw("CONCAT(name,'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER')->get();
+		$employees = DB::table('tbl_member')->select(DB::raw("CONCAT(name,'-',new_ic_no) AS value"),'user_id','short_code','email','EPF_EE','basic_salary','EE_SOSCO','EIS_SIP','EPS_ER','EPS_ER_perentage','SOSCO_ER')->where('remove_status','=',1)->get();
 
         return view('administrator.hrm.payroll.yearly_report', compact('employees'));
 	}
@@ -1436,7 +1437,7 @@ class PayrollController extends Controller {
 		$data['salaries'] = $salaries;
 		$data['employee'] = DB::table('tbl_member as m')
 		->select('m.name','m.designation','m.doj','m.category','m.status','m.resign_date','e.bank_account_no','e.epf_number','e.socso_number')
-					->leftjoin('tbl_employee_details as e', 'm.employee_no', '=', 'e.membership_no')
+					->leftjoin('tbl_employee_details as e', 'm.emp_id', '=', 'e.id')
 					->where('m.user_id','=',$user_id)
 					->first();
 		

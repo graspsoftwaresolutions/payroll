@@ -846,7 +846,7 @@ $(document).on('click', 'button.removebutton', function () {
 	function EnablesipBox(){
 		if($("#epf_sip_check").prop("checked") == true){
 			$("#eis_sips,#SOSCO_EISid").removeClass('hide');
-			var net_salary = $("#basic_salary").val();
+			var net_salary = $("#net_salary").val();
 			if(net_salary!=''){
 				var url = "{{ url('/hrm/get-soscoins-contribution') }}" + '?net_salary=' + net_salary;
                 $.ajax({
