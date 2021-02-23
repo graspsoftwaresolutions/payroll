@@ -865,7 +865,7 @@ $(document).on('click', 'button.removebutton', function () {
 		}else{
 			var EPF_ERref = $("#EPF_ERref").val();
 			var net_salary = $("#basic_salary").val()=='' ? 0 : $("#basic_salary").val();
-			var EPF_ER = parseFloat(EPF_ERref)+parseFloat((net_salary*4)/100);
+			var EPF_ER = (parseFloat(EPF_ERref)+parseFloat((net_salary*4)/100)).toFixed(0);
 			$("#EPF_ER").val(EPF_ER);
 		}
 	}
