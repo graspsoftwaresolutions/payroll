@@ -1502,4 +1502,120 @@ class PayrollController extends Controller {
 		}
 		
 	}
+
+	public function UpdatesalarySave(Request $request)
+	{
+		// return $request->all();
+		//  $data = $request->all();
+		//  $PayrollNew = PayrollNew::find($id);
+		//  $PayrollNew->EPF_EE = $data['epf_ee_id'];
+		//  $PayrollNew->EE_SOSCO = $data['ee_sosco'];
+		//  $PayrollNew->EIS_SIP = $data['eis_sip'];
+		//  $PayrollNew->EPS_ER = $data['SOSCO_ER'];
+		//  $PayrollNew->save();
+		$dateofsalary = $request->input('dateofsalary');
+		if($dateofsalary!=""){
+			$dateofsalary = $dateofsalary.'-01';
+		}
+		$insertdata = [];
+		//$insertdata['employee_id'] = $request->input('user_id');
+		$insertdata['basic_salary'] = $request->input('basic_salary');
+		$insertdata['additional_allowance_total'] = $request->input('addition_total');
+		$insertdata['ot_amount'] = $request->input('ot');
+		$insertdata['gross_salary'] = $request->input('gross_salary');
+		$insertdata['epf_ee_amount'] = $request->input('epf_ee_id');
+		$insertdata['ee_sosco_amount'] = $request->input('ee_sosco');
+		$insertdata['eis_sip_amount'] = $request->input('eis_sip');
+		$insertdata['deductions_total'] = $request->input('deductions_total');
+		
+		$insertdata['otherdeductions_total'] = $request->input('otherdeductions_total');
+		$insertdata['total_deductions'] = $request->input('total_deductions');
+		$insertdata['net_pay'] = $request->input('net_pay');
+		$insertdata['epf_er'] = $request->input('EPF_ER');
+		$insertdata['sosco_er'] = $request->input('SOSCO_ER');
+		$insertdata['sosco_eissip'] = $request->input('SOSCO_EISSIP');
+		$insertdata['status'] = 1;
+		$insertdata['created_at'] = date('Y-m-d h:i:s');
+		$insertdata['salary_date'] = $dateofsalary;
+		$insertdata['epf_percent'] = $request->input('EPF_ERper');
+
+		$insertdata['epf_ee_percent'] = $request->input('EPF_EE_percent');
+
+		$upstatus = DB::table('employee_salary')
+						->where('id', $request->input('auto_id'))
+						->where('salary_date','=',$dateofsalary)
+						->update( $insertdata);		
+
+		$salaryid = $request->input('auto_id');
+
+		if($salaryid){
+			
+			DB::table('employee_salary_allowance')->where('salary_id', $salaryid)->delete();
+	
+
+			$allowances_name = $request->input('allowances_name');
+
+			if(isset($allowances_name)){
+				for($i=0;$i<count($allowances_name);$i++){
+					$insertallowancedata = [];
+					$allowance_id = $request->input('allowances_name')[$i];
+					$allowance_price = $request->input('price')[$i];
+
+					$insertallowancedata['salary_id'] = $salaryid;
+					$insertallowancedata['allowance_id'] = $allowance_id;
+					$insertallowancedata['main_cat_id'] = 1;
+					$insertallowancedata['amount'] = $allowance_price;
+					$insertallowancedata['status'] = 1;
+
+					$salaryallowid = DB::table('employee_salary_allowance')->insert(
+						$insertallowancedata
+					);
+				}
+			}
+
+			$deduction_allowances_name = $request->input('deduction_allowances_name');
+
+			if(isset($deduction_allowances_name)){
+				for($i=0;$i<count($deduction_allowances_name);$i++){
+					$insertallowancedata = [];
+					$allowance_id = $request->input('deduction_allowances_name')[$i];
+					$allowance_price = $request->input('deduction_price')[$i];
+
+					$insertallowancedata['salary_id'] = $salaryid;
+					$insertallowancedata['allowance_id'] = $allowance_id;
+					$insertallowancedata['main_cat_id'] = 2;
+					$insertallowancedata['amount'] = $allowance_price;
+					$insertallowancedata['status'] = 1;
+
+					$salaryallowid = DB::table('employee_salary_allowance')->insert(
+						$insertallowancedata
+					);
+				}
+			}
+
+			$other_deduction_allowances_name = $request->input('other_deduction_allowances_name');
+
+			if(isset($other_deduction_allowances_name)){
+				for($i=0;$i<count($other_deduction_allowances_name);$i++){
+					$insertallowancedata = [];
+					$allowance_id = $request->input('other_deduction_allowances_name')[$i];
+					$allowance_price = $request->input('other_deduction_price')[$i];
+
+					$insertallowancedata['salary_id'] = $salaryid;
+					$insertallowancedata['allowance_id'] = $allowance_id;
+					$insertallowancedata['main_cat_id'] = 3;
+					$insertallowancedata['amount'] = $allowance_price;
+					$insertallowancedata['status'] = 1;
+
+					$salaryallowid = DB::table('employee_salary_allowance')->insert(
+						$insertallowancedata
+					);
+				}
+			}
+
+			return redirect('/hrm/payroll/salary-list')->with('message', 'Salary updated successfully!!');
+			
+		}
+		
+	}
 }
