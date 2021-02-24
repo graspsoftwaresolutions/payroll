@@ -1003,7 +1003,10 @@ class PayrollController extends Controller {
 		$autoid = crypt::decrypt($encid);
 		$data['salary_data']  = DB::table('employee_salary')->where('id','=',$autoid)->first();
 	
-		$data['memberinfo'] = DB::table('tbl_member as m')->where('m.user_id','=',$data['salary_data']->employee_id)->first();
+		$data['memberinfo'] = DB::table('tbl_member as m')
+					->select('m.*','e.epf_number')
+					->leftjoin('tbl_employee_details as e', 'm.emp_id', '=', 'e.id')
+					->where('m.user_id','=',$data['salary_data']->employee_id)->first();
 		
 		// $data['addition_allownces'] = DB::table('payroll_addition_deduction as ad')->select('ad.id as additionid','ad.name')
 		// 		->where('ad.status','=','1')

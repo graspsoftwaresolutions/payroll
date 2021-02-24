@@ -102,17 +102,17 @@
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">NAME</td>
 				<td style="font-weight:bold;">{{ strtoupper($memberinfo->name) }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Code</td>
-				<td colspan="2"></td>
+				<td colspan="2">{{ $memberinfo->employee_no==0 ? '' : $memberinfo->employee_no }}</td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Dept</td>
-				<td style="font-weight:bold;">{{ $memberinfo->designation }}</td>
-				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Category</td>
-				<td colspan="2">{{ $memberinfo->category }}</td>
+				<td style="font-weight:bold;">{{ $memberinfo->category }}</td>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">EPF Number</td>
+				<td colspan="2">{{ $memberinfo->epf_number }}</td>
 				</tr>
 				<tr>
-				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">EPF Number</td>
-				<td style="font-weight:bold;">{{ $memberinfo->EPF }}</td>
+				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Category</td>
+				<td style="font-weight:bold;">{{ $memberinfo->designation }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">IC Number</td>
 				<td colspan="2">{{ $memberinfo->new_ic_no }}</td>
 				</tr>
@@ -208,58 +208,67 @@
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Ex-Gratia</td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Income Tax </td>
-				<td colspan="2" style="font-weight:bold;text-align:right;">{{ $pcbamt==0 ? '' : $pcbamt }}</td>
+				<td style="font-weight:bold;text-align:right;border-right:none !important;">{{ $pcbamt==0 ? '' : $pcbamt }}</td>
+				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Overtime</td>
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->ot_amount==0 ? '' : $salary_data->ot_amount }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Co-op Society</td>
-				<td colspan="2" style="font-weight:bold;text-align:right;">{{ $koopamt==0 ? '' : $koopamt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;">{{ $koopamt==0 ? '' : $koopamt }}</td>
+				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">NUBE</td>
-				<td colspan="2" style="font-weight:bold;text-align:right;">{{ $nubeamt==0 ? '' : $nubeamt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;">{{ $nubeamt==0 ? '' : $nubeamt }}</td>
+				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">GMIS</td>
-				<td colspan="2" style="font-weight:bold;text-align:right;">{{ $gimsamt==0 ? '' : $gimsamt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;">{{ $gimsamt==0 ? '' : $gimsamt }}</td>
+				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">BIMB LOAN</td>
-				<td colspan="2" style="font-weight:bold;text-align:right;">{{ $bimbloanamt==0 ? '' : $bimbloanamt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;">{{ $bimbloanamt==0 ? '' : $bimbloanamt }}</td>
+				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">GELA</td>
-				<td colspan="2" style="font-weight:bold;text-align:right;">{{ $gelaamt==0 ? '' : $gelaamt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;">{{ $gelaamt==0 ? '' : $gelaamt }}</td>
+				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">HOME/CAR LOAN
 				</td>
-				<td colspan="2" style="font-weight:bold;text-align:right;"> {{ $carloanamt==0 ? '' : $carloanamt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;"> {{ $carloanamt==0 ? '' : $carloanamt }}</td>
+				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">UPL
 				</td>
-				<td colspan="2" style="font-weight:bold;text-align:right;"> {{ $uplamt==0 ? '' : $uplamt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;"> {{ $uplamt==0 ? '' : $uplamt }}</td>
+				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Others
 				</td>
-				<td colspan="2" style="font-weight:bold;text-align:right;"> {{ $otheramt==0 ? '' : $otheramt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;"> {{ $otheramt==0 ? '' : $otheramt }}</td>
+				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 
 				<tr>
@@ -267,7 +276,8 @@
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->gross_salary==0 ? '' : $salary_data->gross_salary }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:18%;">Total Deduction
 				</td>
-				<td colspan="2" style="font-weight:bold;text-align:right;"> {{ $salary_data->total_deductions==0 ? '' : $salary_data->total_deductions }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;"> {{ $salary_data->total_deductions==0 ? '' : $salary_data->total_deductions }}</td>
+				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 
 				
@@ -276,7 +286,8 @@
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->net_pay==0 ? '' : $salary_data->net_pay }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Online
 				</td>
-				<td colspan="2" style="font-weight:bold;text-align:right;"> </td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;"> </td>
+				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				
 				</table>
