@@ -1621,4 +1621,25 @@ class PayrollController extends Controller {
 		}
 		
 	}
+
+	public function BonusReport(Request $request){
+		$filterdate = $request->input('filterdate');
+		$data['cat_list'] = DB::table('tbl_category')->where('status','=','1')->get();
+
+	//	foreach($data['cat_list'] as $single){
+		$data['salaries'] = DB::table('bonus_salary as b')
+		->select('m.name','m.designation','m.doj','m.category','m.status','m.resign_date','b.id','b.salary_date','b.gross_salary','b.net_pay','b.epf_ee_amount','b.ee_sosco_amount','b.eis_sip_amount','b.net_pay','b.epf_er','b.sosco_er','b.sosco_eissip','b.epf_percent','e.bank_account_no')
+					->leftjoin('tbl_member as m', 'm.user_id', '=', 'b.employee_id')
+					->leftjoin('tbl_employee_details as e', 'm.emp_id', '=', 'e.id')
+					->where('b.salary_date','=',$filterdate)
+					->orderBy('b.salary_date', 'desc')
+					//->groupBy()
+					//->orderBy('m.category', 'asc')
+					->get();
+	//	}			
+		
+		$data['filterdate'] = $filterdate;
+		//$data = [];
+		return view('administrator.hrm.payroll.bonus_print')->with('data',$data);
+	}
 }

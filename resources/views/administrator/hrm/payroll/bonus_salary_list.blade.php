@@ -43,7 +43,7 @@
 					</div>
 					<div class="col-md-4">
 						<input type="submit" name="search" id="search" value="Search" class="btn btn-info">
-						<input type="button" name="printsalary" onclick="return PrintSalary()" id="printsalary" value="Print" class="btn btn-success hide">
+						<input type="button" name="printsalary" onclick="return PrintSalary()" id="printsalary" value="Print" class="btn btn-success">
 					</div>
 				</form>
                 <!--<div  class="col-md-6">
@@ -142,7 +142,7 @@
 		var monthpicker = $("#monthpicker").val();
 		if(monthpicker!=""){
 			var fulldate = monthpicker+'-01';
-			window.open("{{ url('/hrm/monthly_salary_report').'?filterdate="+fulldate+"' }}");
+			window.open("{{ url('/hrm/bonus_salary_report').'?filterdate="+fulldate+"' }}");
 		}
 	}
 	//var dataTable = $('#salary_data').DataTable({});

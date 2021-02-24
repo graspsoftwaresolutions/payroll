@@ -380,6 +380,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('ajax_bonus_salaries_list','AjaxController@ajax_bonus_salaries_list')->name('bonus.ajaxsalarieslist');
 	
 	Route::get('/hrm/monthly_salary_report', 'PayrollController@SalaryReport')->name('monthly.salaryprint');
+	Route::get('/hrm/bonus_salary_report', 'PayrollController@BonusReport')->name('bonus.salaryprint');
 
 	Route::get('/hrm/additionSalList', 'PayrollController@additionSalList')->name('payroll.addition_sal');
     Route::get('/hrm/additionsal_new', 'PayrollController@additionSalNew')->name('additionsal_new');
