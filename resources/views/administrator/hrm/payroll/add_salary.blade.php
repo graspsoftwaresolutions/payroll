@@ -843,7 +843,7 @@ $(document).on('click', 'button.removebutton', function () {
 		$("#total_deductions").val(total_deductions);
 		var gross_salary = $("#gross_salary").val();
 		gross_salary = gross_salary=='' ? 0 : gross_salary;
-		var netpay = parseFloat(gross_salary)-parseFloat(total_deductions);
+		var netpay = (parseFloat(gross_salary)-parseFloat(total_deductions)).toFixed(2);
 		$("#net_pay").val(netpay);
 	}
 </script>

@@ -351,7 +351,7 @@ function gross_calc() {
 
 		var gross_salary = $("#gross_salary").val();
 		gross_salary = gross_salary=='' ? 0 : gross_salary;
-		var netpay = parseFloat(gross_salary)-parseFloat(sum_deductions);
+		var netpay = (parseFloat(gross_salary)-parseFloat(sum_deductions)).toFixed(2);
 		$("#net_pay").val(netpay);
 	}
 </script>

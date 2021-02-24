@@ -66,7 +66,7 @@
                 <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
                   <label for="user_id" class="col-sm-3 control-label">{{ __('Employee Name') }}</label>
                   <div class="col-sm-6">
-                  <input type="hidden" name="user_id" id="user_id">
+                  <input type="hidden" name="user_id" id="user_id" value="{{ $salary_data->employee_id }}">
                   <input type="hidden" name="auto_id" id="auto_id" value="{{ $salary_data->id }}" />
                   <input class="form-control clearable" type="text" id="employee_name" readonly placeholder="Search Employee" value="{{ strtoupper($memberinfo->name) }}" name="employee_name">
                          @if ($errors->has('name'))
@@ -278,8 +278,8 @@
                       </div>
                   </div>
 
-                  <div class=" col-sm-offset-3 col-sm-6 hide">
-                    <button type="submit" class="btn btn-info btn-flat"><i class="icon fa fa-arrow-right hide"></i> {{ __('Go') }}</button>
+                  <div class=" col-sm-offset-3 col-sm-6 ">
+                    <button type="submit" class="btn btn-info btn-flat"><i class="icon fa fa-arrow-right "></i> {{ __('Go') }}</button>
                   </div>
               </form>
             </div>
@@ -848,7 +848,7 @@ $(document).on('click', 'button.removebutton', function () {
 		$("#total_deductions").val(total_deductions);
 		var gross_salary = $("#gross_salary").val();
 		gross_salary = gross_salary=='' ? 0 : gross_salary;
-		var netpay = parseFloat(gross_salary)-parseFloat(total_deductions);
+		var netpay = (parseFloat(gross_salary)-parseFloat(total_deductions)).toFixed(2);
 		$("#net_pay").val(netpay);
 	}
 </script>
