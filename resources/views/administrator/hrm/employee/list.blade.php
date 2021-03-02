@@ -6,7 +6,12 @@
     href="{{ asset('public/css/responsive.dataTables.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('public/css/buttons.dataTables.min.css') }}">
 <style type="text/css">
-    @page { margin: 3px 12px 7px 12px !important; }
+    @page { 
+		margin: 3px 12px 7px 12px !important; 
+		.nametableclass {
+			width: 20px !important;
+		}
+	}
     @media print{
         .action{
             display: none;
@@ -14,6 +19,9 @@
         #example3.dataTable {
             margin-top: 0px!important;
         }
+		.nametableclass {
+			width: 20px !important;
+		}
     }
     .dt-button.buttons-print{
         background-color: #3c8dbc;
@@ -69,12 +77,12 @@
                 <table id="example3" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>{{ __('Name') }}</th>
+                            <th class="nametableclass" width="20%">{{ __('Name') }}</th>
                             <th>{{ __('Category') }}</th>
                             
                             <th>{{ __('New Ic No') }}</th>
-                            <th width="15%">{{ __('DOJ') }}</th>
-                            <th width="15%">{{ __('DOB') }}</th>
+                            <th width="15%">{{ __('DOJ') }}&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                            <th width="15%">{{ __('DOB') }}&nbsp;&nbsp;&nbsp;&nbsp;</th>
                             <th>{{ __('Age') }}</th>
                             <th>{{ __('Status') }}</th>
                             <th class="text-center action hide">{{ __('Actions') }}</th>
@@ -88,8 +96,8 @@
                             <td>{{$values->category}}</td>
                             
                             <td>{{$values->new_ic_no}}</td>
-                            <td>{{ date('d-m-Y',strtotime($values->doj)) }}</td>
-                            <td>{{ $values->dob!='' && $values->dob!='1970-01-01' ? date('d-m-Y',strtotime($values->dob)) : ''  }}</td>
+                            <td>{{ date('d/m/Y',strtotime($values->doj)) }}</td>
+                            <td>{{ $values->dob!='' && $values->dob!='1970-01-01' ? date('d/m/Y',strtotime($values->dob)) : ''  }}</td>
                             @php
                                 $age = '';
                                 if($values->dob!='0000-00-00'){
