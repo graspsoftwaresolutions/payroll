@@ -6,14 +6,21 @@
     href="{{ asset('public/css/responsive.dataTables.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('public/css/buttons.dataTables.min.css') }}">
 <style type="text/css">
+    @page { margin: 3px 12px 7px 12px !important; }
     @media print{
         .action{
             display: none;
+        }
+        #example3.dataTable {
+            margin-top: 0px!important;
         }
     }
     .dt-button.buttons-print{
         background-color: #3c8dbc;
         border-color: #367fa9;
+    }
+    #example3.dataTable {
+        margin-top: 0px!important;
     }
 </style>
 <div class="content-wrapper">
@@ -66,8 +73,8 @@
                             <th>{{ __('Category') }}</th>
                             
                             <th>{{ __('New Ic No') }}</th>
-                            <th>{{ __('DOJ') }}</th>
-                            <th>{{ __('DOB') }}</th>
+                            <th width="15%">{{ __('DOJ') }}</th>
+                            <th width="15%">{{ __('DOB') }}</th>
                             <th>{{ __('Age') }}</th>
                             <th>{{ __('Status') }}</th>
                             <th class="text-center action hide">{{ __('Actions') }}</th>
