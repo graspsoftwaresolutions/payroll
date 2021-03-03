@@ -108,7 +108,7 @@
                   @endif
               </div>
               <div class="form-group{{ $errors->has('total_contribution') ? ' has-error' : '' }}">
-              <label for="total_contribution"  class="col-sm-3 control-label">{{ __('Total Contribution') }}<span style="color:red;">*</span></label>
+              <label for="total_contribution"  class="col-sm-3 control-label">{{ __('Total Contribution') }}</label>
               <div class="col-sm-6">
                <input type="text"  readonly id="total_contribution" name="total_contribution" class="form-control" placeholder="{{ __('Total Contribution') }}">
                 </div>
@@ -117,6 +117,13 @@
                         <strong>{{ $errors->first('total_contribution') }}</strong>
                     </span>
                   @endif
+              </div>
+              <div class="form-group{{ $errors->has('employer_contribution') ? ' has-error' : '' }}">
+                 <label for="employer_contribution_oldage" class="col-sm-3 control-label">{{ __('Employer Contribution[Above 60 Years]') }}<span style="color:red;">*</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" id="employer_contribution_oldage"  name="employer_contribution_oldage" class="form-control" placeholder="{{ __('Employer Contribution[Above 60 Years]') }}">
+                  </div>
+                 
               </div>
               <!-- /.end group -->
               <div class="form-group">

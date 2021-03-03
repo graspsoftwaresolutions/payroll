@@ -73,6 +73,7 @@
                             <th>{{ __('Employee Contribution') }}</th>
                             <th>{{ __('Employer Contribution') }}</th>
                             <th>{{ __('Total Contribution') }}</th>
+                            <th>{{ __('Above 60 years') }}</th>
                             <th class="text-center action">{{ __('Actions') }}</th>
                         </tr>
                     </thead>
@@ -87,6 +88,7 @@
                             <td>{{$values->employee_contribution}}</td>
                             <td>{{$values->employer_contribution    }}</td>
                             <td>{{$values->total_contribution}}</td>
+                            <td>{{$values->employer_contribution_oldage}}</td>
                             <td class="text-center action">
                                     <a href="{{ route('master.SoscoEdit',Crypt::encrypt($values->id)) }}"><i class="icon fa fa-edit"></i> {{ __('Edit') }}</a>
                             </td>

@@ -133,6 +133,7 @@ class MasterController extends Controller
           $SaveSosco->employee_contribution = $request->employee_contribution;
           $SaveSosco->employer_contribution = $request->employer_contribution;
           $SaveSosco->total_contribution = $request->total_contribution;
+          $SaveSosco->employer_contribution_oldage = $request->employer_contribution_oldage;
           $SaveSosco->save();
           return redirect('hrm/sosco_list')->with('message', 'Sosco Added Succesfully');
       }
@@ -154,6 +155,7 @@ class MasterController extends Controller
               $SaveSosco->employee_contribution = $request->employee_contribution;
               $SaveSosco->employer_contribution = $request->employer_contribution;
               $SaveSosco->total_contribution = $request->total_contribution;
+              $SaveSosco->employer_contribution_oldage = $request->employer_contribution_oldage;
               $SaveSosco->save();
               return redirect('hrm/sosco_list')->with('message', 'Sosco Updated Succesfully');
           }

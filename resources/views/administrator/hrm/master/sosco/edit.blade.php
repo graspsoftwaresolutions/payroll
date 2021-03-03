@@ -117,6 +117,13 @@
                     </span>
                   @endif
               </div>
+              <div class="form-group{{ $errors->has('employer_contribution') ? ' has-error' : '' }}">
+                 <label for="employer_contribution_oldage" class="col-sm-3 control-label">{{ __('Employer Contribution[Above 60 Years]') }}<span style="color:red;">*</span></label>
+                  <div class="col-sm-6">
+                    <input type="text" id="employer_contribution_oldage" value="{{$row->employer_contribution_oldage}}"  name="employer_contribution_oldage" class="form-control" placeholder="{{ __('Employer Contribution[Above 60 Years]') }}">
+                  </div>
+                 
+              </div>
               <!-- /.end group -->
               <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-10">
