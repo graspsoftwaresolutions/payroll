@@ -796,8 +796,9 @@ $(document).on('click', 'button.removebutton', function () {
 		if($("#epf_sosco_check").prop("checked") == true){
 			$("#ee_soscos,#SOSCO_ERid").removeClass('hide');
 			var net_salary = $("#net_salary").val();
-			if(net_salary!=''){
-				var url = "{{ url('/hrm/get-sosco-contribution') }}" + '?net_salary=' + net_salary;
+      var user_id = $("#user_id").val();
+			if(net_salary!='' && user_id!=''){
+				var url = "{{ url('/hrm/get-sosco-contribution') }}" + '?net_salary=' + net_salary + '&user_id='+user_id;
                 $.ajax({
                     url: url,
                     type: "GET",
@@ -806,8 +807,14 @@ $(document).on('click', 'button.removebutton', function () {
 						$("#ee_sosco").val(0);
 						$("#SOSCO_ER").val(0);
 						if(result!=null){
-							$("#ee_sosco").val(result.employee_contribution);
-							$("#SOSCO_ER").val(result.employer_contribution);
+							
+              if(result.old_age==1){
+                $("#ee_sosco").val(0);
+                $("#SOSCO_ER").val(result.employer_contribution_oldage);
+              }else{
+                $("#ee_sosco").val(result.employee_contribution);
+                $("#SOSCO_ER").val(result.employer_contribution);
+              }
               CalculateDeductions();
 						}
 					}

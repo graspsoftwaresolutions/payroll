@@ -759,13 +759,36 @@ class PayrollController extends Controller {
 
 	public function getSoscoContribution(Request $request){
 		$salaryamt = $request->input('net_salary');
+		$user_id = $request->input('user_id');
 		
+		$dob = DB::table('tbl_member')
+		->where('user_id','=',$user_id)
+		->pluck('dob')
+		->first();
+
+		$age = 0;
 
 		$soscorecord = DB::table('sosco')
 		->where('from_amount','<=',$salaryamt)
 		->where('to_amount','>=',$salaryamt)
 		//->dump()
 		->first();
+
+		if($dob!=''){
+			$age = CommonHelper::calculate_age($dob);
+			if($soscorecord!=null){
+				$soscorecord->old_age = 0;
+			}
+			if($soscorecord!=null && $age>=60){
+				$soscorecord->old_age = 1;
+			}
+		}else{
+			if($soscorecord!=null){
+				$soscorecord->old_age = 0;
+			}
+		}
+
+		//dd($soscorecord);
 		return json_encode($soscorecord);
 	}
 	public function getSoscoInsContribution(Request $request){
