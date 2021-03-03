@@ -726,13 +726,15 @@ class PayrollController extends Controller {
 		->where('user_id','=',$user_id)
 		->pluck('dob')
 		->first();
+		
+		//dd($salaryamt);
 
 		if($dob!=''){
 			$age = CommonHelper::calculate_age($dob);
 			$epfqry = DB::table('epf')
 			->where('from_amount','<=',$salaryamt)
 			->where('to_amount','>=',$salaryamt);
-			if($age>60){
+			if($age>=60){
 				$epfqry = $epfqry->where('old_age','=',1);
 			}else{
 				$epfqry = $epfqry->where(function($query) use ($user_id){
@@ -743,6 +745,7 @@ class PayrollController extends Controller {
 
 			//->dump()
 			$epfrecord = $epfqry->first();
+			//dd($epfrecord);
 		}else{
 			$epfrecord = DB::table('epf')
 			->where('from_amount','<=',$salaryamt)
