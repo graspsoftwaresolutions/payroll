@@ -9,6 +9,12 @@
 .printDiv{
 	margin:5% !important;
 }
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
 </style>
 <style type="text/css">
 	@media print{
@@ -23,19 +29,25 @@
 		padding:5% !important;
 		xbackground:red !important;
 		}
+		.center {
+		  display: block;
+		  margin-left: auto;
+		  margin-right: auto;
+		  width: 50%;
+		}
 		
 	}
 	@media print { 
-    .table td, .table th { 
-        background-color: #fff !important; 
-    } 
-	.tithed{
-		background: red !important; 
+	    .table td, .table th { 
+	        background-color: #fff !important; 
+	    } 
+		.tithed{
+			background: red !important; 
+		}
+		#tithed{
+			background: gray !important; 
+		}
 	}
-	#tithed{
-		background: gray !important; 
-	}
-}
     </style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -86,7 +98,7 @@
                     @endif
                 </div>
 				<div id="printDiv"  class="printDiv"> 
-				<img src="{{ asset('public/profile_picture/'.auth()->user()->avatar) }}" style="width:120px;margin-top:2%" alt="logo">
+					<center><img src="{{ asset('public/profile_picture/'.auth()->user()->avatar) }}" style="width:120px;margin-top:2%;" class="center" alt="logo"/></center>
 				@php
 					$memberinfo = $data['memberinfo'];
 					$salary_data = $data['salary_data'];
