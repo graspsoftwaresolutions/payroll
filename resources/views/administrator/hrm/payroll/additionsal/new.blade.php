@@ -230,6 +230,7 @@
 						<label for="EPF_ERper" class="col-sm-3 control-label">{{ __('EPF-ER %') }}</label>
 						<div id="EPF_ERidper" class="col-sm-6 hide">
 							<select name="EPF_ERper" onchange="return CalculateEPAmount(this.value)" id="EPF_ERper" class="form-control">
+							<option value="6">6</option>
 								<option value="12">12</option>
                 <option value="13" selected>13</option>
 								<option value="17">17</option>
@@ -866,14 +867,15 @@ $(document).on('click', 'button.removebutton', function () {
 	}
 	
 	function CalculateEPAmount(pfpercent){
-		if(pfpercent==13 || pfpercent==12){
-			var EPF_ERref = $("#EPF_ERref").val();
-			$("#EPF_ER").val(EPF_ERref);
-		}else{
+		if(pfpercent==17){
 			var EPF_ERref = $("#EPF_ERref").val();
 			var net_salary = $("#basic_salary").val()=='' ? 0 : $("#basic_salary").val();
 			var EPF_ER = (parseFloat(EPF_ERref)+parseFloat((net_salary*4)/100)).toFixed(0);
-			$("#EPF_ER").val(EPF_ER);
+			$("#EPF_ER").val(EPF_ER);		
+			
+		}else{		
+			var EPF_ERref = $("#EPF_ERref").val();
+			$("#EPF_ER").val(EPF_ERref);	
 		}
 	}
 </script>
