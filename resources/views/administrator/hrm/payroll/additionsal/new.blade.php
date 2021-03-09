@@ -634,7 +634,7 @@ function gross_calc() {
 	ot = ot=='' ? 0: ot;
 	$('#net_salary').val(parseFloat(basic_salary) +  parseFloat(ot));
 	
-	$('#gross_salary').val(parseFloat(basic_salary) + parseFloat(addition_total) +  parseFloat(ot) );
+	$('#gross_salary').val((parseFloat(basic_salary) + parseFloat(addition_total) +  parseFloat(ot)).toFixed(2) );
 	
 	CalculateDeductions();
  }
@@ -702,12 +702,13 @@ $(document).on('click', 'button.removebutton', function () {
 			addition_price = addition_price=='' ? 0 : addition_price;
 			sum_additional = parseFloat(sum_additional)+parseFloat(addition_price);
 		});
+    sum_additional = parseFloat(sum_additional).toFixed(2);
 		$("#addition_total").val(sum_additional);
 		var ot = $("#ot").val();
 		ot = ot=='' ? 0 : ot;
 		var basic_salary = $("#basic_salary").val();
 		basic_salary = basic_salary=='' ? 0 : basic_salary;
-		tot_allowance = parseFloat(sum_additional)+parseFloat(ot)+parseFloat(basic_salary);
+		tot_allowance = (parseFloat(sum_additional)+parseFloat(ot)+parseFloat(basic_salary)).toFixed(2);
 		$("#gross_salary").val(tot_allowance);
 		CalculateDeductions();
     }
@@ -718,7 +719,7 @@ $(document).on('click', 'button.removebutton', function () {
 			addition_price = addition_price=='' ? 0 : addition_price;
 			sum_additional = parseFloat(sum_additional)+parseFloat(addition_price);
 		});
-		
+		 sum_additional = parseFloat(sum_additional).toFixed(2);
 		
 		var epf_eee  = $('#epf_ee_id').val();
 		var ee_soscoe = $('#ee_sosco').val();
@@ -727,7 +728,7 @@ $(document).on('click', 'button.removebutton', function () {
 		epf_eee = epf_eee=='' ? 0 : epf_eee;
 		ee_soscoe = ee_soscoe=='' ? 0 : ee_soscoe;
 		eis_sipe = eis_sipe=='' ? 0 : eis_sipe;
-		sum_additional = parseFloat(sum_additional)+parseFloat(epf_eee)+parseFloat(ee_soscoe)+parseFloat(eis_sipe);
+		sum_additional = (parseFloat(sum_additional)+parseFloat(epf_eee)+parseFloat(ee_soscoe)+parseFloat(eis_sipe)).toFixed(2);
 		$("#deductions_total").val(sum_additional);
 		CalculateOtherDeductions();
 		/*var basic_salary = $("#basic_salary").val();
@@ -743,10 +744,11 @@ $(document).on('click', 'button.removebutton', function () {
 			addition_price = addition_price=='' ? 0 : addition_price;
 			sum_additional = parseFloat(sum_additional)+parseFloat(addition_price);
 		});
+     sum_additional = parseFloat(sum_additional).toFixed(2);
 		$("#otherdeductions_total").val(sum_additional);
 		var deductions_total = $("#deductions_total").val();
 		deductions_total = deductions_total=='' ? 0 : deductions_total;
-		var total_deductions = parseFloat(sum_additional)+parseFloat(deductions_total);
+		var total_deductions = (parseFloat(sum_additional)+parseFloat(deductions_total)).toFixed(2);
 		$("#total_deductions").val(total_deductions);
 		var gross_salary = $("#gross_salary").val();
 		gross_salary = gross_salary=='' ? 0 : gross_salary;
