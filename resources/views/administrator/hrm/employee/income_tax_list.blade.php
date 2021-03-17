@@ -85,7 +85,7 @@
                             <td>{{$values->endyear}}</td>
                             <td>{{ $values->doj=='' || $values->doj=='0000-00-00' ? '' : date('d/m/Y',strtotime($values->doj)) }}</td>
                             <td>{{ $values->dob=='' || $values->dob=='0000-00-00' ? '' : date('d/m/Y',strtotime($values->dob)) }}</td>
-                            <td>{{$values->gross_salary }}</td>
+                            <td>{{ number_format($values->gross_salary,2,".","") }}</td>
                             
                             <td class="text-center action">
                                 <a style="font-size:19px" target="_blank" class="btn btn-sm red waves-effect waves-circle waves-light" href="{{ route('income.print',Crypt::encrypt($values->incometaxid)) }}"><i class="icon fa fa-print"></i> Print</a>

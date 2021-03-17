@@ -73,9 +73,9 @@ class AjaxController extends Controller
             {
                 $nestedData['month_year'] = date('M/Y',strtotime($salary->salary_date));
                 $nestedData['name'] = strtoupper($salary->name);
-                $nestedData['gross_salary'] = $salary->gross_salary;
-                $nestedData['total_deductions'] = $salary->total_deductions;
-                $nestedData['net_pay'] = $salary->net_pay;
+                $nestedData['gross_salary'] = number_format($salary->gross_salary,2,".","");
+                $nestedData['total_deductions'] = number_format($salary->total_deductions,2,".","");
+                $nestedData['net_pay'] = number_format($salary->net_pay,2,".","");
                // $saalry_enc_id = Crypt::encrypt($salary->id);
 
                 $editlink = route('emp.salaryEdit',Crypt::encrypt($salary->id));
@@ -162,9 +162,9 @@ class AjaxController extends Controller
             {
                 $nestedData['month_year'] = date('M/Y',strtotime($salary->salary_date));
                 $nestedData['name'] = strtoupper($salary->name);
-                $nestedData['gross_salary'] = $salary->gross_salary;
-                $nestedData['total_deductions'] = $salary->deductions_total;
-                $nestedData['net_pay'] = $salary->net_pay;
+                $nestedData['gross_salary'] = number_format($salary->gross_salary,2,".","");
+                $nestedData['total_deductions'] = number_format($salary->deductions_total,2,".","");
+                $nestedData['net_pay'] = number_format($salary->net_pay,2,".","");
                // $saalry_enc_id = Crypt::encrypt($salary->id);
 
                 $editlink = route('bonus.salaryEdit',Crypt::encrypt($salary->id));

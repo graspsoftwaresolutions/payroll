@@ -137,25 +137,25 @@
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Basic Pay</td>
-				<td style="font-weight:bold;text-align:right;">{{ $salary_data->basic_salary==0 ? '' : $salary_data->basic_salary }}</td>
+				<td style="font-weight:bold;text-align:right;">{{ $salary_data->basic_salary==0 ? '' : number_format($salary_data->basic_salary,2,".","") }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">EPF</td>
-				<td style="font-weight:bold;text-align:right;">{{ $salary_data->epf_ee_amount==0 ? '' : $salary_data->epf_ee_amount }}<!--{{ $salary_data->epf_ee_amount+$salary_data->epf_er }}--></td>
-				<td style="font-weight:bold;text-align:right;">{{ $salary_data->epf_er==0 ? '' : $salary_data->epf_er }}</td>
+				<td style="font-weight:bold;text-align:right;">{{ $salary_data->epf_ee_amount==0 ? '' : number_format($salary_data->epf_ee_amount,2,".","") }}<!--{{ $salary_data->epf_ee_amount+$salary_data->epf_er }}--></td>
+				<td style="font-weight:bold;text-align:right;">{{ $salary_data->epf_er==0 ? '' : number_format($salary_data->epf_er,2,".","") }}</td>
 				</tr>
 
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Allowance</td>
-				<td style="font-weight:bold;text-align:right;">{{ $salary_data->additional_allowance_total==0 ? '' : $salary_data->additional_allowance_total }}</td>
+				<td style="font-weight:bold;text-align:right;">{{ $salary_data->additional_allowance_total==0 ? '' : number_format($salary_data->additional_allowance_total,2,".","") }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Socso</td>
-				<td style="font-weight:bold;text-align:right;">{{ $salary_data->ee_sosco_amount==0 ? '' : $salary_data->ee_sosco_amount }}<!--{{ $salary_data->ee_sosco_amount+$salary_data->sosco_er }}--></td>
-				<td style="font-weight:bold;text-align:right;">{{ $salary_data->sosco_er==0 ? '' : $salary_data->sosco_er }}</td>
+				<td style="font-weight:bold;text-align:right;">{{ $salary_data->ee_sosco_amount==0 ? '' : number_format($salary_data->ee_sosco_amount,2,".","") }}<!--{{ $salary_data->ee_sosco_amount+$salary_data->sosco_er }}--></td>
+				<td style="font-weight:bold;text-align:right;">{{ $salary_data->sosco_er==0 ? '' : number_format($salary_data->sosco_er,2,".","") }}</td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Bonus</td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Socso - Sip</td>
-				<td style="font-weight:bold;text-align:right;">{{ $salary_data->eis_sip_amount==0 ? '' : $salary_data->eis_sip_amount }}<!--{{ $salary_data->ee_sosco_amount+$salary_data->sosco_er }}--></td>
-				<td style="font-weight:bold;text-align:right;">{{ $salary_data->sosco_eissip==0 ? '' : $salary_data->sosco_eissip }}</td>
+				<td style="font-weight:bold;text-align:right;">{{ $salary_data->eis_sip_amount==0 ? '' : number_format($salary_data->eis_sip_amount,2,".","") }}<!--{{ $salary_data->ee_sosco_amount+$salary_data->sosco_er }}--></td>
+				<td style="font-weight:bold;text-align:right;">{{ $salary_data->sosco_eissip==0 ? '' : number_format($salary_data->sosco_eissip,2,".","") }}</td>
 				</tr>
 				
 				@php
@@ -220,42 +220,42 @@
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Ex-Gratia</td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Income Tax </td>
-				<td style="font-weight:bold;text-align:right;border-right:none !important;">{{ $pcbamt==0 ? '' : $pcbamt }}</td>
+				<td style="font-weight:bold;text-align:right;border-right:none !important;">{{ $pcbamt==0 ? '' : number_format($pcbamt,2,".","") }}</td>
 				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Overtime</td>
 				<td style="font-weight:bold;text-align:right;">{{ $salary_data->ot_amount==0 ? '' : $salary_data->ot_amount }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Co-op Society</td>
-				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;">{{ $koopamt==0 ? '' : $koopamt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;">{{ $koopamt==0 ? '' : number_format($koopamt,2,".","") }}</td>
 				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">NUBE</td>
-				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;">{{ $nubeamt==0 ? '' : $nubeamt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;">{{ $nubeamt==0 ? '' : number_format($nubeamt,2,".","") }}</td>
 				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">GMIS</td>
-				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;">{{ $gimsamt==0 ? '' : $gimsamt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;">{{ $gimsamt==0 ? '' : number_format($gimsamt,2,".","") }}</td>
 				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">BIMB LOAN</td>
-				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;">{{ $bimbloanamt==0 ? '' : $bimbloanamt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;">{{ $bimbloanamt==0 ? '' : number_format($bimbloanamt,2,".","") }}</td>
 				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;"></td>
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">GELA</td>
-				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;">{{ $gelaamt==0 ? '' : $gelaamt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;">{{ $gelaamt==0 ? '' : number_format($gelaamt,2,".","") }}</td>
 				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
@@ -263,7 +263,7 @@
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">HOME/CAR LOAN
 				</td>
-				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;"> {{ $carloanamt==0 ? '' : $carloanamt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;"> {{ $carloanamt==0 ? '' : number_format($carloanamt,2,".","") }}</td>
 				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
@@ -271,7 +271,7 @@
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">UPL
 				</td>
-				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;"> {{ $uplamt==0 ? '' : $uplamt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;"> {{ $uplamt==0 ? '' : number_format($uplamt,2,".","") }}</td>
 				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 				<tr>
@@ -279,23 +279,23 @@
 				<td style="font-weight:bold;text-align:right;"></td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Others
 				</td>
-				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;"> {{ $otheramt==0 ? '' : $otheramt }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;"> {{ $otheramt==0 ? '' : number_format($otheramt,2,".","") }}</td>
 				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:18%;">Total Income</td>
-				<td style="font-weight:bold;text-align:right;">{{ $salary_data->gross_salary==0 ? '' : $salary_data->gross_salary }}</td>
+				<td style="font-weight:bold;text-align:right;">{{ $salary_data->gross_salary==0 ? '' : number_format($salary_data->gross_salary,2,".","") }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:18%;">Total Deduction
 				</td>
-				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;"> {{ $salary_data->total_deductions==0 ? '' : $salary_data->total_deductions }}</td>
+				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;"> {{ $salary_data->total_deductions==0 ? '' : number_format($salary_data->total_deductions,2,".","") }}</td>
 				<td style="font-weight:bold;text-align:right;border-left: none !important;"></td>
 				</tr>
 
 				
 				<tr>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:18%;">Net Income</td>
-				<td style="font-weight:bold;text-align:right;">{{ $salary_data->net_pay==0 ? '' : $salary_data->net_pay }}</td>
+				<td style="font-weight:bold;text-align:right;">{{ $salary_data->net_pay==0 ? '' : number_format($salary_data->net_pay,2,".","") }}</td>
 				<td style="background: #e5ecf7; color: #211c1c;font-weight:bold;width:15%;">Online
 				</td>
 				<td colspan="1" style="font-weight:bold;text-align:right;border-right:none !important;"> </td>

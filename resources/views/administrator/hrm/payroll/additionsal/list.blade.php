@@ -73,9 +73,9 @@
                             @foreach($data['salaries'] as $salary)
 								 <tr>
 									<td>{{ strtoupper($salary->name) }}</td>
-									<td>{{ $salary->gross_salary }}</td>
-									<td>{{ $salary->total_deductions }}</td>
-									<td>{{ $salary->net_pay }}</td>
+									<td>{{ number_format($salary->gross_salary,2,".","") }}</td>
+									<td>{{ number_format($salary->total_deductions,2,".","") }}</td>
+									<td>{{ number_format($salary->net_pay,2,".","") }}</td>
 									
 									<td class="text-center"><a style="font-size:19px" class="btn btn-sm red waves-effect waves-circle waves-light" href="{{ route('add.salaryEdit',Crypt::encrypt($salary->id)) }}"><i class="icon fa fa-edit"></i></a></td>
 								</tr>
